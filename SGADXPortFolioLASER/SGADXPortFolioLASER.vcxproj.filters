@@ -19,8 +19,20 @@
     <Filter Include="GameObjects">
       <UniqueIdentifier>{ff619a3f-554c-4078-a0bb-487eb5a917bf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObjects\GameMap">
+    <Filter Include="GameObjects\GameField">
       <UniqueIdentifier>{4e92f85e-9c51-40d0-bef9-567de2d4ea30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\GameManager">
+      <UniqueIdentifier>{3b1b52c9-da2a-443c-8375-81a9780ace18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Inventory">
+      <UniqueIdentifier>{71bfc0b6-4dbb-483f-8413-acbc282305b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{71eed43e-5a6b-425e-894c-cf77634ad804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Device">
+      <UniqueIdentifier>{e6a4b17f-db5f-4bd1-a904-10cee7327c53}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,6 +48,18 @@
     <ClInclude Include="SGADXPortFolioLASER.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameField.h">
+      <Filter>GameObjects\GameField</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>MainGame\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>GameObjects\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Device.h">
+      <Filter>System\Device</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -43,6 +67,9 @@
     </ClCompile>
     <ClCompile Include="SGADXPortFolioLASER.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp">
+      <Filter>System\Device</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
