@@ -1,19 +1,19 @@
 #include "stdafx.h"
 
-Device* Device::instance = NULL;
+shared_ptr<Device> Device::instance = nullptr;
 LPDIRECT3DDEVICE9 Device::device = NULL;
 
-Device * Device::Get(HWND hwnd)
+shared_ptr<Device> Device::Get(HWND hwnd)
 {
-	if (instance == NULL)
-		instance = new Device(hwnd);
+	if (instance == nullptr)
+		instance = make_shared<Device>(hwnd);
 
 	return instance;
 }
 
 void Device::Delete()
 {
-	SAFE_DELETE(instance);
+	instance.reset();
 }
 
 void Device::SetWorld(D3DXMATRIX * world)
