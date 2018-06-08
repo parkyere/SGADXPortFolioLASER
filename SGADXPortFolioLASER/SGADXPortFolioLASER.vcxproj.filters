@@ -34,6 +34,30 @@
     <Filter Include="System\Device">
       <UniqueIdentifier>{e6a4b17f-db5f-4bd1-a904-10cee7327c53}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Frames">
+      <UniqueIdentifier>{11a24645-edc9-4aa1-b7f3-5cf423c8fb4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Keyboard">
+      <UniqueIdentifier>{ba961723-fc11-48ff-982d-0d2fb43e08b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Mouse">
+      <UniqueIdentifier>{a6f55eea-e2ab-4a76-8b17-5c37c07616b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{c47ca502-6b58-49cb-8c2f-d0e827fe5614}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Math">
+      <UniqueIdentifier>{525acb93-42d0-4b65-875a-126b8e843472}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Rect">
+      <UniqueIdentifier>{d32a70ed-7a40-4cbc-baef-2480d68c5433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Size">
+      <UniqueIdentifier>{48f7c931-2f63-4195-bb65-a856539db595}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\MyPoint">
+      <UniqueIdentifier>{999b3c76-9eaf-46cc-be81-493d9d5c95de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -60,6 +84,21 @@
     <ClInclude Include="Device.h">
       <Filter>System\Device</Filter>
     </ClInclude>
+    <ClInclude Include="Frames.h">
+      <Filter>System\Frames</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>System\Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>System\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="MyPoint.h">
+      <Filter>Core\MyPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="Size.h">
+      <Filter>Core\Size</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -70,6 +109,21 @@
     </ClCompile>
     <ClCompile Include="Device.cpp">
       <Filter>System\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Frames.cpp">
+      <Filter>System\Frames</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>System\Keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>System\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="MyPoint.cpp">
+      <Filter>Core\MyPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="Size.cpp">
+      <Filter>Core\Size</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -6,8 +6,7 @@ LPDIRECT3DDEVICE9 Device::device = NULL;
 shared_ptr<Device> Device::Get(HWND hwnd)
 {
 	if (instance == nullptr)
-		instance = make_shared<Device>(hwnd);
-
+		instance = shared_ptr<Device>(new Device{ hwnd });
 	return instance;
 }
 

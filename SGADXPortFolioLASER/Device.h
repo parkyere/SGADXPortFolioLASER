@@ -19,12 +19,12 @@ public:
 
 	void BeginScene(DWORD clearColor);
 	void EndScene();
+	~Device();
 private:
 	Device(HWND hwnd);
-	~Device();
+
 	static shared_ptr<Device> instance;
 
 	LPDIRECT3D9 d3d;
 	static LPDIRECT3DDEVICE9 device;
-
 };
