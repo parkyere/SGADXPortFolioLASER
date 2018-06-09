@@ -18,8 +18,6 @@ void Mouse::Delete()
 
 Mouse::Mouse() : position{0.f,0.f}
 {
-	//position = MyPoint{ 0.f, 0.f };
-
 	ZeroMemory(buttonStatus, sizeof(byte) * MAX_INPUT_MOUSE);
 	ZeroMemory(buttonOldStatus, sizeof(byte) * MAX_INPUT_MOUSE);
 	ZeroMemory(buttonMap, sizeof(byte) * MAX_INPUT_MOUSE);
