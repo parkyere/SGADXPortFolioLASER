@@ -58,6 +58,9 @@
     <Filter Include="Core\MyPoint">
       <UniqueIdentifier>{999b3c76-9eaf-46cc-be81-493d9d5c95de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{dcbe742e-438e-4dc7-82f5-7e1cde77883f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -98,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="Size.h">
       <Filter>Core\Size</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
