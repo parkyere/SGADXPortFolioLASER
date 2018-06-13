@@ -61,6 +61,15 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{dcbe742e-438e-4dc7-82f5-7e1cde77883f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects\Grid">
+      <UniqueIdentifier>{fca1c47b-68f1-44a2-829e-15e57899cb46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{ffe30ac6-e2a8-436b-86d0-a7602373ea36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render\Texture">
+      <UniqueIdentifier>{92519d69-7990-453c-94a2-5a8ed042155b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -105,6 +114,12 @@
     <ClInclude Include="World.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>GameObjects\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Render\Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -130,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="Size.cpp">
       <Filter>Core\Size</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Render\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
