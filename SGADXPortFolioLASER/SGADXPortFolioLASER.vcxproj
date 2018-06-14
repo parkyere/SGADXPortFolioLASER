@@ -168,6 +168,7 @@
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MyPoint.h" />
+    <ClInclude Include="Rect.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SGADXPortFolioLASER.h" />
     <ClInclude Include="Size.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MyPoint.cpp" />
+    <ClCompile Include="Rect.cpp" />
     <ClCompile Include="SGADXPortFolioLASER.cpp" />
     <ClCompile Include="Size.cpp" />
     <ClCompile Include="stdafx.cpp">

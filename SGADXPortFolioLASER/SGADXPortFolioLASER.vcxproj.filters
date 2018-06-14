@@ -120,6 +120,9 @@
     <ClInclude Include="Texture.h">
       <Filter>Render\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>Core\Rect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -148,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Render\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Rect.cpp">
+      <Filter>Core\Rect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

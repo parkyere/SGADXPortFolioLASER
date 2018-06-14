@@ -1,8 +1,8 @@
 #include "stdafx.h"
 
-constexpr MyPoint::MyPoint() : x{ 0.f }, y{0.f}
-{
-}
+//constexpr MyPoint::MyPoint() : x{ 0.f }, y{0.f}
+//{
+//}
 
 constexpr MyPoint::MyPoint(const MyPoint & point) : x{ point.x }, y{ point.y }
 {
@@ -20,26 +20,22 @@ constexpr MyPoint::MyPoint(float x, float y): x{x} ,y{y}
 {
 }
 
-MyPoint::~MyPoint()
+constexpr MyPoint MyPoint::operator+(const MyPoint& point) const
 {
+	return MyPoint{ x + point.x,y + point.y };
 }
 
-MyPoint MyPoint::operator+(const MyPoint& point) const
-{
-	return MyPoint{( x + point.x), (y + point.y) };
-}
-
-MyPoint MyPoint::operator-(const MyPoint& point) const
+constexpr MyPoint MyPoint::operator-(const MyPoint& point) const
 {
 	return MyPoint{ x - point.x, y - point.y };
 }
 
-MyPoint MyPoint::operator*(const float amount) const
+constexpr MyPoint MyPoint::operator*(const float amount) const
 {
 	return MyPoint{ x * amount, y * amount };
 }
 
-float MyPoint::magnitude()
+float MyPoint::magnitude() const
 {
 	return sqrtf(x*x + y*y);
 }
