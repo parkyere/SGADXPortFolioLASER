@@ -70,6 +70,15 @@
     <Filter Include="Render\Texture">
       <UniqueIdentifier>{92519d69-7990-453c-94a2-5a8ed042155b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects\Component">
+      <UniqueIdentifier>{82b9000f-f2ee-40ab-91a7-64c355876d97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\GameState">
+      <UniqueIdentifier>{b296b5cd-d181-433d-8878-80c16d486b01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\MapEditor">
+      <UniqueIdentifier>{da2f1caa-5745-4844-a29d-86cdea7c20cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -122,6 +131,18 @@
     </ClInclude>
     <ClInclude Include="Rect.h">
       <Filter>Core\Rect</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>GameObjects\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Gate.h">
+      <Filter>GameObjects\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>GameObjects\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="MapEditor.h">
+      <Filter>MainGame\MapEditor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

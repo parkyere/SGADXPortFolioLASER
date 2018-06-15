@@ -2,4 +2,5 @@
 
 class GameField 
 {
+	vector< vector<Grid> > myGrid;
 };
