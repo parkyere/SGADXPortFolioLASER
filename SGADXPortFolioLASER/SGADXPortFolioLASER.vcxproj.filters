@@ -79,6 +79,9 @@
     <Filter Include="MainGame\MapEditor">
       <UniqueIdentifier>{da2f1caa-5745-4844-a29d-86cdea7c20cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Render\Vertex">
+      <UniqueIdentifier>{b97154fa-6bd1-46b7-a0b5-07f9a2d0de7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -144,6 +147,12 @@
     <ClInclude Include="MapEditor.h">
       <Filter>MainGame\MapEditor</Filter>
     </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Render\Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="BoundVertex.h">
+      <Filter>Render\Vertex</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -175,6 +184,9 @@
     </ClCompile>
     <ClCompile Include="Rect.cpp">
       <Filter>Core\Rect</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>MainGame\GameManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

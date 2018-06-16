@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BoundVertex.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="Frames.h" />
@@ -179,11 +180,13 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Vertex.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Frames.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MyPoint.cpp" />

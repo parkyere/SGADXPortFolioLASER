@@ -3,21 +3,6 @@
 class Texture
 {
 private:
-	struct Vertex
-	{
-		D3DXVECTOR3 position;
-		D3DXVECTOR2 uv;
-
-		Vertex() {}
-		Vertex(float x, float y, float u, float v)
-		{
-			position = { x, y, 0.0f };
-			uv = { u, v };
-		}
-
-		static DWORD fvf;
-	};
-
 	UINT number;
 	LPDIRECT3DTEXTURE9 texture;
 	D3DXVECTOR2 textureSize;
@@ -30,20 +15,6 @@ private:
 	D3DXVECTOR2 boundSize;
 
 	static bool isDrawBoundBox;
-	struct BoundVertex
-	{
-		D3DXVECTOR3 position;
-		DWORD color;
-
-		static DWORD fvf;
-
-		BoundVertex() {}
-		BoundVertex(float x, float y, DWORD color)
-		{
-			position = { x, y, 0.0f };
-			this->color = color;
-		}
-	};
 
 	static LPDIRECT3DVERTEXBUFFER9 vertexBuffer;
 	static LPDIRECT3DVERTEXBUFFER9 boundVertexBuffer;

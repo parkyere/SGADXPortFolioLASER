@@ -1,13 +1,13 @@
 #include "stdafx.h"
 
 LPDIRECT3DVERTEXBUFFER9 Texture::vertexBuffer = NULL;
-DWORD Texture::Vertex::fvf = D3DFVF_XYZ | D3DFVF_TEX1;
+//DWORD Texture::Vertex::fvf = D3DFVF_XYZ | D3DFVF_TEX1;
 vector< shared_ptr<Texture> > Texture::textures;
 map<wstring, LPDIRECT3DTEXTURE9> Texture::textureMap;
 
 bool Texture::isDrawBoundBox = false;
 LPDIRECT3DVERTEXBUFFER9 Texture::boundVertexBuffer = NULL;
-DWORD Texture::BoundVertex::fvf = D3DFVF_XYZ | D3DFVF_DIFFUSE;
+DWORD BoundVertex::fvf = D3DFVF_XYZ | D3DFVF_DIFFUSE;
 
 void Texture::CreateVertexBuffer()
 {

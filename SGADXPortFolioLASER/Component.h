@@ -38,6 +38,7 @@ public:
 
 class Obstacle : public Component
 {
+
 };
 
 class LaserSource : public Component 
