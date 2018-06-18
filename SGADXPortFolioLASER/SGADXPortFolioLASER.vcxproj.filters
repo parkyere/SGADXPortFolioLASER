@@ -82,6 +82,9 @@
     <Filter Include="Render\Vertex">
       <UniqueIdentifier>{b97154fa-6bd1-46b7-a0b5-07f9a2d0de7f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Render\Camera">
+      <UniqueIdentifier>{459b692d-ff7d-4576-ac6c-66553007aa4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -153,6 +156,21 @@
     <ClInclude Include="BoundVertex.h">
       <Filter>Render\Vertex</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="MainCamera.h">
+      <Filter>Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeView.h">
+      <Filter>Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowView.h">
+      <Filter>Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
+      <Filter>Render\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -187,6 +205,18 @@
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>MainGame\GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Render\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowView.cpp">
+      <Filter>Render\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeView.cpp">
+      <Filter>Render\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="MainCamera.cpp">
+      <Filter>Render\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -2,14 +2,19 @@
 
 class GameManager 
 {
+	static shared_ptr<GameManager> instance;
 	GameField myGameField;
 	GameState myState;
 	Inventory myInventory;
 	HINSTANCE gameInstance;
 	HWND gameHandle;
+	GameManager();
+	
 public:
-	GameManager(HINSTANCE instance, HWND handle);
-	void Initialize();
+	static shared_ptr<GameManager> Get();
+	void Initialize(HINSTANCE instance, HWND handle);
+	HINSTANCE getInstance();
+	HWND getHandle();
 	void Update();
 	void Render();
 	void Destroy();

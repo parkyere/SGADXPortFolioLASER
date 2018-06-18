@@ -160,9 +160,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BoundVertex.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Device.h" />
+    <ClInclude Include="Factory.h" />
+    <ClInclude Include="FollowView.h" />
     <ClInclude Include="Frames.h" />
+    <ClInclude Include="FreeView.h" />
     <ClInclude Include="GameField.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameState.h" />
@@ -170,6 +174,7 @@
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="MainCamera.h" />
     <ClInclude Include="MapEditor.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MyPoint.h" />
@@ -184,10 +189,14 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Device.cpp" />
+    <ClCompile Include="FollowView.cpp" />
     <ClCompile Include="Frames.cpp" />
+    <ClCompile Include="FreeView.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="MainCamera.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MyPoint.cpp" />
     <ClCompile Include="Rect.cpp" />
