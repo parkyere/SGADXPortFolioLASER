@@ -1,10 +1,19 @@
 #pragma once
 
+enum class GameState 
+{
+	IntroMode,
+	MapEditorEditMode,
+	MapEditorTestMode,
+	GamePlayEditMode,
+	GamePlayRunMode
+};
+
 class GameManager 
 {
 	static shared_ptr<GameManager> instance;
 	GameField myGameField;
-	GameState myState;
+	GameState myState{ GameState::MapEditorEditMode };
 	Inventory myInventory;
 	HINSTANCE gameInstance;
 	HWND gameHandle;

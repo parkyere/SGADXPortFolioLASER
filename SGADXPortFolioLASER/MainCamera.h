@@ -8,14 +8,14 @@ private:
 	shared_ptr<FollowView> follow;
 
 	D3DXMATRIX projection;
-	static shared_ptr<MainCamera> instance;
+	static MainCamera* instance;
 
 	MainCamera();
 	~MainCamera();
 	friend class shared_ptr<MainCamera>;
 	void SetMainCamera(shared_ptr<Camera> camera);
 public:
-	static shared_ptr<MainCamera> Get();
+	static MainCamera* Get();
 	static void Delete();
 
 	void UpdateProjectionMatrix();

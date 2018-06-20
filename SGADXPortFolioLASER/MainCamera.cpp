@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-shared_ptr<MainCamera> MainCamera::instance{ nullptr };
+MainCamera* MainCamera::instance{ nullptr };
 
 MainCamera::MainCamera():
 	free{ nullptr }, follow{ nullptr }
@@ -28,17 +28,17 @@ void MainCamera::SetMainCamera(shared_ptr<Camera> camera)
 	main = camera;
 }
 
-shared_ptr<MainCamera> MainCamera::Get()
+MainCamera* MainCamera::Get()
 {
 	if (instance == nullptr)
-		instance = shared_ptr<MainCamera>(new MainCamera);
+		instance = new MainCamera;
 
 	return instance;
 }
 
 void MainCamera::Delete()
 {
-	instance.reset();
+	SAFE_DELETE(instance);
 }
 
 void MainCamera::UpdateProjectionMatrix()

@@ -33,6 +33,7 @@ HWND GameManager::getHandle()
 
 void GameManager::Update()
 {
+	myState->GameUpdate();
 }
 
 void GameManager::Render()
