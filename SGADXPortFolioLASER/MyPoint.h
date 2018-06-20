@@ -2,11 +2,22 @@
 
 struct MyPoint
 {
-	constexpr MyPoint() = default;
-	constexpr MyPoint(const MyPoint& point);
-	constexpr MyPoint(const MyPoint&& point);
-	constexpr MyPoint(const Size& size);
-	constexpr MyPoint(float x, float y);
+	constexpr MyPoint() : x{ 0.f }, y{ 0.f }
+	{
+	}
+	constexpr MyPoint(const MyPoint& point) : x{ point.x }, y{ point.y }
+	{
+	}
+	constexpr MyPoint(const MyPoint&& point) : x{ point.x }, y{ point.y }
+	{
+	}
+	constexpr MyPoint(const Size& size) : x{ size.width }, y{ size.height }
+	{
+	}
+
+	constexpr MyPoint(float x, float y) : x{ x }, y{ y }
+	{
+	}
 
 	constexpr MyPoint operator+(const MyPoint& point) const;
 	constexpr MyPoint operator-(const MyPoint& point) const;

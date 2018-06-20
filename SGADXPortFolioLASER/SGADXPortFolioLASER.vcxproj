@@ -169,6 +169,7 @@
     <ClInclude Include="FreeView.h" />
     <ClInclude Include="GameField.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="Gate.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Inventory.h" />
@@ -194,6 +195,7 @@
     <ClCompile Include="FreeView.cpp" />
     <ClCompile Include="GameField.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="MainCamera.cpp" />
     <ClCompile Include="Mouse.cpp" />

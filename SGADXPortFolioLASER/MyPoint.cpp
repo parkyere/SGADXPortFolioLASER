@@ -1,25 +1,5 @@
 #include "stdafx.h"
 
-//constexpr MyPoint::MyPoint() : x{ 0.f }, y{0.f}
-//{
-//}
-
-constexpr MyPoint::MyPoint(const MyPoint & point) : x{ point.x }, y{ point.y }
-{
-}
-
-constexpr MyPoint::MyPoint(const MyPoint && point) : x{ point.x }, y{point.y}
-{
-}
-
-constexpr MyPoint::MyPoint(const Size & size) : x{ size.width }, y{size.height}
-{
-}
-
-constexpr MyPoint::MyPoint(float x, float y): x{x} ,y{y}
-{
-}
-
 constexpr MyPoint MyPoint::operator+(const MyPoint& point) const
 {
 	return MyPoint{ x + point.x,y + point.y };

@@ -79,6 +79,9 @@
     <Filter Include="Render\Camera">
       <UniqueIdentifier>{459b692d-ff7d-4576-ac6c-66553007aa4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects\GameState">
+      <UniqueIdentifier>{5e444ee8-68cf-4a35-8f03-dcdd5dcdc43e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -159,6 +162,9 @@
     <ClInclude Include="Factory.h">
       <Filter>Render\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>GameObjects\GameState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -205,6 +211,9 @@
     </ClCompile>
     <ClCompile Include="GameField.cpp">
       <Filter>GameObjects\GameField</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>GameObjects\Grid</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

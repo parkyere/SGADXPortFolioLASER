@@ -19,6 +19,7 @@ void GameManager::Initialize(HINSTANCE instance, HWND handle)
 {
 	gameInstance = instance;
 	gameHandle = handle;
+	myGameField.InitGrid(10, 10);
 }
 
 HINSTANCE GameManager::getInstance()
@@ -33,7 +34,7 @@ HWND GameManager::getHandle()
 
 void GameManager::Update()
 {
-	myState->GameUpdate();
+	//myState->GameUpdate();
 }
 
 void GameManager::Render()

@@ -3,5 +3,5 @@
 class MapEditor 
 {
 	GameField StageGameField;
-	GameState EditorState;
+	GameState EditorState{};
 };
