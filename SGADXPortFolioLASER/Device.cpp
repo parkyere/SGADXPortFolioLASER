@@ -10,6 +10,13 @@ shared_ptr<Device> Device::Get(HWND hwnd)
 	return instance;
 }
 
+shared_ptr<Device> Device::Get() noexcept
+{
+	if (instance == nullptr) 
+		throw new exception;
+	return instance;
+}
+
 void Device::Delete()
 {
 	instance.reset();

@@ -3,7 +3,8 @@
 class Device
 {
 public:
-	static shared_ptr<Device> Get(HWND hwnd = NULL);
+	static shared_ptr<Device> Get(HWND hwnd);
+	static shared_ptr<Device> Get() noexcept;
 	static void Delete();
 
 	static LPDIRECT3DDEVICE9 GetDevice()

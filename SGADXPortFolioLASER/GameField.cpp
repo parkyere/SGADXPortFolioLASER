@@ -3,15 +3,11 @@
 void GameField::InitGrid(int x, int y)
 {
 	myGrid = vector< vector<Grid> >(x);
-	//for (vector<Grid>& singleLine : myGrid) 
-	//{
-	//	singleLine = vector<Grid>(x);
-	//}
 	for (int i=0; i<x; i++ )
 	{
 		for (int j=0; j<y; j++) 
 		{
-			myGrid[i].emplace_back(i*Grid::gridSize, j*Grid::gridSize);
+			myGrid[i].emplace_back(50.f+i*Grid::gridSize, 50.f+j*Grid::gridSize);
 		}
 	}
 }
