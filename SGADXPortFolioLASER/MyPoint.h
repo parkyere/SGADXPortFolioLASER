@@ -19,11 +19,23 @@ struct MyPoint
 	{
 	}
 
-	constexpr MyPoint operator+(const MyPoint& point) const;
-	constexpr MyPoint operator-(const MyPoint& point) const;
-	constexpr MyPoint operator*(const float amount)   const;
+	constexpr MyPoint operator+(const MyPoint& point) const 
+	{
+		return MyPoint{ x + point.x,y + point.y };
+	}
+	constexpr MyPoint operator-(const MyPoint& point) const 
+	{
+		return MyPoint{ x - point.x, y - point.y };
+	}
+	constexpr MyPoint operator*(const float amount)   const 
+	{
+		return MyPoint{ x * amount, y * amount };
+	}
 	float magnitude() const;
-	constexpr bool Equals(const MyPoint& point) const;
+	constexpr bool Equals(const MyPoint& point) const 
+	{
+		return (x == point.x) && (y == point.y);
+	}
 	static float Distance(const MyPoint& a, const MyPoint& b);
 
 	float x;

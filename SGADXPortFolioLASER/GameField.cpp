@@ -7,16 +7,22 @@ void GameField::InitGrid(int x, int y)
 	//{
 	//	singleLine = vector<Grid>(x);
 	//}
-	for (int j=0; j<x; j++ )
+	for (int i=0; i<x; i++ )
 	{
-		for (int i=0; i<y; i++) 
+		for (int j=0; j<y; j++) 
 		{
-			myGrid[j].emplace_back(x*Grid::gridSize, y*Grid::gridSize);
+			myGrid[i].emplace_back(i*Grid::gridSize, j*Grid::gridSize);
 		}
 	}
-	return;
 }
 
 void GameField::Render()
 {
+	for (vector<Grid>& currentLine : myGrid) 
+	{
+		for (Grid& currentGrid : currentLine) 
+		{
+			currentGrid.Render();
+		}
+	}
 }
