@@ -12,7 +12,7 @@ void Grid::Render()
 	if (myGridComponent != nullptr) 
 	{
 		Direction tempDirection = myGridComponent->getDirection();
-		myGridComponent->Render(gridPosX,gridPosY,tempDirection);
+		myGridComponent->Render(tempDirection);
 	}
 
 	//Render BoundBox

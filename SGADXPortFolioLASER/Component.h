@@ -30,11 +30,13 @@ class Component
 {
 protected:
 	Direction ComponentDirection;
+
 public:
 	Component() : ComponentDirection{ Direction::NoDirection } {}
 	void RightRotateDirection();
 	Direction getDirection();
-	virtual void Render(float xPos, float yPos, Direction myDir) = 0;
+	virtual void Render(Direction myDir) = 0;
+
 };
 
 
@@ -48,9 +50,15 @@ class LaserSource : public Component
 {
 	BeamColor SourceColor;
 	bool isPulsed;
+	Vertex ArrowShape[7];
+	float xPos;
+	float yPos;
 public:
 	LaserSource();
-	void Render(float xPos, float yPos, Direction myDir) override;
+	void Render(Direction myDir) override;
+	void SetColor(DWORD colorToSet);
+	void SetColor(BeamColor colorToSet);
+	void SetDirPos(float xPos, float yPos, Direction myDirection) noexcept;
 };
 
 class ColorChanger : public Component 
