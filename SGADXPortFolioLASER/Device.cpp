@@ -92,6 +92,7 @@ Device::Device(HWND hwnd)
 		, &param //추가정보 설정
 		, &device
 	);
+	
 	assert(SUCCEEDED(hr));
 }
 

@@ -19,7 +19,8 @@ void GameManager::Initialize(HINSTANCE instance, HWND handle)
 {
 	gameInstance = instance;
 	gameHandle = handle;
-	myGameField.InitGrid(10, 11);
+	myGameField.InitGrid(8, 8);
+	myInventory.InitCheatInventory();
 }
 
 HINSTANCE GameManager::getInstance()
@@ -40,6 +41,7 @@ void GameManager::Update()
 void GameManager::Render()
 {
 	myGameField.Render();
+	myInventory.Render();
 }
 
 void GameManager::Destroy()

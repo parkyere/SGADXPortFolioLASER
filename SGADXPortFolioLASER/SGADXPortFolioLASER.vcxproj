@@ -159,7 +159,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BoundVertex.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Device.h" />
@@ -189,6 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="FollowView.cpp" />
     <ClCompile Include="Frames.cpp" />
@@ -196,6 +196,7 @@
     <ClCompile Include="GameField.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="MainCamera.cpp" />
     <ClCompile Include="Mouse.cpp" />

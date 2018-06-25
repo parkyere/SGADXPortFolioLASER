@@ -144,9 +144,6 @@
     <ClInclude Include="Vertex.h">
       <Filter>Render\Vertex</Filter>
     </ClInclude>
-    <ClInclude Include="BoundVertex.h">
-      <Filter>Render\Vertex</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Render\Camera</Filter>
     </ClInclude>
@@ -214,6 +211,12 @@
     </ClCompile>
     <ClCompile Include="Grid.cpp">
       <Filter>GameObjects\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>GameObjects\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>GameObjects\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
