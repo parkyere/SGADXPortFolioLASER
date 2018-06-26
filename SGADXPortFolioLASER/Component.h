@@ -33,9 +33,9 @@ protected:
 
 public:
 	Component() : ComponentDirection{ Direction::NoDirection } {}
-	void RightRotateDirection();
+	virtual void RightRotateDirection();
 	Direction getDirection();
-	virtual void Render(Direction myDir) = 0;
+	virtual void Render() = 0;
 
 };
 
@@ -48,17 +48,24 @@ class Obstacle : public Component
 
 class LaserSource : public Component 
 {
+private:
 	BeamColor SourceColor;
 	bool isPulsed;
 	Vertex ArrowShape[7];
 	float xPos;
 	float yPos;
+	void SetColor(DWORD colorToSet);
 public:
 	LaserSource();
-	void Render(Direction myDir) override;
-	void SetColor(DWORD colorToSet);
+	LaserSource(float x, float y, Direction myDir, BeamColor myColor);
+	void Render() override;
+
 	void SetColor(BeamColor colorToSet);
-	void SetDirPos(float xPos, float yPos, Direction myDirection) noexcept;
+	//void SetPosDir(float xPos, float yPos, Direction myDirection);
+	void RightRotateDirection() override;
+	void SetDirFromDown(Direction myDir);
+	void SetDir(Direction myDir);
+	void SetPos(float x, float y);
 };
 
 class ColorChanger : public Component 

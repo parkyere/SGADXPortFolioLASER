@@ -22,7 +22,14 @@ void Inventory::InitCheatInventory()
 		InvenGrid.emplace_back(posX+ i * Grid::gridSize,posY );
 	}
 	InvenGrid[0].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<LaserSource>{new LaserSource}));
-	(InvenGrid[0].GetGridComponent())->SetPosDir();
+	
+	//(dynamic_pointer_cast<LaserSource>(InvenGrid[0].GetGridComponent()))->RightRotateDirection();
+	//(dynamic_pointer_cast<LaserSource>(InvenGrid[0].GetGridComponent()))->RightRotateDirection();
+	//(dynamic_pointer_cast<LaserSource>(InvenGrid[0].GetGridComponent()))->RightRotateDirection();
+	//(dynamic_pointer_cast<LaserSource>(InvenGrid[0].GetGridComponent()))->RightRotateDirection();
+	(dynamic_pointer_cast<LaserSource>(InvenGrid[0].GetGridComponent()))->SetDir(Direction::Up);
+	(dynamic_pointer_cast<LaserSource>(InvenGrid[0].GetGridComponent()))->SetPos(posX+0.5f*Grid::gridSize,posY+0.5f*Grid::gridSize);
+	(dynamic_pointer_cast<LaserSource>(InvenGrid[0].GetGridComponent()))->SetColor(BeamColor::Cyan);
 }
 
 void Inventory::SetPosition(float x, float y)
