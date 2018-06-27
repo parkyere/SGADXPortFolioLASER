@@ -5,12 +5,13 @@ float Grid::gridSize{ 50.f };
 void Grid::Render()
 {
 
-	////Render inBox
 	DEVICE->SetFVF(InnerVertex[0].fvf);
+
+	//Render inBox
 	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2, InnerVertex, sizeof(Vertex));
 
 	//Render BoundBox
-	DEVICE->SetFVF(BoundVertex[0].fvf);
+	//DEVICE->SetFVF(BoundVertex[0].fvf);
 	DEVICE->DrawPrimitiveUP(D3DPT_LINESTRIP, 4, BoundVertex, sizeof(Vertex));
 	
 	//Render itemInBox if something is in
@@ -19,11 +20,13 @@ void Grid::Render()
 		myGridComponent->Render();
 	}
 
+
+
 }
 
-void Grid::SetGridComponent(shared_ptr<Component> myGridComponent) 
+void Grid::SetGridComponent(shared_ptr<Component> inGridComponent) 
 {
-	this->myGridComponent=myGridComponent;
+	myGridComponent=inGridComponent;
 }
 
 shared_ptr<Component> Grid::GetGridComponent()

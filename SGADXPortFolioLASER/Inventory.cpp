@@ -29,7 +29,7 @@ void Inventory::InitCheatInventory()
 	//(dynamic_pointer_cast<LaserSource>(InvenGrid[0].GetGridComponent()))->RightRotateDirection();
 	(dynamic_pointer_cast<LaserSource>(InvenGrid[0].GetGridComponent()))->SetDir(Direction::Up);
 	(dynamic_pointer_cast<LaserSource>(InvenGrid[0].GetGridComponent()))->SetPos(posX+0.5f*Grid::gridSize,posY+0.5f*Grid::gridSize);
-	(dynamic_pointer_cast<LaserSource>(InvenGrid[0].GetGridComponent()))->SetColor(BeamColor::Cyan);
+	(dynamic_pointer_cast<LaserSource>(InvenGrid[0].GetGridComponent()))->SetColor(BeamColor::Green);
 }
 
 void Inventory::SetPosition(float x, float y)

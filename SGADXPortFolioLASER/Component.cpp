@@ -31,13 +31,13 @@ LaserSource::LaserSource()
 	isPulsed{ true }
 {
 	ComponentDirection = Direction::Down;
-	ArrowShape[0]= Vertex{ 20.f,  0.f, 0.5f,COLOR_R };
-	ArrowShape[1]= Vertex{  0.f, 20.f, 0.5f,COLOR_R };
-	ArrowShape[2]= Vertex{-20.f,  0.f, 0.5f,COLOR_R };
-	ArrowShape[3]= Vertex{ 10.f,-20.f, 0.5f,COLOR_R };
-	ArrowShape[4]= Vertex{ 10.f,  0.f, 0.5f,COLOR_R };
-	ArrowShape[5]= Vertex{-10.f,-20.f, 0.5f,COLOR_R };
-	ArrowShape[6]= Vertex{-10.f,  0.f, 0.5f,COLOR_R };
+	ArrowShape[0]= Vertex{ 20.f,  0.f, 0.f,COLOR_R };
+	ArrowShape[1]= Vertex{  0.f, 20.f, 0.f,COLOR_R };
+	ArrowShape[2]= Vertex{-20.f,  0.f, 0.f,COLOR_R };
+	ArrowShape[3]= Vertex{ 10.f,-20.f, 0.f,COLOR_R };
+	ArrowShape[4]= Vertex{ 10.f,  0.f, 0.f,COLOR_R };
+	ArrowShape[5]= Vertex{-10.f,-20.f, 0.f,COLOR_R };
+	ArrowShape[6]= Vertex{-10.f,  0.f, 0.f,COLOR_R };
 }
 
 LaserSource::LaserSource(float x, float y, Direction myDir, BeamColor myColor) : LaserSource{}
@@ -49,7 +49,7 @@ LaserSource::LaserSource(float x, float y, Direction myDir, BeamColor myColor) :
 
 void LaserSource::Render()
 {
-	DEVICE->SetFVF(ArrowShape[0].fvf);
+	//DEVICE->SetFVF(ArrowShape[0].fvf);
 	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 1, ArrowShape, sizeof(Vertex));
 	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, ArrowShape+3, sizeof(Vertex));
 }
@@ -59,7 +59,7 @@ void LaserSource::RightRotateDirection()
 	Component::RightRotateDirection();
 	for (Vertex& v : ArrowShape)
 	{
-		v.position = { v.position[1] * -1.f,v.position[0],0,1.f };
+		v.position = { (v.position[1] * (-1.f)),v.position[0],0.f };
 	}
 }
 
@@ -76,7 +76,8 @@ void LaserSource::SetDirFromDown(Direction myDir)
 	{
 		for (Vertex& v : ArrowShape)
 		{
-			v.position *= -1.f;
+			v.position[0] *= (-1.f);
+			v.position[1] *= (-1.f);
 			v.position[3] = 1.f;
 		}
 	}
@@ -85,7 +86,7 @@ void LaserSource::SetDirFromDown(Direction myDir)
 	{
 		for (Vertex& v : ArrowShape)
 		{
-			v.position = { v.position[1],v.position[0] * -1.f,0,1.f };
+			v.position = { v.position[1],v.position[0] * (-1.f),0.f };
 		}
 	}
 	break;
@@ -93,7 +94,7 @@ void LaserSource::SetDirFromDown(Direction myDir)
 	{
 		for (Vertex& v : ArrowShape)
 		{
-			v.position = { v.position[1] * -1.f,v.position[0],0,1.f };
+			v.position = { v.position[1] * -1.f,v.position[0],0.f };
 		}
 	}
 	break;
@@ -167,6 +168,6 @@ void LaserSource::SetPos(float x, float y)
 	yPos = y;
 	for (Vertex& v : ArrowShape)
 	{
-		v.position = { v.position[0] + xPos, v.position[1] + yPos,0.f,1.f };
+		v.position = { v.position[0] + xPos, v.position[1] + yPos,-0.5f };
 	}
 }

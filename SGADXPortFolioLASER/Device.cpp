@@ -52,7 +52,7 @@ void Device::EndAlphaRender()
 
 void Device::BeginScene(DWORD clearColor)
 {
-	device->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, clearColor, 1.0f, 0);
+	device->Clear(0, NULL, D3DCLEAR_TARGET| D3DCLEAR_ZBUFFER , clearColor, 1.0f, 0);
 	device->BeginScene();
 }
 

@@ -40,6 +40,13 @@ void GameManager::Update()
 
 void GameManager::Render()
 {
+	D3DVIEWPORT9 viewport;
+	DEVICE->GetViewport(&viewport);
+	D3DXMATRIX projection;
+	D3DXMatrixOrthoOffCenterLH(&projection, 0.0f,
+		viewport.Width, viewport.Height, 0.0f, -1, 1);
+	DEVICE->SetTransform(D3DTS_PROJECTION, &projection);
+
 	myGameField.Render();
 	myInventory.Render();
 }
