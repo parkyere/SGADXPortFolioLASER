@@ -173,6 +173,7 @@
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="LaserSource.h" />
     <ClInclude Include="MainCamera.h" />
     <ClInclude Include="MapEditor.h" />
     <ClInclude Include="Mouse.h" />
@@ -195,9 +196,11 @@
     <ClCompile Include="FreeView.cpp" />
     <ClCompile Include="GameField.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Gate.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="LaserSource.cpp" />
     <ClCompile Include="MainCamera.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MyPoint.cpp" />

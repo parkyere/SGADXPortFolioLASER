@@ -162,6 +162,9 @@
     <ClInclude Include="GameState.h">
       <Filter>GameObjects\GameState</Filter>
     </ClInclude>
+    <ClInclude Include="LaserSource.h">
+      <Filter>GameObjects\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -217,6 +220,12 @@
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
       <Filter>GameObjects\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="LaserSource.cpp">
+      <Filter>GameObjects\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Gate.cpp">
+      <Filter>GameObjects\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

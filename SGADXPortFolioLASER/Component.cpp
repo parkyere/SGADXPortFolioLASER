@@ -19,6 +19,13 @@ void Component::RightRotateDirection()
 	case Direction::NoDirection:
 		break;
 	}
+	if (ComponentDirection != Direction::NoDirection) 
+	{
+		for (Vertex& v : ComponentShape)
+		{
+			v.position = { (v.position[1] * (-1.f)),v.position[0],0.f };
+		}
+	}
 }
 
 Direction Component::getDirection()
@@ -26,44 +33,8 @@ Direction Component::getDirection()
 	return ComponentDirection;
 }
 
-LaserSource::LaserSource() 
-	:SourceColor{BeamColor::Red},
-	isPulsed{ true }
-{
-	ComponentDirection = Direction::Down;
-	ArrowShape[0]= Vertex{ 20.f,  0.f, 0.f,COLOR_R };
-	ArrowShape[1]= Vertex{  0.f, 20.f, 0.f,COLOR_R };
-	ArrowShape[2]= Vertex{-20.f,  0.f, 0.f,COLOR_R };
-	ArrowShape[3]= Vertex{ 10.f,-20.f, 0.f,COLOR_R };
-	ArrowShape[4]= Vertex{ 10.f,  0.f, 0.f,COLOR_R };
-	ArrowShape[5]= Vertex{-10.f,-20.f, 0.f,COLOR_R };
-	ArrowShape[6]= Vertex{-10.f,  0.f, 0.f,COLOR_R };
-}
 
-LaserSource::LaserSource(float x, float y, Direction myDir, BeamColor myColor) : LaserSource{}
-{
-	SetDir(myDir);
-	SetPos(x,y);
-	SetColor(myColor);
-}
-
-void LaserSource::Render()
-{
-	//DEVICE->SetFVF(ArrowShape[0].fvf);
-	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 1, ArrowShape, sizeof(Vertex));
-	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, ArrowShape+3, sizeof(Vertex));
-}
-
-void LaserSource::RightRotateDirection()
-{
-	Component::RightRotateDirection();
-	for (Vertex& v : ArrowShape)
-	{
-		v.position = { (v.position[1] * (-1.f)),v.position[0],0.f };
-	}
-}
-
-void LaserSource::SetDirFromDown(Direction myDir)
+void Component::SetDirFromDown(Direction myDir)
 {
 	if (myDir == Direction::NoDirection)
 		throw new exception("Direction must be specified!");
@@ -74,7 +45,7 @@ void LaserSource::SetDirFromDown(Direction myDir)
 		break;
 	case Direction::Up:
 	{
-		for (Vertex& v : ArrowShape)
+		for (Vertex& v : ComponentShape)
 		{
 			v.position[0] *= (-1.f);
 			v.position[1] *= (-1.f);
@@ -84,7 +55,7 @@ void LaserSource::SetDirFromDown(Direction myDir)
 	break;
 	case Direction::Right:
 	{
-		for (Vertex& v : ArrowShape)
+		for (Vertex& v : ComponentShape)
 		{
 			v.position = { v.position[1],v.position[0] * (-1.f),0.f };
 		}
@@ -92,7 +63,7 @@ void LaserSource::SetDirFromDown(Direction myDir)
 	break;
 	case Direction::Left:
 	{
-		for (Vertex& v : ArrowShape)
+		for (Vertex& v : ComponentShape)
 		{
 			v.position = { v.position[1] * -1.f,v.position[0],0.f };
 		}
@@ -101,10 +72,19 @@ void LaserSource::SetDirFromDown(Direction myDir)
 	}
 }
 
-void LaserSource::SetDir(Direction myDir)
+void Component::SetDir(Direction myDir)
 {
 	if (myDir == Direction::NoDirection)
-		throw new exception("Laser Source Must Have The Direction!");
+	{
+		if (ComponentDirection == Direction::NoDirection) 
+		{
+			return;
+		}
+		else 
+		{
+			throw new exception("Direction must be specified in this function!");
+		}
+	}
 	else if (myDir == ComponentDirection)
 		return;
 	else 
@@ -116,9 +96,27 @@ void LaserSource::SetDir(Direction myDir)
 	}
 }
 
-void LaserSource::SetColor(BeamColor colorToSet) 
+void Component::SetPos(float x, float y) 
 {
-	SourceColor = colorToSet;
+	xPos = x;
+	yPos = y;
+	for (Vertex& v : ComponentShape)
+	{
+		v.position = { v.position[0] + xPos, v.position[1] + yPos, 0.f };
+	}
+}
+
+void SingleColored::SetColor(DWORD colorToSet)
+{
+	for (Vertex& v : ShapeToColor)
+	{
+		v.color = colorToSet;
+	}
+}
+
+void SingleColored::SetColor(BeamColor colorToSet)
+{
+	SingleColor = colorToSet;
 	switch (colorToSet)
 	{
 	case BeamColor::Red:
@@ -142,32 +140,5 @@ void LaserSource::SetColor(BeamColor colorToSet)
 	case BeamColor::White:
 		SetColor(COLOR_W);
 		break;
-	}
-}
-
-void LaserSource::SetColor(DWORD colorToSet)
-{
-	for (Vertex& v: ArrowShape) 
-	{
-		v.color = colorToSet;
-	}
-}
-
-//void LaserSource::SetPosDir(float xPos, float yPos, Direction myDir)
-//{
-//	this->xPos = xPos;
-//	this->yPos = yPos;
-
-//	SetDirFromDown(myDir);
-//	SetPos(xPos, yPos);
-//}
-
-void LaserSource::SetPos(float x, float y) 
-{
-	xPos = x;
-	yPos = y;
-	for (Vertex& v : ArrowShape)
-	{
-		v.position = { v.position[0] + xPos, v.position[1] + yPos,-0.5f };
 	}
 }

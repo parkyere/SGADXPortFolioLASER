@@ -19,14 +19,17 @@ void Grid::Render()
 	{
 		myGridComponent->Render();
 	}
-
-
-
 }
 
 void Grid::SetGridComponent(shared_ptr<Component> inGridComponent) 
 {
 	myGridComponent=inGridComponent;
+	if (myGridComponent->getDirection() != Direction::NoDirection)
+	{
+		myGridComponent->SetDir(Direction::Up);
+	}
+	myGridComponent->SetPos(gridPosX+0.5f*Grid::gridSize, gridPosY + 0.5f*Grid::gridSize);
+	
 }
 
 shared_ptr<Component> Grid::GetGridComponent()
