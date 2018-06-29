@@ -11,7 +11,6 @@ void Grid::Render()
 	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2, InnerVertex, sizeof(Vertex));
 
 	//Render BoundBox
-	//DEVICE->SetFVF(BoundVertex[0].fvf);
 	DEVICE->DrawPrimitiveUP(D3DPT_LINESTRIP, 4, BoundVertex, sizeof(Vertex));
 	
 	//Render itemInBox if something is in

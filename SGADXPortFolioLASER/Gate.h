@@ -10,6 +10,10 @@ class ColorAdder : public Gate
 
 class Mirror : public Gate
 {
+public:
+	Mirror();
+	Mirror(float x, float y, Direction myDir);
+	void Render();
 };
 
 class BeamSplitter : public Gate, public SingleColored

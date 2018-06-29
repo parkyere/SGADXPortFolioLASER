@@ -25,7 +25,7 @@ public:
 		InnerVertex[3] = Vertex{ x + Grid::gridSize ,y + Grid::gridSize, 0.8f , 0xff777777 };
 	}
 
-	Grid() : Grid::Grid{ 0.f,0.f }//gridPosX{ 0.f }, gridPosY{ 0.f }, myGridComponent{ nullptr }
+	Grid() : Grid::Grid{ 0.f,0.f }
 	{
 	}
 	void Render();

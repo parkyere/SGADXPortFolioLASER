@@ -23,6 +23,15 @@ LaserSource::LaserSource(float x, float y, Direction myDir, BeamColor myColor) :
 
 void LaserSource::Render()
 {
-	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 1, &ComponentShape[0], sizeof(Vertex));
-	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, &ComponentShape[3], sizeof(Vertex));
+	vector<Vertex> tempVertex;
+	int shapeIndex = ComponentShape.size();
+
+	for (int i=0; i<shapeIndex; i++)
+	{
+		tempVertex.push_back(ComponentShape[i]);
+		tempVertex[i].position = { tempVertex[i].position[0] + xPos, tempVertex[i].position[1] + yPos, 0.f };
+	}
+
+	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 1, &tempVertex[0], sizeof(Vertex));
+	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, &tempVertex[3], sizeof(Vertex));
 }

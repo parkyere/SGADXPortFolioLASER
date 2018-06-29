@@ -23,6 +23,8 @@ void Inventory::InitCheatInventory()
 	}
 	InvenGrid[0].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<LaserSource>{new LaserSource}));
 	InvenGrid[1].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<BeamSplitter>{new BeamSplitter}));
+	InvenGrid[2].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<ColorChanger>{new ColorChanger}));
+	InvenGrid[3].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<Mirror>{new Mirror}));
 
 }
 

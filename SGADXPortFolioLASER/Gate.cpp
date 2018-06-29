@@ -34,7 +34,44 @@ BeamSplitter::BeamSplitter(float x, float y, Direction myDir, BeamColor myColor)
 
 void BeamSplitter::Render()
 {
-	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 1, &ComponentShape[7], sizeof(Vertex));
-	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 5, &ComponentShape[0], sizeof(Vertex));
-	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 1, &ComponentShape[10], sizeof(Vertex));
+	vector<Vertex> tempVertex;
+	int shapeIndex = ComponentShape.size();
+
+	for (int i = 0; i<shapeIndex; i++)
+	{
+		tempVertex.push_back(ComponentShape[i]);
+		tempVertex[i].position = { tempVertex[i].position[0] + xPos, tempVertex[i].position[1] + yPos, 0.f };
+	}
+
+
+	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 1, &tempVertex[7], sizeof(Vertex));
+	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 5, &tempVertex[0], sizeof(Vertex));
+	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 1, &tempVertex[10], sizeof(Vertex));
+}
+
+Mirror::Mirror()
+{
+	ComponentDirection = Direction::Down;
+	ComponentShape.emplace_back(-0.5f*Grid::gridSize, 0.5f*Grid::gridSize,0x00000000);
+	ComponentShape.emplace_back( 0.5f*Grid::gridSize,-0.5f*Grid::gridSize, 0x00000000);
+}
+
+Mirror::Mirror(float x, float y, Direction myDir) : Mirror{}
+{
+	SetDir(myDir);
+	SetPos(x, y);
+}
+
+void Mirror::Render()
+{
+	vector<Vertex> tempVertex;
+	int shapeIndex = ComponentShape.size();
+
+	for (int i = 0; i<shapeIndex; i++)
+	{
+		tempVertex.push_back(ComponentShape[i]);
+		tempVertex[i].position = { tempVertex[i].position[0] + xPos, tempVertex[i].position[1] + yPos, 0.f };
+	}
+
+	DEVICE->DrawPrimitiveUP(D3DPT_LINELIST, 1, &tempVertex[0], sizeof(Vertex));
 }
