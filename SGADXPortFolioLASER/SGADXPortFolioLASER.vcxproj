@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BeamSplitter.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ColorChanger.h" />
     <ClInclude Include="ColorObject.h" />
@@ -178,6 +179,7 @@
     <ClInclude Include="LaserSource.h" />
     <ClInclude Include="MainCamera.h" />
     <ClInclude Include="MapEditor.h" />
+    <ClInclude Include="Mirror.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MyPoint.h" />
     <ClInclude Include="Rect.h" />
@@ -190,6 +192,7 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BeamSplitter.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ColorChanger.cpp" />
     <ClCompile Include="ColorObject.cpp" />
@@ -206,6 +209,7 @@
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="LaserSource.cpp" />
     <ClCompile Include="MainCamera.cpp" />
+    <ClCompile Include="Mirror.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MyPoint.cpp" />
     <ClCompile Include="Rect.cpp" />

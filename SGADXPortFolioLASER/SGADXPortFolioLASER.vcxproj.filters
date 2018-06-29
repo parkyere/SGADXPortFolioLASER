@@ -82,6 +82,9 @@
     <Filter Include="GameObjects\GameState">
       <UniqueIdentifier>{5e444ee8-68cf-4a35-8f03-dcdd5dcdc43e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects\Component\Gate">
+      <UniqueIdentifier>{b11d752d-21d6-4c77-964c-89a8e5b0339d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -135,9 +138,6 @@
     <ClInclude Include="Component.h">
       <Filter>GameObjects\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Gate.h">
-      <Filter>GameObjects\Component</Filter>
-    </ClInclude>
     <ClInclude Include="MapEditor.h">
       <Filter>MainGame\MapEditor</Filter>
     </ClInclude>
@@ -165,11 +165,20 @@
     <ClInclude Include="LaserSource.h">
       <Filter>GameObjects\Component</Filter>
     </ClInclude>
-    <ClInclude Include="ColorChanger.h">
-      <Filter>GameObjects\Component</Filter>
-    </ClInclude>
     <ClInclude Include="ColorObject.h">
       <Filter>GameObjects\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Gate.h">
+      <Filter>GameObjects\Component\Gate</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror.h">
+      <Filter>GameObjects\Component\Gate</Filter>
+    </ClInclude>
+    <ClInclude Include="BeamSplitter.h">
+      <Filter>GameObjects\Component\Gate</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorChanger.h">
+      <Filter>GameObjects\Component\Gate</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -230,14 +239,20 @@
     <ClCompile Include="LaserSource.cpp">
       <Filter>GameObjects\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Gate.cpp">
-      <Filter>GameObjects\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="ColorChanger.cpp">
-      <Filter>GameObjects\Component</Filter>
-    </ClCompile>
     <ClCompile Include="ColorObject.cpp">
       <Filter>GameObjects\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Gate.cpp">
+      <Filter>GameObjects\Component\Gate</Filter>
+    </ClCompile>
+    <ClCompile Include="Mirror.cpp">
+      <Filter>GameObjects\Component\Gate</Filter>
+    </ClCompile>
+    <ClCompile Include="BeamSplitter.cpp">
+      <Filter>GameObjects\Component\Gate</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorChanger.cpp">
+      <Filter>GameObjects\Component\Gate</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

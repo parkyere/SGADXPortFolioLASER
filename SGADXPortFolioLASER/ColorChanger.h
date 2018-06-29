@@ -1,6 +1,6 @@
 #pragma once
 
-class ColorChanger : public Component
+class ColorChanger : public Gate
 {
 protected:
 	BeamColor ColorIn;
