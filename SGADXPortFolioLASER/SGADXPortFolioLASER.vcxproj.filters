@@ -165,6 +165,12 @@
     <ClInclude Include="LaserSource.h">
       <Filter>GameObjects\Component</Filter>
     </ClInclude>
+    <ClInclude Include="ColorChanger.h">
+      <Filter>GameObjects\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorObject.h">
+      <Filter>GameObjects\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -225,6 +231,12 @@
       <Filter>GameObjects\Component</Filter>
     </ClCompile>
     <ClCompile Include="Gate.cpp">
+      <Filter>GameObjects\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorChanger.cpp">
+      <Filter>GameObjects\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorObject.cpp">
       <Filter>GameObjects\Component</Filter>
     </ClCompile>
   </ItemGroup>

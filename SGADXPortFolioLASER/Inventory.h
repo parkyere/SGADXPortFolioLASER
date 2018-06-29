@@ -3,12 +3,15 @@
 class Inventory 
 {
 	vector<Grid> InvenGrid;
-
+	vector<Grid> ColorGrid;
+	
+	bool colorAvailable{ false };
 	float posX;
 	float posY;
 
 public:
 	int componentNumber{ 6 };
+	int colorNumber{ 7 };
 	Inventory();
 	void InitInventory();
 	void LoadInventory();

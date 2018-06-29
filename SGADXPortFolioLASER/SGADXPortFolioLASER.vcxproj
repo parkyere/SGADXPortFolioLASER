@@ -160,6 +160,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="ColorChanger.h" />
+    <ClInclude Include="ColorObject.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="Factory.h" />
@@ -189,6 +191,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ColorChanger.cpp" />
+    <ClCompile Include="ColorObject.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="FollowView.cpp" />
