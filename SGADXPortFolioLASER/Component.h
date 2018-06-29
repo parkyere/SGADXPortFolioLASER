@@ -55,8 +55,5 @@ public:
 	void SetColor(BeamColor colorToSet);
 };
 
-class Obstacle : public Component
-{
 
-};
 

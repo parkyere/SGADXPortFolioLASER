@@ -100,7 +100,6 @@ void Component::SetPos(float x, float y)
 {
 	xPos = x;
 	yPos = y;
-
 }
 
 void SingleColored::SetColor(DWORD colorToSet)
