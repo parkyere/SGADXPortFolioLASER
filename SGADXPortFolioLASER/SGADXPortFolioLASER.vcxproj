@@ -161,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="BeamSplitter.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="ColorAdder.h" />
     <ClInclude Include="ColorChanger.h" />
     <ClInclude Include="ColorObject.h" />
     <ClInclude Include="Component.h" />
@@ -195,6 +196,7 @@
   <ItemGroup>
     <ClCompile Include="BeamSplitter.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ColorAdder.cpp" />
     <ClCompile Include="ColorChanger.cpp" />
     <ClCompile Include="ColorObject.cpp" />
     <ClCompile Include="Component.cpp" />

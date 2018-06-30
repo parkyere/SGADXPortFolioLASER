@@ -55,5 +55,3 @@ public:
 	void SetColor(BeamColor colorToSet);
 };
 
-
-
