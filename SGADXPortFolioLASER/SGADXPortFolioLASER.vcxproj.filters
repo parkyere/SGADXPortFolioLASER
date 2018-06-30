@@ -180,6 +180,9 @@
     <ClInclude Include="ColorChanger.h">
       <Filter>GameObjects\Component\Gate</Filter>
     </ClInclude>
+    <ClInclude Include="Goal.h">
+      <Filter>GameObjects\Component\Gate</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -252,6 +255,9 @@
       <Filter>GameObjects\Component\Gate</Filter>
     </ClCompile>
     <ClCompile Include="ColorChanger.cpp">
+      <Filter>GameObjects\Component\Gate</Filter>
+    </ClCompile>
+    <ClCompile Include="Goal.cpp">
       <Filter>GameObjects\Component\Gate</Filter>
     </ClCompile>
   </ItemGroup>
