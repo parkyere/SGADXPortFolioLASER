@@ -31,8 +31,20 @@ void GameField::CheckClick(LONG x, LONG y)
 		{
 			if (elem.CheckClick(x, y) == true) 
 			{
-
-
+				if (elem.GetGridComponent() == nullptr) 
+				{
+					if (HAND->isEmpty() == false)
+					{
+						if (HAND->isColorInHand == false)
+						{
+							Direction tempDirection = HAND->ComponentInHand->getDirection();
+							elem.SetGridComponent(HAND->ComponentInHand);
+							HAND->ComponentInHand.reset();
+							elem.GetGridComponent()->Magnify(1.0f / (HAND->handScale));
+							elem.GetGridComponent()->SetDir(tempDirection);
+						}
+					}
+				}
 			}
 		}
 	}

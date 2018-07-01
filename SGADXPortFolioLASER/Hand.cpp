@@ -41,5 +41,10 @@ void Hand::Update()
 			handDirection = Direction::NoDirection;
 			isColorInHand = false;
 		}
+		if (KEYBOARD->KeyDown(VK_RETURN))
+		{
+			ComponentInHand->RightRotateDirection();
+			handDirection = ComponentInHand->getDirection();
+		}
 	}
 }

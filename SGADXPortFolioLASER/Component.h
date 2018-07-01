@@ -42,7 +42,7 @@ public:
 
 	virtual void Render() = 0;
 	virtual void SetPos(float x, float y);
-	void Magnify(float scale);
+	virtual void Magnify(float scale);
 };
 
 class SingleColored 

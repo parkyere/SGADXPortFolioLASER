@@ -19,4 +19,5 @@ public:
 	void SetPosition(float x, float y);
 	void Render();
 	void CheckClick(LONG x, LONG y);
+	void ChangeColor(Grid & compElem, const LONG &y, const LONG &x);
 };

@@ -107,6 +107,20 @@ void ColorChanger::RightRotateDirection()
 
 }
 
+void ColorChanger::Magnify(float scale)
+{
+	for (Vertex& v : InComponentShape)
+	{
+		v.position[0] *= scale;
+		v.position[1] *= scale;
+	}
+	for (Vertex& v : OutComponentShape)
+	{
+		v.position[0] *= scale;
+		v.position[1] *= scale;
+	}
+}
+
 ColorChanger::ColorChanger() : ColorIn{ BeamColor::Red }, ColorOut{ BeamColor::Blue }
 {
 	ComponentDirection = Direction::Down;

@@ -16,6 +16,10 @@ public:
 	void Initialize(HINSTANCE instance, HWND handle);
 	HINSTANCE getInstance();
 	HWND getHandle();
+	inline GameState getState() 
+	{
+		return myState;
+	}
 	void Update();
 	void Render();
 	void Destroy();

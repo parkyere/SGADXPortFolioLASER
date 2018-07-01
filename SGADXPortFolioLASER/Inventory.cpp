@@ -26,7 +26,7 @@ void Inventory::InitCheatInventory()
 	InvenGrid[3].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<ColorAdder>  {new ColorAdder}));
 	InvenGrid[4].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<Goal>        {new Goal}));
 	InvenGrid[5].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<Mirror>      {new Mirror}));
-	
+	//InvenGrid[2].GetGridComponent()->SetDir(Direction::Left);
 	for (int i = 0; i< colorNumber; i++)
 	{
 		ColorGrid.emplace_back(posX + i * Grid::gridSize, posY+ Grid::gridSize);
@@ -70,10 +70,75 @@ void Inventory::CheckClick(LONG x, LONG y)
 		{
 			if (HAND->isColorInHand) 
 			{
-				shared_ptr<SingleColored> isSingleColored=dynamic_pointer_cast<SingleColored>(compElem.GetGridComponent());
-				if (isSingleColored != nullptr) 
+				ChangeColor(compElem, y, x);
+			}
+			else 
+			{
+				if (HAND->isEmpty()) 
 				{
-					isSingleColored->SetColor((dynamic_pointer_cast<SingleColored>(HAND->ComponentInHand))->GetColor());
+					//Pick Item
+					HAND->xPos = (float)x;
+					HAND->yPos = (float)y;
+					HAND->handDirection = compElem.GetGridComponent()->getDirection();
+
+					if (MAINGAME->getState() ==GameState::MapEditorEditMode) 
+					{
+						shared_ptr<LaserSource> invLaserSource = dynamic_pointer_cast<LaserSource>(compElem.GetGridComponent());
+						if (invLaserSource != nullptr) 
+						{
+							HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<LaserSource>(*invLaserSource));
+						}
+						else 
+						{
+							shared_ptr<BeamSplitter> invBeamSplitter = dynamic_pointer_cast<BeamSplitter>(compElem.GetGridComponent());
+							if (invBeamSplitter != nullptr) 
+							{
+								HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<BeamSplitter>(*invBeamSplitter));
+							}
+							else 
+							{
+								shared_ptr<ColorChanger> invColorChanger = dynamic_pointer_cast<ColorChanger>(compElem.GetGridComponent());
+								if (invColorChanger != nullptr) 
+								{
+									HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<ColorChanger>(*invColorChanger));
+								}
+								else 
+								{
+									shared_ptr<ColorAdder> invColorAdder = dynamic_pointer_cast<ColorAdder>(compElem.GetGridComponent());
+									if (invColorAdder != nullptr)
+									{
+										HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<ColorAdder>(*invColorAdder));
+									}
+									else 
+									{
+										shared_ptr<Goal> invGoal = dynamic_pointer_cast<Goal>(compElem.GetGridComponent());
+										if (invGoal != nullptr) 
+										{
+											HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<Goal>(*invGoal));
+										}
+										else 
+										{
+											shared_ptr<Mirror> invMirror = dynamic_pointer_cast<Mirror>(compElem.GetGridComponent());
+											if (invMirror != nullptr) 
+											{
+												HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<Mirror>(*invMirror));
+											}
+											else 
+											{
+												throw new exception("Unknown element is clicked!");
+											}
+										}
+									}
+								}
+							}
+						}
+						HAND->ComponentInHand->Magnify(HAND->handScale);
+						HAND->isColorInHand = false;
+					}
+
+					else if (MAINGAME->getState() == GameState::GamePlayEditMode) 
+					{
+					}
 				}
 			}
 		}
@@ -86,6 +151,7 @@ void Inventory::CheckClick(LONG x, LONG y)
 			{
 				if (HAND->isEmpty())
 				{
+					//Pick Color
 					HAND->xPos = (float)x;
 					HAND->yPos = (float)y;
 					HAND->handDirection = Direction::NoDirection;
@@ -97,5 +163,69 @@ void Inventory::CheckClick(LONG x, LONG y)
 			}
 		}
 	}
+}
 
+void Inventory::ChangeColor(Grid & compElem, const LONG &y, const LONG &x)
+{
+	shared_ptr<Component> componentInGrid = compElem.GetGridComponent();
+	shared_ptr<SingleColored> mySingleColored = dynamic_pointer_cast<SingleColored>(componentInGrid);
+
+	if (mySingleColored != nullptr)
+	{
+		mySingleColored->SetColor((dynamic_pointer_cast<SingleColored>(HAND->ComponentInHand))->GetColor());
+	}
+	else
+	{
+		shared_ptr<ColorChanger> myColorChanger = dynamic_pointer_cast<ColorChanger>(componentInGrid);
+		if (myColorChanger != nullptr)
+		{
+			Direction inGridDirection = componentInGrid->getDirection();
+			switch (inGridDirection)
+			{
+			case Direction::Up:
+				if ((float)y >compElem.gridPosY + 0.5f*Grid::gridSize)
+				{
+					myColorChanger->SetColorIn((dynamic_pointer_cast<SingleColored>(HAND->ComponentInHand))->GetColor());
+				}
+				else
+				{
+					myColorChanger->SetColorOut((dynamic_pointer_cast<SingleColored>(HAND->ComponentInHand))->GetColor());
+				}
+				break;
+			case Direction::Down:
+				if ((float)y >compElem.gridPosY + 0.5f*Grid::gridSize)
+				{
+					myColorChanger->SetColorOut((dynamic_pointer_cast<SingleColored>(HAND->ComponentInHand))->GetColor());
+				}
+				else
+				{
+					myColorChanger->SetColorIn((dynamic_pointer_cast<SingleColored>(HAND->ComponentInHand))->GetColor());
+				}
+				break;
+			case Direction::Left:
+				if ((float)x >compElem.gridPosX + 0.5f*Grid::gridSize)
+				{
+					myColorChanger->SetColorIn((dynamic_pointer_cast<SingleColored>(HAND->ComponentInHand))->GetColor());
+				}
+				else
+				{
+					myColorChanger->SetColorOut((dynamic_pointer_cast<SingleColored>(HAND->ComponentInHand))->GetColor());
+				}
+				break;
+			case Direction::Right:
+				if ((float)x >compElem.gridPosX + 0.5f*Grid::gridSize)
+				{
+					myColorChanger->SetColorOut((dynamic_pointer_cast<SingleColored>(HAND->ComponentInHand))->GetColor());
+				}
+				else
+				{
+					myColorChanger->SetColorIn((dynamic_pointer_cast<SingleColored>(HAND->ComponentInHand))->GetColor());
+				}
+				break;
+			default:
+				throw new exception("Color changer must have a direction!");
+				break;
+			}
+		}
+	}
 }
