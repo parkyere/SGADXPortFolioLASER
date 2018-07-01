@@ -1,6 +1,6 @@
 #pragma once
 
-class Inventory 
+class Inventory
 {
 	vector<Grid> InvenGrid;
 	vector<Grid> ColorGrid;
@@ -18,4 +18,5 @@ public:
 	void InitCheatInventory();
 	void SetPosition(float x, float y);
 	void Render();
+	void CheckClick(LONG x, LONG y);
 };

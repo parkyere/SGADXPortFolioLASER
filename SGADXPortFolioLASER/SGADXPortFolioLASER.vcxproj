@@ -176,6 +176,7 @@
     <ClInclude Include="Gate.h" />
     <ClInclude Include="Goal.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="Hand.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="LaserSource.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="Gate.cpp" />
     <ClCompile Include="Goal.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="Hand.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="LaserSource.cpp" />

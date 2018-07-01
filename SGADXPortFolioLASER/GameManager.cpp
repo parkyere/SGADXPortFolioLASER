@@ -19,8 +19,11 @@ void GameManager::Initialize(HINSTANCE instance, HWND handle)
 {
 	gameInstance = instance;
 	gameHandle = handle;
-	myGameField.InitGrid(8, 8);
-	myInventory.InitCheatInventory();
+	if (myState == GameState::MapEditorEditMode) 
+	{
+		myGameField.InitGrid(8, 8);
+		myInventory.InitCheatInventory();
+	}
 }
 
 HINSTANCE GameManager::getInstance()
@@ -36,6 +39,7 @@ HWND GameManager::getHandle()
 void GameManager::Update()
 {
 	//myState->GameUpdate();
+	HAND->Update();
 }
 
 void GameManager::Render()
@@ -49,8 +53,17 @@ void GameManager::Render()
 
 	myGameField.Render();
 	myInventory.Render();
+	HAND->Render();
 }
 
 void GameManager::Destroy()
 {
+}
+void GameManager::CheckClick(LONG x, LONG y) 
+{
+	if (myState == GameState::MapEditorEditMode) 
+	{
+		myGameField.CheckClick(x, y);
+		myInventory.CheckClick(x, y);
+	}
 }

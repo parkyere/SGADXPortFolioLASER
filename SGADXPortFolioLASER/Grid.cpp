@@ -35,3 +35,15 @@ shared_ptr<Component> Grid::GetGridComponent()
 {
 	return myGridComponent;
 }
+
+bool Grid::CheckClick(LONG x, LONG y) 
+{
+	if (gridPosX<(float)x && (float)x < gridPosX + gridSize) 
+	{
+		if (gridPosY<(float)y && (float)y < gridPosY + gridSize)
+		{
+			return true;
+		}
+	}
+	return false;
+}

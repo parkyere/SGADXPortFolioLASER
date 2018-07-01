@@ -102,6 +102,15 @@ void Component::SetPos(float x, float y)
 	yPos = y;
 }
 
+void Component::Magnify(float scale)
+{
+	for (Vertex& v : ComponentShape) 
+	{
+		v.position[0] *= scale;
+		v.position[1] *= scale;
+	}
+}
+
 void SingleColored::SetColor(DWORD colorToSet)
 {
 	for (Vertex& v : ShapeToColor)

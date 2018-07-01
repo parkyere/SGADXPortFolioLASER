@@ -19,4 +19,5 @@ public:
 	void Update();
 	void Render();
 	void Destroy();
+	void CheckClick(LONG x, LONG y);
 };

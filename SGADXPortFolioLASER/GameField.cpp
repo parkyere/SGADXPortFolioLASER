@@ -22,3 +22,18 @@ void GameField::Render()
 		}
 	}
 }
+
+void GameField::CheckClick(LONG x, LONG y)
+{
+	for (vector<Grid>& col: myGrid) 
+	{
+		for (Grid& elem : col) 
+		{
+			if (elem.CheckClick(x, y) == true) 
+			{
+
+
+			}
+		}
+	}
+}

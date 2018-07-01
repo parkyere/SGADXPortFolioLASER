@@ -3,8 +3,6 @@
 Inventory::Inventory()
 {
 	SetPosition(50.f, 800.f);
-	InitCheatInventory();
-	
 }
 
 void Inventory::InitInventory()
@@ -62,4 +60,42 @@ void Inventory::Render()
 			colorBox.Render();
 		}
 	}
+}
+
+void Inventory::CheckClick(LONG x, LONG y)
+{
+	for (Grid& compElem : InvenGrid) 
+	{
+		if (compElem.CheckClick(x, y) == true) 
+		{
+			if (HAND->isColorInHand) 
+			{
+				shared_ptr<SingleColored> isSingleColored=dynamic_pointer_cast<SingleColored>(compElem.GetGridComponent());
+				if (isSingleColored != nullptr) 
+				{
+					isSingleColored->SetColor((dynamic_pointer_cast<SingleColored>(HAND->ComponentInHand))->GetColor());
+				}
+			}
+		}
+	}
+	if (colorAvailable) 
+	{
+		for (Grid& colorElem : ColorGrid)
+		{
+			if (colorElem.CheckClick(x, y) == true)
+			{
+				if (HAND->isEmpty())
+				{
+					HAND->xPos = (float)x;
+					HAND->yPos = (float)y;
+					HAND->handDirection = Direction::NoDirection;
+					BeamColor clickedColor = dynamic_pointer_cast<SingleColored>(colorElem.GetGridComponent())->GetColor();
+					HAND->ComponentInHand = dynamic_pointer_cast<Component>(shared_ptr<ColorObject>{new ColorObject{(float)x,(float)y,clickedColor}});
+					HAND->ComponentInHand->Magnify(HAND->handScale);
+					HAND->isColorInHand = true;
+				}
+			}
+		}
+	}
+
 }

@@ -42,6 +42,7 @@ public:
 
 	virtual void Render() = 0;
 	virtual void SetPos(float x, float y);
+	void Magnify(float scale);
 };
 
 class SingleColored 
@@ -53,5 +54,6 @@ protected:
 public:
 	SingleColored(BeamColor myColor, vector<Vertex>& myShape) : SingleColor{myColor}, ShapeToColor{ myShape } {}
 	void SetColor(BeamColor colorToSet);
+	inline BeamColor GetColor() { return SingleColor; }
 };
 

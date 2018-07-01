@@ -186,6 +186,9 @@
     <ClInclude Include="ColorAdder.h">
       <Filter>GameObjects\Component\Gate</Filter>
     </ClInclude>
+    <ClInclude Include="Hand.h">
+      <Filter>GameObjects\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -265,6 +268,9 @@
     </ClCompile>
     <ClCompile Include="ColorAdder.cpp">
       <Filter>GameObjects\Component\Gate</Filter>
+    </ClCompile>
+    <ClCompile Include="Hand.cpp">
+      <Filter>GameObjects\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
