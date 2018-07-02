@@ -1,5 +1,11 @@
 #include "stdafx.h"
 
+GameField::GameField()
+{
+	systemStart = steady_clock::now();
+	tick = 1000LL / ((long long int)numStatePerSec);
+}
+
 void GameField::InitGrid(int x, int y)
 {
 	myGrid = vector< vector<Grid> >(x);
@@ -20,6 +26,10 @@ void GameField::Render()
 		{
 			currentGrid.Render();
 		}
+	}
+	for (BeamPulse& singlePulse : PulseList) 
+	{
+		singlePulse.Render();
 	}
 }
 
@@ -48,4 +58,35 @@ void GameField::CheckClick(LONG x, LONG y)
 			}
 		}
 	}
+}
+
+void GameField::Update()
+{
+	long long int timeElapsed = duration_cast<milliseconds>(steady_clock::now()-systemStart).count();
+	currentNumState = timeElapsed / tick;
+	if (beforeNumState != currentNumState) 
+	{
+		beforeNumState = currentNumState;
+		BroadcastMyTickMessage();
+	}
+	for (BeamPulse& singleBeam : PulseList) 
+	{
+		singleBeam.Update();
+	}
+}
+
+void GameField::BroadcastMyTickMessage()
+{
+	for (vector<Grid>& currentLine : myGrid)
+	{
+		for (Grid& currentGrid : currentLine)
+		{
+			currentGrid.ReceiveMyTick();;
+		}
+	}
+}
+
+void GameField::AddPulse(BeamPulse pulseToAdd)
+{
+	PulseList.emplace_back(pulseToAdd);
 }

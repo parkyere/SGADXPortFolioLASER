@@ -32,5 +32,6 @@ public:
 	void SetGridComponent(shared_ptr<Component> inGridComponent);
 	shared_ptr<Component> GetGridComponent();
 	bool CheckClick(LONG x, LONG y);
+	void ReceiveMyTick();
 };
 

@@ -28,11 +28,6 @@ void Component::RightRotateDirection()
 	}
 }
 
-Direction Component::getDirection()
-{
-	return ComponentDirection;
-}
-
 
 void Component::SetDirFromDown(Direction myDir)
 {
@@ -148,3 +143,55 @@ void SingleColored::SetColor(BeamColor colorToSet)
 	}
 }
 
+BeamPulse::BeamPulse()
+	:SingleColored{ BeamColor::Red , ComponentShape }
+{
+	beamLength = 0.5f*Grid::gridSize;
+	beamSpeed  = 0.5f*(float)(MAINGAME->callGameField().numStatePerSec)*Grid::gridSize;
+	ComponentDirection = Direction::Down;
+	firedTime = steady_clock::now();
+	ComponentShape.emplace_back( beamThickness / 2.f, 0.f, 0.f, COLOR_R);
+	ComponentShape.emplace_back(-beamThickness / 2.f, 0.f, 0.f, COLOR_R);
+	ComponentShape.emplace_back(-beamThickness / 2.f, -beamLength, 0.f, COLOR_R);
+	ComponentShape.emplace_back( beamThickness / 2.f, -beamLength, 0.f, COLOR_R);
+}
+BeamPulse::BeamPulse(float x, float y, Direction myDir, BeamColor myColor) : BeamPulse{}
+{
+	SetDir(myDir);
+	SetPos(x, y);
+	initX = x;
+	initY = y;
+	SetColor(myColor);
+}
+
+void BeamPulse::Update()
+{
+	switch (getDirection())
+	{
+	case Direction::Up: 
+		SetPos(getXpos(),initY-beamSpeed*0.001f*(float)duration_cast<milliseconds>(steady_clock::now()-firedTime).count());
+		break;
+	case Direction::Down: 
+		SetPos(getXpos(), initY + beamSpeed * 0.001f*(float)duration_cast<milliseconds>(steady_clock::now() - firedTime).count());
+		break;
+	case Direction::Right: 
+		SetPos(initX + beamSpeed * 0.001f*(float)duration_cast<milliseconds>(steady_clock::now() - firedTime).count(), getYpos());
+		break;
+	case Direction::Left: 
+		SetPos(initX - beamSpeed * 0.001f*(float)duration_cast<milliseconds>(steady_clock::now() - firedTime).count(), getYpos());
+		break;
+	}
+}
+
+void BeamPulse::Render()
+{
+	vector<Vertex> tempVertex;
+	int shapeIndex = ComponentShape.size();
+
+	for (int i = 0; i<shapeIndex; i++)
+	{
+		tempVertex.push_back(ComponentShape[i]);
+		tempVertex[i].position = { tempVertex[i].position[0] + xPos, tempVertex[i].position[1] + yPos, 0.f };
+	}
+	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, &tempVertex[0], sizeof(Vertex));
+}

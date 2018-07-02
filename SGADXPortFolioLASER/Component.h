@@ -20,12 +20,6 @@ enum class Direction
 	Left
 };
 
-class BeamPulse 
-{
-	BeamColor LaserColor;
-	Direction BeamDirection;
-};
-
 class Component 
 {
 protected:
@@ -38,10 +32,11 @@ public:
 	void SetDir(Direction myDir);
 	virtual void RightRotateDirection();
 	virtual void SetDirFromDown(Direction myDir);
-	Direction getDirection();
-
+	inline Direction getDirection()	{ return ComponentDirection;	}
 	virtual void Render() = 0;
 	virtual void SetPos(float x, float y);
+	inline float getXpos() { return xPos; }
+	inline float getYpos() { return yPos; }
 	virtual void Magnify(float scale);
 };
 
@@ -57,3 +52,17 @@ public:
 	inline BeamColor GetColor() { return SingleColor; }
 };
 
+class BeamPulse :public Component, public SingleColored
+{
+	float beamLength;
+	float beamThickness{4.f};
+	float beamSpeed;
+	float initX;
+	float initY;
+public:
+	time_point<steady_clock> firedTime;
+	BeamPulse();
+	BeamPulse(float x, float y, Direction myDir, BeamColor myColor);
+	void Update();
+	void Render() override;
+};

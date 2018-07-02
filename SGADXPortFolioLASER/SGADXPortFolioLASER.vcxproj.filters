@@ -19,9 +19,6 @@
     <Filter Include="GameObjects">
       <UniqueIdentifier>{ff619a3f-554c-4078-a0bb-487eb5a917bf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObjects\GameField">
-      <UniqueIdentifier>{4e92f85e-9c51-40d0-bef9-567de2d4ea30}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame\GameManager">
       <UniqueIdentifier>{3b1b52c9-da2a-443c-8375-81a9780ace18}</UniqueIdentifier>
     </Filter>
@@ -84,6 +81,9 @@
     </Filter>
     <Filter Include="GameObjects\Component\Gate">
       <UniqueIdentifier>{b11d752d-21d6-4c77-964c-89a8e5b0339d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\GameField">
+      <UniqueIdentifier>{4e92f85e-9c51-40d0-bef9-567de2d4ea30}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +188,9 @@
     </ClInclude>
     <ClInclude Include="Hand.h">
       <Filter>GameObjects\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Ticker.h">
+      <Filter>GameObjects\GameField</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

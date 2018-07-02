@@ -50,3 +50,20 @@ bool Grid::CheckClick(LONG x, LONG y)
 	}
 	return false;
 }
+
+void Grid::ReceiveMyTick()
+{
+	if (auto mySource = dynamic_pointer_cast<LaserSource>(myGridComponent)) 
+	{
+		if (mySource->isFiredBefore1Tick)
+		{
+			mySource->isFiredBefore1Tick = false;
+			return;
+		}
+		else 
+		{
+			mySource->isFiredBefore1Tick = true;
+			MAINGAME->callGameField().AddPulse(mySource->Fire());
+		}
+	}
+}

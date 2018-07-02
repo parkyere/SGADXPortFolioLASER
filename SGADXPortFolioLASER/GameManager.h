@@ -22,6 +22,7 @@ public:
 	}
 	void Update();
 	void Render();
+	inline GameField& callGameField() { return myGameField; }
 	void Destroy();
 	void CheckClick(LONG x, LONG y);
 };

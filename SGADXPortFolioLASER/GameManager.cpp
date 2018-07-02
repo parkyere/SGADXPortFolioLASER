@@ -38,14 +38,17 @@ HWND GameManager::getHandle()
 
 void GameManager::Update()
 {
-	//myState->GameUpdate();
-
 	switch (myState) 
 	{
 	case GameState::MapEditorEditMode:
 		HAND->UpdateInEditMode();
+		if (KEYBOARD->KeyDown(VK_SPACE)) 
+		{
+			myState = GameState::MapEditorTestMode;
+		}
 		break;
 	case GameState::MapEditorTestMode:
+		myGameField.Update();
 		break;
 
 	case GameState::GamePlayEditMode:
@@ -90,7 +93,6 @@ void GameManager::CheckClick(LONG x, LONG y)
 	case GameState::MapEditorTestMode:
 
 		break;
-
 	case GameState::GamePlayEditMode:
 
 		break;

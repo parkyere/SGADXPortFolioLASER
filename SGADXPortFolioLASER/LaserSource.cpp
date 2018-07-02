@@ -35,3 +35,25 @@ void LaserSource::Render()
 	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 1, &tempVertex[0], sizeof(Vertex));
 	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, &tempVertex[3], sizeof(Vertex));
 }
+
+BeamPulse LaserSource::Fire()
+{
+	switch (getDirection()) 
+	{
+	case Direction::Up: 
+		return BeamPulse(getXpos(), getYpos()-0.5f*Grid::gridSize, getDirection(), GetColor());
+		break;
+	case Direction::Down: 
+		return BeamPulse(getXpos(), getYpos() + 0.5f*Grid::gridSize, getDirection(), GetColor());
+		break;
+	case Direction::Left: 
+		return BeamPulse(getXpos() - 0.5f*Grid::gridSize, getYpos(), getDirection(), GetColor());
+		break;
+	case Direction::Right: 
+		return BeamPulse(getXpos() + 0.5f*Grid::gridSize, getYpos(), getDirection(), GetColor());
+		break;
+	default:
+		throw new exception("LaserSource direction not specified!");
+	}
+	return BeamPulse(getXpos(), getYpos(), getDirection(), GetColor());
+}
