@@ -39,7 +39,27 @@ HWND GameManager::getHandle()
 void GameManager::Update()
 {
 	//myState->GameUpdate();
-	HAND->Update();
+
+	switch (myState) 
+	{
+	case GameState::MapEditorEditMode:
+		HAND->UpdateInEditMode();
+		break;
+	case GameState::MapEditorTestMode:
+		break;
+
+	case GameState::GamePlayEditMode:
+		HAND->UpdateInEditMode();
+		break;
+	case GameState::GamePlayRunMode:
+		break;
+
+	case GameState::IntroMode:
+		break;
+	default:
+		throw new exception("Unknown Game State!");
+	}
+
 }
 
 void GameManager::Render()
@@ -61,9 +81,27 @@ void GameManager::Destroy()
 }
 void GameManager::CheckClick(LONG x, LONG y) 
 {
-	if (myState == GameState::MapEditorEditMode) 
+	switch (myState)
 	{
+	case GameState::MapEditorEditMode:
 		myGameField.CheckClick(x, y);
-		myInventory.CheckClick(x, y);
+		myInventory.CheckClickinMapEditorMode(x, y);
+		break;
+	case GameState::MapEditorTestMode:
+
+		break;
+
+	case GameState::GamePlayEditMode:
+
+		break;
+	case GameState::GamePlayRunMode:
+
+		break;
+
+	case GameState::IntroMode:
+
+		break;
+	default:
+		throw new exception("Unknown Game State!");
 	}
 }

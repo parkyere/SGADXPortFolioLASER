@@ -27,7 +27,7 @@ void Hand::Render()
 	}
 }
 
-void Hand::Update()
+void Hand::UpdateInEditMode()
 {
 	if (isEmpty()) 
 	{

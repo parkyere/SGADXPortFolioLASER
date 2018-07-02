@@ -63,7 +63,7 @@ void Inventory::Render()
 	}
 }
 
-void Inventory::CheckClick(LONG x, LONG y)
+void Inventory::CheckClickinMapEditorMode(LONG x, LONG y)
 {
 	for (Grid& compElem : InvenGrid) 
 	{
@@ -82,72 +82,65 @@ void Inventory::CheckClick(LONG x, LONG y)
 					HAND->yPos = (float)y;
 					HAND->handDirection = compElem.GetGridComponent()->getDirection();
 
-					if (MAINGAME->getState() ==GameState::MapEditorEditMode) 
+					shared_ptr<LaserSource> invLaserSource = dynamic_pointer_cast<LaserSource>(compElem.GetGridComponent());
+					if (invLaserSource != nullptr) 
 					{
-						shared_ptr<LaserSource> invLaserSource = dynamic_pointer_cast<LaserSource>(compElem.GetGridComponent());
-						if (invLaserSource != nullptr) 
+						HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<LaserSource>(*invLaserSource));
+					}
+					else 
+					{
+						shared_ptr<BeamSplitter> invBeamSplitter = dynamic_pointer_cast<BeamSplitter>(compElem.GetGridComponent());
+						if (invBeamSplitter != nullptr) 
 						{
-							HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<LaserSource>(*invLaserSource));
+							HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<BeamSplitter>(*invBeamSplitter));
 						}
 						else 
 						{
-							shared_ptr<BeamSplitter> invBeamSplitter = dynamic_pointer_cast<BeamSplitter>(compElem.GetGridComponent());
-							if (invBeamSplitter != nullptr) 
+							shared_ptr<ColorChanger> invColorChanger = dynamic_pointer_cast<ColorChanger>(compElem.GetGridComponent());
+							if (invColorChanger != nullptr) 
 							{
-								HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<BeamSplitter>(*invBeamSplitter));
+								HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<ColorChanger>(*invColorChanger));
 							}
 							else 
 							{
-								shared_ptr<ColorChanger> invColorChanger = dynamic_pointer_cast<ColorChanger>(compElem.GetGridComponent());
-								if (invColorChanger != nullptr) 
+								shared_ptr<ColorAdder> invColorAdder = dynamic_pointer_cast<ColorAdder>(compElem.GetGridComponent());
+								if (invColorAdder != nullptr)
 								{
-									HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<ColorChanger>(*invColorChanger));
+									HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<ColorAdder>(*invColorAdder));
 								}
 								else 
 								{
-									shared_ptr<ColorAdder> invColorAdder = dynamic_pointer_cast<ColorAdder>(compElem.GetGridComponent());
-									if (invColorAdder != nullptr)
+									shared_ptr<Goal> invGoal = dynamic_pointer_cast<Goal>(compElem.GetGridComponent());
+									if (invGoal != nullptr) 
 									{
-										HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<ColorAdder>(*invColorAdder));
+										HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<Goal>(*invGoal));
 									}
 									else 
 									{
-										shared_ptr<Goal> invGoal = dynamic_pointer_cast<Goal>(compElem.GetGridComponent());
-										if (invGoal != nullptr) 
+										shared_ptr<Mirror> invMirror = dynamic_pointer_cast<Mirror>(compElem.GetGridComponent());
+										if (invMirror != nullptr) 
 										{
-											HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<Goal>(*invGoal));
+											HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<Mirror>(*invMirror));
 										}
 										else 
 										{
-											shared_ptr<Mirror> invMirror = dynamic_pointer_cast<Mirror>(compElem.GetGridComponent());
-											if (invMirror != nullptr) 
+											shared_ptr<Obstacle> invObstacle = dynamic_pointer_cast<Obstacle>(compElem.GetGridComponent());
+											if (invObstacle != nullptr)
 											{
-												HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<Mirror>(*invMirror));
+												HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<Obstacle>(*invObstacle));
 											}
 											else 
 											{
-												shared_ptr<Obstacle> invObstacle = dynamic_pointer_cast<Obstacle>(compElem.GetGridComponent());
-												if (invObstacle != nullptr)
-												{
-													HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<Obstacle>(*invObstacle));
-												}
-												else 
-												{
-													throw new exception("Unknown element is clicked!");
-												}
+												throw new exception("Unknown element is clicked!");
 											}
 										}
 									}
 								}
 							}
 						}
-						HAND->ComponentInHand->Magnify(HAND->handScale);
-						HAND->isColorInHand = false;
 					}
-
-					else if (MAINGAME->getState() == GameState::GamePlayEditMode) 
-					{
-					}
+					HAND->ComponentInHand->Magnify(HAND->handScale);
+					HAND->isColorInHand = false;
 				}
 			}
 		}

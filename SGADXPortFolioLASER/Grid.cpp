@@ -27,8 +27,11 @@ void Grid::SetGridComponent(shared_ptr<Component> inGridComponent)
 	{
 		myGridComponent->SetDir(Direction::Up);
 	}
+	else 
+	{
+		myGridComponent->SetDir(Direction::NoDirection);
+	}
 	myGridComponent->SetPos(gridPosX+0.5f*Grid::gridSize, gridPosY + 0.5f*Grid::gridSize);
-	
 }
 
 shared_ptr<Component> Grid::GetGridComponent()

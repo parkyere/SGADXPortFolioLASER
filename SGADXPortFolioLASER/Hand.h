@@ -16,5 +16,5 @@ public:
 		return ComponentInHand == nullptr;
 	}
 	void Render();
-	void Update();
+	void UpdateInEditMode();
 };
