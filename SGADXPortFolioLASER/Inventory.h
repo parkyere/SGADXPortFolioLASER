@@ -10,7 +10,7 @@ class Inventory
 	float posY;
 
 public:
-	int componentNumber{ 6 };
+	int componentNumber{ 7 };
 	int colorNumber{ 7 };
 	Inventory();
 	void InitInventory();

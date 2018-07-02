@@ -26,6 +26,7 @@ void Inventory::InitCheatInventory()
 	InvenGrid[3].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<ColorAdder>  {new ColorAdder}));
 	InvenGrid[4].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<Goal>        {new Goal}));
 	InvenGrid[5].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<Mirror>      {new Mirror}));
+	InvenGrid[6].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<Obstacle>    {new Obstacle}));
 	//InvenGrid[2].GetGridComponent()->SetDir(Direction::Left);
 	for (int i = 0; i< colorNumber; i++)
 	{
@@ -125,7 +126,15 @@ void Inventory::CheckClick(LONG x, LONG y)
 											}
 											else 
 											{
-												throw new exception("Unknown element is clicked!");
+												shared_ptr<Obstacle> invObstacle = dynamic_pointer_cast<Obstacle>(compElem.GetGridComponent());
+												if (invObstacle != nullptr)
+												{
+													HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<Obstacle>(*invObstacle));
+												}
+												else 
+												{
+													throw new exception("Unknown element is clicked!");
+												}
 											}
 										}
 									}
