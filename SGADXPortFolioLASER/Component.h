@@ -62,7 +62,7 @@ class BeamPulse :public Component, public SingleColored
 public:
 	time_point<steady_clock> firedTime;
 	BeamPulse();
-	BeamPulse(float x, float y, Direction myDir, BeamColor myColor);
-	void Update();
+	BeamPulse(float x, float y, Direction myDir, BeamColor myColor, time_point<steady_clock>& inFiredTime);
+	void Update(time_point<steady_clock>& thisTime);
 	void Render() override;
 };

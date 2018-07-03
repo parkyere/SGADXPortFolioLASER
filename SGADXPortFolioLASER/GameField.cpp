@@ -62,26 +62,27 @@ void GameField::CheckClick(LONG x, LONG y)
 
 void GameField::Update()
 {
-	long long int timeElapsed = duration_cast<milliseconds>(steady_clock::now()-systemStart).count();
+	auto timeNow = steady_clock::now();
+	long long int timeElapsed = duration_cast<milliseconds>(timeNow-systemStart).count();
 	currentNumState = timeElapsed / tick;
 	if (beforeNumState != currentNumState) 
 	{
 		beforeNumState = currentNumState;
-		BroadcastMyTickMessage();
+		BroadcastMyTickMessage(timeNow);
 	}
 	for (BeamPulse& singleBeam : PulseList) 
 	{
-		singleBeam.Update();
+		singleBeam.Update(timeNow);
 	}
 }
 
-void GameField::BroadcastMyTickMessage()
+void GameField::BroadcastMyTickMessage(time_point<steady_clock>& thisTime )
 {
 	for (vector<Grid>& currentLine : myGrid)
 	{
 		for (Grid& currentGrid : currentLine)
 		{
-			currentGrid.ReceiveMyTick();;
+			currentGrid.ReceiveMyTick(thisTime);;
 		}
 	}
 }

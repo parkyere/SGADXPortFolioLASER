@@ -15,6 +15,6 @@ public:
 	void Render();
 	void CheckClick(LONG x, LONG y);
 	void Update();
-	void BroadcastMyTickMessage();
+	void BroadcastMyTickMessage(time_point<steady_clock>& thisTime);
 	void AddPulse(BeamPulse pulseToAdd);
 };

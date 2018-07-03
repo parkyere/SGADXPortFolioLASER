@@ -149,36 +149,36 @@ BeamPulse::BeamPulse()
 	beamLength = 0.5f*Grid::gridSize;
 	beamSpeed  = 0.5f*(float)(MAINGAME->callGameField().numStatePerSec)*Grid::gridSize;
 	ComponentDirection = Direction::Down;
-	firedTime = steady_clock::now();
 	ComponentShape.emplace_back( beamThickness / 2.f, 0.f, 0.f, COLOR_R);
 	ComponentShape.emplace_back(-beamThickness / 2.f, 0.f, 0.f, COLOR_R);
 	ComponentShape.emplace_back(-beamThickness / 2.f, -beamLength, 0.f, COLOR_R);
 	ComponentShape.emplace_back( beamThickness / 2.f, -beamLength, 0.f, COLOR_R);
 }
-BeamPulse::BeamPulse(float x, float y, Direction myDir, BeamColor myColor) : BeamPulse{}
+BeamPulse::BeamPulse(float x, float y, Direction myDir, BeamColor myColor,time_point<steady_clock>& infiredTime) : BeamPulse{}
 {
 	SetDir(myDir);
 	SetPos(x, y);
 	initX = x;
 	initY = y;
 	SetColor(myColor);
+	firedTime = infiredTime;
 }
 
-void BeamPulse::Update()
+void BeamPulse::Update(time_point<steady_clock>& thisTime)
 {
 	switch (getDirection())
 	{
 	case Direction::Up: 
-		SetPos(getXpos(),initY-beamSpeed*0.001f*(float)duration_cast<milliseconds>(steady_clock::now()-firedTime).count());
+		SetPos(getXpos(),initY-beamSpeed*0.001f*(float)duration_cast<milliseconds>(thisTime -firedTime).count());
 		break;
 	case Direction::Down: 
-		SetPos(getXpos(), initY + beamSpeed * 0.001f*(float)duration_cast<milliseconds>(steady_clock::now() - firedTime).count());
+		SetPos(getXpos(), initY + beamSpeed * 0.001f*(float)duration_cast<milliseconds>(thisTime - firedTime).count());
 		break;
 	case Direction::Right: 
-		SetPos(initX + beamSpeed * 0.001f*(float)duration_cast<milliseconds>(steady_clock::now() - firedTime).count(), getYpos());
+		SetPos(initX + beamSpeed * 0.001f*(float)duration_cast<milliseconds>(thisTime - firedTime).count(), getYpos());
 		break;
 	case Direction::Left: 
-		SetPos(initX - beamSpeed * 0.001f*(float)duration_cast<milliseconds>(steady_clock::now() - firedTime).count(), getYpos());
+		SetPos(initX - beamSpeed * 0.001f*(float)duration_cast<milliseconds>(thisTime - firedTime).count(), getYpos());
 		break;
 	}
 }

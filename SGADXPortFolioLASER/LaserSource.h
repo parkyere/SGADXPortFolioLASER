@@ -10,5 +10,5 @@ public:
 	LaserSource();
 	LaserSource(float x, float y, Direction myDir, BeamColor myColor);
 	void Render() override;
-	BeamPulse Fire();
+	BeamPulse Fire(time_point<steady_clock>& thisTime);
 };
