@@ -192,6 +192,9 @@
     <ClInclude Include="Ticker.h">
       <Filter>GameObjects\GameField</Filter>
     </ClInclude>
+    <ClInclude Include="BeamPulse.h">
+      <Filter>GameObjects\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -273,6 +276,9 @@
       <Filter>GameObjects\Component\Gate</Filter>
     </ClCompile>
     <ClCompile Include="Hand.cpp">
+      <Filter>GameObjects\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="BeamPulse.cpp">
       <Filter>GameObjects\Component</Filter>
     </ClCompile>
   </ItemGroup>

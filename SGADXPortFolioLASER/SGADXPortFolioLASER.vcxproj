@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BeamPulse.h" />
     <ClInclude Include="BeamSplitter.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ColorAdder.h" />
@@ -196,6 +197,7 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BeamPulse.cpp" />
     <ClCompile Include="BeamSplitter.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ColorAdder.cpp" />

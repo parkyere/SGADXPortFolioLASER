@@ -32,11 +32,11 @@ public:
 	void SetDir(Direction myDir);
 	virtual void RightRotateDirection();
 	virtual void SetDirFromDown(Direction myDir);
-	inline Direction getDirection()	{ return ComponentDirection;	}
+	inline Direction getDirection()	{ return ComponentDirection;}
 	virtual void Render() = 0;
-	virtual void SetPos(float x, float y);
-	inline float getXpos() { return xPos; }
-	inline float getYpos() { return yPos; }
+	void SetPos(float x, float y);
+	inline float getXpos() const { return xPos; }
+	inline float getYpos() const { return yPos; }
 	virtual void Magnify(float scale);
 };
 
@@ -50,19 +50,4 @@ public:
 	SingleColored(BeamColor myColor, vector<Vertex>& myShape) : SingleColor{myColor}, ShapeToColor{ myShape } {}
 	void SetColor(BeamColor colorToSet);
 	inline BeamColor GetColor() { return SingleColor; }
-};
-
-class BeamPulse :public Component, public SingleColored
-{
-	float beamLength;
-	float beamThickness{4.f};
-	float beamSpeed;
-	float initX;
-	float initY;
-public:
-	time_point<steady_clock> firedTime;
-	BeamPulse();
-	BeamPulse(float x, float y, Direction myDir, BeamColor myColor, time_point<steady_clock>& inFiredTime);
-	void Update(time_point<steady_clock>& thisTime);
-	void Render() override;
 };

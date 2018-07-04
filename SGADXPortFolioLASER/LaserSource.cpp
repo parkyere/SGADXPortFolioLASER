@@ -36,24 +36,24 @@ void LaserSource::Render()
 	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, &tempVertex[3], sizeof(Vertex));
 }
 
-BeamPulse LaserSource::Fire(time_point<steady_clock>& thisTime)
+shared_ptr<BeamPulse> LaserSource::Fire(time_point<steady_clock>& thisTime)
 {
 	switch (getDirection()) 
 	{
 	case Direction::Up: 
-		return BeamPulse(getXpos(), getYpos()-0.5f*Grid::gridSize, getDirection(), GetColor(),thisTime);
+		return shared_ptr<BeamPulse>{new BeamPulse(getXpos(), getYpos() - 0.5f*Grid::gridSize, getDirection(), GetColor(), thisTime)};
 		break;
 	case Direction::Down: 
-		return BeamPulse(getXpos(), getYpos() + 0.5f*Grid::gridSize, getDirection(), GetColor(), thisTime);
+		return shared_ptr<BeamPulse>{new BeamPulse(getXpos(), getYpos() + 0.5f*Grid::gridSize, getDirection(), GetColor(), thisTime)};
 		break;
 	case Direction::Left: 
-		return BeamPulse(getXpos() - 0.5f*Grid::gridSize, getYpos(), getDirection(), GetColor(), thisTime);
+		return shared_ptr<BeamPulse>{new BeamPulse(getXpos() - 0.5f*Grid::gridSize, getYpos(), getDirection(), GetColor(), thisTime)};
 		break;
 	case Direction::Right: 
-		return BeamPulse(getXpos() + 0.5f*Grid::gridSize, getYpos(), getDirection(), GetColor(), thisTime);
+		return shared_ptr<BeamPulse>{new BeamPulse(getXpos() + 0.5f*Grid::gridSize, getYpos(), getDirection(), GetColor(), thisTime)};
 		break;
 	default:
 		throw new exception("LaserSource direction not specified!");
 	}
-	return BeamPulse(getXpos(), getYpos(), getDirection(), GetColor(), thisTime);
+	return shared_ptr<BeamPulse>{new BeamPulse(getXpos(), getYpos(), getDirection(), GetColor(), thisTime)};
 }

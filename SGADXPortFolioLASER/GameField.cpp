@@ -8,12 +8,14 @@ GameField::GameField()
 
 void GameField::InitGrid(int x, int y)
 {
+	fieldXSize = x;
+	fieldYSize = y;
 	myGrid = vector< vector<Grid> >(x);
 	for (int i=0; i<x; i++ )
 	{
 		for (int j=0; j<y; j++) 
 		{
-			myGrid[i].emplace_back(50.f+i*Grid::gridSize, 50.f+j*Grid::gridSize);
+			myGrid[i].emplace_back(Grid::gridSize +i*Grid::gridSize, Grid::gridSize +j*Grid::gridSize);
 		}
 	}
 }
@@ -27,9 +29,9 @@ void GameField::Render()
 			currentGrid.Render();
 		}
 	}
-	for (BeamPulse& singlePulse : PulseList) 
+	for (shared_ptr<BeamPulse>& singlePulse : PulseList) 
 	{
-		singlePulse.Render();
+		singlePulse->Render();
 	}
 }
 
@@ -70,10 +72,54 @@ void GameField::Update()
 		beforeNumState = currentNumState;
 		BroadcastMyTickMessage(timeNow);
 	}
-	for (BeamPulse& singleBeam : PulseList) 
+	//for (shared_ptr<BeamPulse>& element : PulseList) 
+	//{
+	//	element->Update(timeNow);
+	//}
+	//
+	//PulseList.erase(remove_if(PulseList.begin(), PulseList.end(), 
+	//	[&](shared_ptr<BeamPulse>& elem) { return ( ((elem->getXpos() > Grid::gridSize*(1.5f + fieldXSize)) || (elem->getXpos() < 0.5f*Grid::gridSize)) || 
+	//		((elem->getYpos() > Grid::gridSize*(1.5f + fieldXSize)) || (elem->getYpos() < 0.5f*Grid::gridSize) ) );} )
+	//	, PulseList.end());
+	//for (auto it = PulseList.begin() ; it != PulseList.end(); ) 
+	//{
+	//	float tempXPos = it->getXpos();
+	//	float tempYPos = it->getYpos();
+	//	if ( ((tempXPos > Grid::gridSize* (1.5f + fieldXSize)) || (tempXPos < 0.5f*Grid::gridSize))
+	//		||   ( (tempYPos > Grid::gridSize* (1.5f+ fieldYSize) ) || ( tempYPos < 0.5f*Grid::gridSize) )) 
+	//	{
+	//		it= PulseList.erase(it);
+	//	}
+	//	else 
+	//	{
+	//		it++;
+	//	}
+	////	if ( ( (tempXPos > Grid::gridSize* (1.5f+ fieldXSize) ) || ( tempXPos < 0.5f*Grid::gridSize) )
+	////	||   ( (tempYPos > Grid::gridSize* (1.5f+ fieldYSize) ) || ( tempYPos < 0.5f*Grid::gridSize) ) )
+	////	{
+	////		it = PulseList.erase(it);
+	////	}
+	////	else 
+	////	{
+	////		it++;
+	////	}
+	//}
+	for (UINT i=0; i< PulseList.size();) 
 	{
-		singleBeam.Update(timeNow);
+		PulseList[i]->Update(timeNow);
+		float tempX = PulseList[i]->getXpos();
+		float tempY = PulseList[i]->getYpos();
+		if (((tempX > Grid::gridSize* (1.5f + fieldXSize)) || (tempX  < 0.5f*Grid::gridSize))
+			||   ( (tempY > Grid::gridSize* (1.5f+ fieldYSize) ) || ((tempY < 0.5f*Grid::gridSize) )))
+		{
+			PulseList.erase(PulseList.begin()+i);
+		}
+		else 
+		{
+			i++;
+		}
 	}
+
 }
 
 void GameField::BroadcastMyTickMessage(time_point<steady_clock>& thisTime )
@@ -87,7 +133,7 @@ void GameField::BroadcastMyTickMessage(time_point<steady_clock>& thisTime )
 	}
 }
 
-void GameField::AddPulse(BeamPulse pulseToAdd)
+void GameField::AddPulse(shared_ptr<BeamPulse> pulseToAdd)
 {
 	PulseList.emplace_back(pulseToAdd);
 }
