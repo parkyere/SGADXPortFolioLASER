@@ -51,6 +51,53 @@ bool Grid::CheckClick(LONG x, LONG y)
 	return false;
 }
 
+Direction Grid::CheckBeam(shared_ptr<BeamPulse> inBeam)
+{
+	switch (inBeam->getDirection()) 
+	{
+	case Direction::Up:
+		if (inBeam->getXpos() > gridPosX && inBeam->getXpos() < gridPosX+gridSize)
+		{
+			if (inBeam->getYpos()<(gridPosY + 0.5f*gridSize) && inBeam->getYpos() > (gridPosY -0.1f*gridSize) )
+			{
+				return Direction::Up;
+			}
+		}
+		break;
+	case Direction::Down:
+		if (inBeam->getXpos() > gridPosX && inBeam->getXpos() < gridPosX + gridSize)
+		{
+			if (inBeam->getYpos()>(gridPosY + 0.5f*gridSize) && inBeam->getYpos() < (gridPosY + 1.1f*gridSize))
+			{
+				return Direction::Down;
+			}
+		}
+		break;
+	case Direction::Left:
+		if (inBeam->getYpos() > gridPosY && inBeam->getYpos() < gridPosY + gridSize)
+		{
+			if (inBeam->getXpos()<(gridPosX + 0.5f*gridSize) && inBeam->getXpos() > (gridPosX-0.1f*gridSize))
+			{
+				return Direction::Left;
+			}
+		}
+		break;
+	case Direction::Right:
+		if (inBeam->getYpos() > gridPosY && inBeam->getYpos() < gridPosY + gridSize)
+		{
+			if (inBeam->getXpos()>(gridPosX + 0.5f*gridSize) && inBeam->getXpos() < (gridPosX + 1.1f*gridSize))
+			{
+				return Direction::Right;
+			}
+		}
+		break;
+	case Direction::NoDirection:
+		throw new exception("Directionless beam detected: It is Bug!");
+		break;
+	}
+	return Direction::NoDirection;
+}
+
 void Grid::ReceiveMyTick(time_point<steady_clock>& thisTime)
 {
 	if (auto mySource = dynamic_pointer_cast<LaserSource>(myGridComponent)) 

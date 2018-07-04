@@ -17,4 +17,5 @@ public:
 	}
 	void Render();
 	void UpdateInEditMode();
+	void ClearHand();
 };

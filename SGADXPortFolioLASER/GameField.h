@@ -17,6 +17,7 @@ public:
 	void InitGrid(int x, int y);
 	void Render();
 	void CheckClick(LONG x, LONG y);
+	bool CheckBeamInGrid(vector<shared_ptr<BeamPulse> >::iterator  inBeam);
 	void Update();
 	void BroadcastMyTickMessage(time_point<steady_clock>& thisTime);
 	void AddPulse(shared_ptr<BeamPulse> pulseToAdd);

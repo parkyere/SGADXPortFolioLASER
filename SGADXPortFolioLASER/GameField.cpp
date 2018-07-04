@@ -62,6 +62,28 @@ void GameField::CheckClick(LONG x, LONG y)
 	}
 }
 
+bool GameField::CheckBeamInGrid(vector<shared_ptr<BeamPulse> >::iterator inBeam)
+{
+	for (vector<Grid>& col : myGrid)
+	{
+		for (Grid& elem : col)
+		{
+			shared_ptr<Component> tempComponent = elem.GetGridComponent();
+			if (tempComponent != nullptr)
+			{
+				shared_ptr<Gate> myGate = dynamic_pointer_cast<Gate>(tempComponent);
+				if (myGate != nullptr)
+				{
+					if (elem.CheckBeam(*inBeam)!= Direction::NoDirection)
+					{
+						return true;
+					}
+				}
+			}
+		}
+	}
+}
+
 void GameField::Update()
 {
 	auto timeNow = steady_clock::now();
@@ -104,22 +126,27 @@ void GameField::Update()
 	////		it++;
 	////	}
 	//}
-	for (UINT i=0; i< PulseList.size();) 
+
+	//Wall check
+	for (auto it = PulseList.begin(); it != PulseList.end();)
 	{
-		PulseList[i]->Update(timeNow);
-		float tempX = PulseList[i]->getXpos();
-		float tempY = PulseList[i]->getYpos();
+		(*it)->Update(timeNow);
+		float tempX = (*it)->getXpos();
+		float tempY = (*it)->getYpos();
 		if (((tempX > Grid::gridSize* (1.5f + fieldXSize)) || (tempX  < 0.5f*Grid::gridSize))
 			||   ( (tempY > Grid::gridSize* (1.5f+ fieldYSize) ) || ((tempY < 0.5f*Grid::gridSize) )))
 		{
-			PulseList.erase(PulseList.begin()+i);
+			it = PulseList.erase(it);
+		}
+		else if (CheckBeamInGrid(it)) 
+		{
+			it = PulseList.erase(it);
 		}
 		else 
 		{
-			i++;
+			it++;
 		}
 	}
-
 }
 
 void GameField::BroadcastMyTickMessage(time_point<steady_clock>& thisTime )

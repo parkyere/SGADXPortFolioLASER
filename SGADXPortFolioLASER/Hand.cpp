@@ -37,9 +37,7 @@ void Hand::UpdateInEditMode()
 	{
 		if (KEYBOARD->KeyPress(VK_ESCAPE)) 
 		{
-			ComponentInHand.reset();
-			handDirection = Direction::NoDirection;
-			isColorInHand = false;
+			ClearHand();
 		}
 		if (KEYBOARD->KeyDown(VK_RETURN))
 		{
@@ -47,4 +45,11 @@ void Hand::UpdateInEditMode()
 			handDirection = ComponentInHand->getDirection();
 		}
 	}
+}
+
+void Hand::ClearHand()
+{
+	ComponentInHand.reset();
+	handDirection = Direction::NoDirection;
+	isColorInHand = false;
 }

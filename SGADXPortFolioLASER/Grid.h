@@ -28,10 +28,12 @@ public:
 	Grid() : Grid::Grid{ 0.f,0.f }
 	{
 	}
+
 	void Render();
 	void SetGridComponent(shared_ptr<Component> inGridComponent);
 	shared_ptr<Component> GetGridComponent();
 	bool CheckClick(LONG x, LONG y);
+	Direction CheckBeam(shared_ptr<BeamPulse> inBeam);
 	void ReceiveMyTick(time_point<steady_clock>& thisTime);
 };
 

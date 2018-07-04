@@ -44,6 +44,7 @@ void GameManager::Update()
 		HAND->UpdateInEditMode();
 		if (KEYBOARD->KeyDown(VK_SPACE)) 
 		{
+			HAND->ClearHand();
 			myState = GameState::MapEditorTestMode;
 		}
 		break;

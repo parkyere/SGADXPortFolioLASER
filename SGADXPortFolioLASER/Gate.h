@@ -2,6 +2,8 @@
 
 class Gate : public Component
 {
+public:
+	void beamComing(Direction inDirection);
 };
 
 
