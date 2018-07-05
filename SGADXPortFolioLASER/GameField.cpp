@@ -76,12 +76,16 @@ bool GameField::CheckBeamInGrid(vector<shared_ptr<BeamPulse> >::iterator inBeam)
 				{
 					if (elem.CheckBeam(*inBeam)!= Direction::NoDirection)
 					{
+						shared_ptr<BeamPulse> tempBeamInfo = *inBeam;
+						PulseList.erase(inBeam);
+						myGate->beamComing(tempBeamInfo);
 						return true;
 					}
 				}
 			}
 		}
 	}
+	return false;
 }
 
 void GameField::Update()
@@ -94,6 +98,7 @@ void GameField::Update()
 		beforeNumState = currentNumState;
 		BroadcastMyTickMessage(timeNow);
 	}
+
 	//for (shared_ptr<BeamPulse>& element : PulseList) 
 	//{
 	//	element->Update(timeNow);
@@ -103,6 +108,7 @@ void GameField::Update()
 	//	[&](shared_ptr<BeamPulse>& elem) { return ( ((elem->getXpos() > Grid::gridSize*(1.5f + fieldXSize)) || (elem->getXpos() < 0.5f*Grid::gridSize)) || 
 	//		((elem->getYpos() > Grid::gridSize*(1.5f + fieldXSize)) || (elem->getYpos() < 0.5f*Grid::gridSize) ) );} )
 	//	, PulseList.end());
+
 	//for (auto it = PulseList.begin() ; it != PulseList.end(); ) 
 	//{
 	//	float tempXPos = it->getXpos();
@@ -128,23 +134,43 @@ void GameField::Update()
 	//}
 
 	//Wall check
-	for (auto it = PulseList.begin(); it != PulseList.end();)
+	//for (auto it = PulseList.begin(); it != PulseList.end();)
+	//{
+	//	(*it)->Update(timeNow);
+	//	float tempX = (*it)->getXpos();
+	//	float tempY = (*it)->getYpos();
+	//	if (((tempX > Grid::gridSize* (1.5f + fieldXSize)) || (tempX  < 0.5f*Grid::gridSize))
+	//		||   ( (tempY > Grid::gridSize* (1.5f+ fieldYSize) ) || ((tempY < 0.5f*Grid::gridSize) )))
+	//	{
+	//		it = PulseList.erase(it);
+	//	}
+	//	else if (CheckBeamInGrid(it))
+	//	{
+	//	}
+	//	else 
+	//	{
+	//		it++;
+	//	}
+	//}
+
+
+	for (int i=0; i< PulseList.size(); ) 
 	{
-		(*it)->Update(timeNow);
-		float tempX = (*it)->getXpos();
-		float tempY = (*it)->getYpos();
+		shared_ptr<BeamPulse> it = PulseList.at(i);
+		it->Update(timeNow);
+		float tempX = it->getXpos();
+		float tempY = it->getYpos();
 		if (((tempX > Grid::gridSize* (1.5f + fieldXSize)) || (tempX  < 0.5f*Grid::gridSize))
-			||   ( (tempY > Grid::gridSize* (1.5f+ fieldYSize) ) || ((tempY < 0.5f*Grid::gridSize) )))
+					||   ( (tempY > Grid::gridSize* (1.5f+ fieldYSize) ) || ((tempY < 0.5f*Grid::gridSize) )))
 		{
-			it = PulseList.erase(it);
+			PulseList.erase(PulseList.begin()+i);
 		}
-		else if (CheckBeamInGrid(it)) 
+		else if (CheckBeamInGrid(PulseList.begin()+i))
 		{
-			it = PulseList.erase(it);
 		}
 		else 
 		{
-			it++;
+			i++;
 		}
 	}
 }

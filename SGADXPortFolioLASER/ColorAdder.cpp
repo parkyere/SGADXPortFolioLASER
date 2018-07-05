@@ -299,3 +299,7 @@ void ColorAdder::Render()
 	//draw Circle
 	DEVICE->DrawPrimitiveUP(D3DPT_LINESTRIP, 256, &tempVertex[12], sizeof(Vertex));
 }
+
+void ColorAdder::beamComing(shared_ptr<BeamPulse> inBeam)
+{
+}

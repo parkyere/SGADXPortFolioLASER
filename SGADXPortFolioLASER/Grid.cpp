@@ -2,6 +2,7 @@
 
 float Grid::gridSize{ 50.f };
 
+
 void Grid::Render()
 {
 
@@ -56,36 +57,36 @@ Direction Grid::CheckBeam(shared_ptr<BeamPulse> inBeam)
 	switch (inBeam->getDirection()) 
 	{
 	case Direction::Up:
-		if (inBeam->getXpos() > gridPosX && inBeam->getXpos() < gridPosX+gridSize)
+		if (inBeam->getXpos() > gridPosX+0.5f*gridSize-BeamPulse::beamThickness && inBeam->getXpos() < gridPosX + 0.5f*gridSize+ BeamPulse::beamThickness)
 		{
-			if (inBeam->getYpos()<(gridPosY + 0.5f*gridSize) && inBeam->getYpos() > (gridPosY -0.1f*gridSize) )
+			if (inBeam->getYpos()<(gridPosY + 0.5f*gridSize) && inBeam->getYpos() > (gridPosY - 0.2f*gridSize) )
 			{
 				return Direction::Up;
 			}
 		}
 		break;
 	case Direction::Down:
-		if (inBeam->getXpos() > gridPosX && inBeam->getXpos() < gridPosX + gridSize)
+		if (inBeam->getXpos() > gridPosX + 0.5f*gridSize - BeamPulse::beamThickness && inBeam->getXpos() < gridPosX + 0.5f*gridSize + BeamPulse::beamThickness)
 		{
-			if (inBeam->getYpos()>(gridPosY + 0.5f*gridSize) && inBeam->getYpos() < (gridPosY + 1.1f*gridSize))
+			if (inBeam->getYpos()>(gridPosY + 0.5f*gridSize) && inBeam->getYpos() < (gridPosY+0.8f*gridSize))
 			{
 				return Direction::Down;
 			}
 		}
 		break;
 	case Direction::Left:
-		if (inBeam->getYpos() > gridPosY && inBeam->getYpos() < gridPosY + gridSize)
+		if (inBeam->getYpos() > gridPosY +0.5f*gridSize- BeamPulse::beamThickness && inBeam->getYpos() < gridPosY +0.5f*gridSize+ BeamPulse::beamThickness)
 		{
-			if (inBeam->getXpos()<(gridPosX + 0.5f*gridSize) && inBeam->getXpos() > (gridPosX-0.1f*gridSize))
+			if (inBeam->getXpos()<(gridPosX + 0.5f*gridSize) && inBeam->getXpos() > (gridPosX-0.2f*gridSize))
 			{
 				return Direction::Left;
 			}
 		}
 		break;
 	case Direction::Right:
-		if (inBeam->getYpos() > gridPosY && inBeam->getYpos() < gridPosY + gridSize)
+		if (inBeam->getYpos() > gridPosY + 0.5f*gridSize - BeamPulse::beamThickness && inBeam->getYpos() < gridPosY + 0.5f*gridSize + BeamPulse::beamThickness)
 		{
-			if (inBeam->getXpos()>(gridPosX + 0.5f*gridSize) && inBeam->getXpos() < (gridPosX + 1.1f*gridSize))
+			if (inBeam->getXpos()>(gridPosX + 0.5f*gridSize) && inBeam->getXpos() < (gridPosX+0.8f*gridSize))
 			{
 				return Direction::Right;
 			}
@@ -111,6 +112,45 @@ void Grid::ReceiveMyTick(time_point<steady_clock>& thisTime)
 		{
 			mySource->isFiredBefore1Tick = true;
 			MAINGAME->callGameField().AddPulse(mySource->Fire(thisTime));
+		}
+	}
+	if (auto mySplitter = dynamic_pointer_cast<BeamSplitter>(myGridComponent))
+	{
+		if (mySplitter->BeamDetectedBefore1Tick)
+		{
+			switch (mySplitter->getDirection()) 
+			{
+			case Direction::Up:
+			{
+				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Up));
+				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Left));
+			}
+				break;
+			case Direction::Right:
+			{
+				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Up));
+				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Right));
+			}
+				break;
+			case Direction::Down:
+			{
+				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Down));
+				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Right));
+			}
+				break;
+			case Direction::Left:
+			{
+				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Down));
+				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Left));
+			}
+				break;
+			}
+			mySplitter->BeamDetectedBefore1Tick = false;
+			return;
+		}
+		else
+		{
+
 		}
 	}
 }

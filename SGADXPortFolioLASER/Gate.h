@@ -2,8 +2,11 @@
 
 class Gate : public Component
 {
+//protected:
+//	bool isTransparent{ false };
 public:
-	void beamComing(Direction inDirection);
+	virtual void beamComing(shared_ptr<BeamPulse> inBeam) = 0;
+	//virtual void DoActionForInput(vector<shared_ptr<BeamPulse> >::iterator inBeam) = 0;
 };
 
 
@@ -13,4 +16,5 @@ public:
 	Obstacle();
 	Obstacle(float x, float y);
 	void Render() override;
+	void beamComing(shared_ptr<BeamPulse> inBeam) override;
 };

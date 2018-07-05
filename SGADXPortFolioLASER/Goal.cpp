@@ -33,3 +33,7 @@ void Goal::Render()
 
 	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 6, &tempVertex[0], sizeof(Vertex));
 }
+
+void Goal::beamComing(shared_ptr<BeamPulse> inBeam)
+{
+}

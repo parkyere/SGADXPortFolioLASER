@@ -164,3 +164,7 @@ void ColorChanger::Render()
 	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 1, &outTempVertex[5], sizeof(Vertex));
 	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 3, &inTempVertex[0], sizeof(Vertex));
 }
+
+void ColorChanger::beamComing(shared_ptr<BeamPulse> inBeam)
+{
+}

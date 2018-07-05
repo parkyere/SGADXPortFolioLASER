@@ -12,6 +12,8 @@ protected:
 public:
 	void SetColorIn(BeamColor myColorIn);
 	void SetColorOut(BeamColor myColorOut);
+	BeamColor GetColorIn() const { return ColorIn; }
+	BeamColor GetColorOut() const { return ColorOut; }
 	void RightRotateDirection() override;
 	void Magnify(float scale) override;
 	ColorChanger();
@@ -23,4 +25,5 @@ public:
 		SetColorOut(myColorOut);
 	}
 	void Render() override;
+	void beamComing(shared_ptr<BeamPulse> inBeam) override;
 };

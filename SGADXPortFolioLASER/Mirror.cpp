@@ -26,3 +26,7 @@ void Mirror::Render()
 
 	DEVICE->DrawPrimitiveUP(D3DPT_LINELIST, 1, &tempVertex[0], sizeof(Vertex));
 }
+
+void Mirror::beamComing(shared_ptr<BeamPulse> inBeam)
+{
+}

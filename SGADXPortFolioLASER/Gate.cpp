@@ -27,3 +27,44 @@ void Obstacle::Render()
 
 	DEVICE->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, &tempVertex[0], sizeof(Vertex));
 }
+
+void Obstacle::beamComing(shared_ptr<BeamPulse> inBeam)
+{
+}
+
+/*
+void Gate::beamComing(vector<shared_ptr<BeamPulse> >::iterator  inBeam)
+{
+	shared_ptr<SingleColored> me = dynamic_pointer_cast<SingleColored>(make_shared<Gate>( this ));
+	if (me != nullptr) 
+	{
+		if (me->GetColor() == (*inBeam)->GetColor()) 
+		{
+
+		}
+		else 
+		{
+			return;
+		}
+	}
+	else 
+	{
+		shared_ptr<ColorChanger> converter = dynamic_pointer_cast<ColorChanger>(make_shared<Gate>( this ));
+		if (converter != nullptr) 
+		{
+			if (converter->GetColorIn() == (*inBeam)->GetColor())
+			{
+
+			}
+			else 
+			{
+				return;
+			}
+
+		}
+		else //Colorless - Adder or Goal
+		{
+		}
+	}
+}
+*/

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+float BeamPulse::beamThickness{ 4.f };
+
 BeamPulse::BeamPulse()
 	:SingleColored{ BeamColor::Red , ComponentShape }
 {
@@ -20,11 +22,6 @@ BeamPulse::BeamPulse(float x, float y, Direction myDir, BeamColor myColor, time_
 	SetColor(myColor);
 	firedTime = infiredTime;
 }
-
-//BeamPulse::BeamPulse(const float x, const float y, const Direction myDir, const BeamColor myColor, const time_point<steady_clock>& inFiredTime) 
-//	: BeamPulse{(float)(x),(float)(y),(Direction)(myDir),(BeamColor)myColor, (time_point<steady_clock>&) inFiredTime}
-//{
-//}
 
 void BeamPulse::Update(time_point<steady_clock>& thisTime)
 {
