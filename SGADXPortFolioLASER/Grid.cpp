@@ -114,4 +114,42 @@ void Grid::ReceiveMyTick(time_point<steady_clock>& thisTime)
 			MAINGAME->callGameField().CallGenerator(gridPosX+0.5f*gridSize, gridPosY + 0.5f*gridSize, mySource->getDirection(), mySource->GetColor(), thisTime);
 		}
 	}
+	if (auto myColorAdder = dynamic_pointer_cast<ColorAdder>(myGridComponent))
+	{
+		bool& isRed		= myColorAdder->gotRed;
+		bool& isGreen	= myColorAdder->gotGreen;
+		bool& isBlue		= myColorAdder->gotBlue;
+		if (isRed && !isGreen && !isBlue) 
+		{//Red
+			MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, myColorAdder->getDirection(), BeamColor::Red, thisTime);
+		}
+		else if(!isRed && isGreen && !isBlue)
+		{//Green
+			MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, myColorAdder->getDirection(), BeamColor::Green, thisTime);
+		}
+		else if(!isRed && !isGreen && isBlue)
+		{//Blue
+			MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, myColorAdder->getDirection(), BeamColor::Blue, thisTime);
+		}
+		else if(!isRed && isGreen && isBlue)
+		{//Cyan
+			MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, myColorAdder->getDirection(), BeamColor::Cyan, thisTime);
+		}
+		else if(isRed && !isGreen && isBlue)
+		{//Magenta
+			MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, myColorAdder->getDirection(), BeamColor::Magenta, thisTime);
+		}
+		else if(isRed && isGreen && !isBlue)
+		{//Yellow
+			MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, myColorAdder->getDirection(), BeamColor::Yellow, thisTime);
+		}
+		else if(isRed && isGreen && isBlue)
+		{//White
+			MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, myColorAdder->getDirection(), BeamColor::White, thisTime);
+		}
+		else 
+		{//NoColor
+		}
+		isRed = isGreen = isBlue = false;
+	}
 }

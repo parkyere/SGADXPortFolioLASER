@@ -302,4 +302,143 @@ void ColorAdder::Render()
 
 void ColorAdder::beamComing(shared_ptr<BeamPulse> inBeam)
 {
+	switch (ComponentDirection) 
+	{
+	case Direction::Up:
+		if (inBeam->getDirection() != Direction::Down) 
+		{
+			switch(inBeam->GetColor()) 
+			{
+			case BeamColor::Red:
+				gotRed		= true;
+				break;
+			case BeamColor::Green:
+				gotGreen	= true;
+				break;
+			case BeamColor::Blue:
+				gotBlue		= true;
+				break;
+			case BeamColor::Cyan:
+				gotBlue		= true;
+				gotGreen	= true;
+				break;
+			case BeamColor::Magenta:
+				gotRed		= true;
+				gotBlue		= true;
+				break;
+			case BeamColor::Yellow:
+				gotRed		= true;
+				gotGreen	= true;
+				break;
+			case BeamColor::White:
+				gotRed		= true;
+				gotGreen	= true;
+				gotBlue		= true;
+				break;
+			}
+		}
+		break;
+	case Direction::Down:
+		if (inBeam->getDirection() != Direction::Up)
+		{
+			switch (inBeam->GetColor())
+			{
+			case BeamColor::Red:
+				gotRed = true;
+				break;
+			case BeamColor::Green:
+				gotGreen = true;
+				break;
+			case BeamColor::Blue:
+				gotBlue = true;
+				break;
+			case BeamColor::Cyan:
+				gotBlue = true;
+				gotGreen = true;
+				break;
+			case BeamColor::Magenta:
+				gotRed = true;
+				gotBlue = true;
+				break;
+			case BeamColor::Yellow:
+				gotRed = true;
+				gotGreen = true;
+				break;
+			case BeamColor::White:
+				gotRed = true;
+				gotGreen = true;
+				gotBlue = true;
+				break;
+			}
+		}
+		break;
+	case Direction::Right:
+		if (inBeam->getDirection() != Direction::Left)
+		{
+			switch (inBeam->GetColor())
+			{
+			case BeamColor::Red:
+				gotRed = true;
+				break;
+			case BeamColor::Green:
+				gotGreen = true;
+				break;
+			case BeamColor::Blue:
+				gotBlue = true;
+				break;
+			case BeamColor::Cyan:
+				gotBlue = true;
+				gotGreen = true;
+				break;
+			case BeamColor::Magenta:
+				gotRed = true;
+				gotBlue = true;
+				break;
+			case BeamColor::Yellow:
+				gotRed = true;
+				gotGreen = true;
+				break;
+			case BeamColor::White:
+				gotRed = true;
+				gotGreen = true;
+				gotBlue = true;
+				break;
+			}
+		}
+		break;
+	case Direction::Left:
+		if (inBeam->getDirection() != Direction::Right)
+		{
+			switch (inBeam->GetColor())
+			{
+			case BeamColor::Red:
+				gotRed = true;
+				break;
+			case BeamColor::Green:
+				gotGreen = true;
+				break;
+			case BeamColor::Blue:
+				gotBlue = true;
+				break;
+			case BeamColor::Cyan:
+				gotBlue = true;
+				gotGreen = true;
+				break;
+			case BeamColor::Magenta:
+				gotRed = true;
+				gotBlue = true;
+				break;
+			case BeamColor::Yellow:
+				gotRed = true;
+				gotGreen = true;
+				break;
+			case BeamColor::White:
+				gotRed = true;
+				gotGreen = true;
+				gotBlue = true;
+				break;
+			}
+		}
+		break;
+	}
 }
