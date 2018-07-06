@@ -29,4 +29,54 @@ void Mirror::Render()
 
 void Mirror::beamComing(shared_ptr<BeamPulse> inBeam)
 {
+	BeamColor BeamColorToReflect = inBeam->GetColor();
+	Direction BeamDirection = inBeam->getDirection();
+	auto thisTime = steady_clock::now();
+	switch (ComponentDirection) 
+	{
+	case Direction::Up:
+	case Direction::Down:
+		switch (BeamDirection) 
+		{
+		case Direction::Up: 
+			//Reflect to Right
+			MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Right, BeamColorToReflect, thisTime);
+			break;
+		case Direction::Down: 
+			//Reflect to Left
+			MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Left, BeamColorToReflect, thisTime);
+			break;
+			
+		case Direction::Right: 
+			//Reflect to Up
+			MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Up, BeamColorToReflect, thisTime);
+			break;
+		case Direction::Left:
+			//Reflect to Down
+			MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Down, BeamColorToReflect, thisTime);
+			break;
+		}
+		break;
+	case Direction::Right:
+	case Direction::Left:
+		switch (BeamDirection)
+		{
+		case Direction::Up: 
+			MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Left, BeamColorToReflect, thisTime);
+			break;
+		case Direction::Down: 
+			MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Right, BeamColorToReflect, thisTime);
+			break;
+		case Direction::Right:
+			MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Down, BeamColorToReflect, thisTime);
+			break;
+		case Direction::Left: 
+			MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Up, BeamColorToReflect, thisTime);
+			break;
+		}
+		break;
+	default:
+		throw new exception("Internal Error - Mirror must have a direction!");
+	}
 }
+

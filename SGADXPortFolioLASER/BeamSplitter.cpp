@@ -52,6 +52,7 @@ void BeamSplitter::beamComing(shared_ptr<BeamPulse> inBeam)
 {
 	if (GetColor() == inBeam->GetColor()) 
 	{
+		auto thisTime = steady_clock::now();
 		Direction inBeamDirection = inBeam->getDirection();
 		//Beam Splitting
 		switch (getDirection())
@@ -63,7 +64,8 @@ void BeamSplitter::beamComing(shared_ptr<BeamPulse> inBeam)
 			case Direction::Left:
 			case Direction::Up:
 			{
-				BeamDetectedBefore1Tick = true;
+				MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Up, GetColor(), thisTime);
+				MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Left, GetColor(), thisTime);
 				return;
 			}
 			break;
@@ -79,7 +81,8 @@ void BeamSplitter::beamComing(shared_ptr<BeamPulse> inBeam)
 			case Direction::Right:
 			case Direction::Up:
 			{
-				BeamDetectedBefore1Tick = true;
+				MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Up, GetColor(), thisTime);
+				MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Right, GetColor(), thisTime);
 				return;
 			}
 			break;
@@ -95,7 +98,8 @@ void BeamSplitter::beamComing(shared_ptr<BeamPulse> inBeam)
 			case Direction::Right:
 			case Direction::Down:
 			{
-				BeamDetectedBefore1Tick = true;
+				MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Right, GetColor(), thisTime);
+				MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Down, GetColor(), thisTime);
 				return;
 			}
 			break;
@@ -111,7 +115,8 @@ void BeamSplitter::beamComing(shared_ptr<BeamPulse> inBeam)
 			case Direction::Left:
 			case Direction::Down:
 			{
-				BeamDetectedBefore1Tick = true;
+				MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Left, GetColor(), thisTime);
+				MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), Direction::Down, GetColor(), thisTime);
 				return;
 			}
 			break;
@@ -119,6 +124,7 @@ void BeamSplitter::beamComing(shared_ptr<BeamPulse> inBeam)
 				break;
 			}
 		}
+		break;
 		default:
 			break;
 		}
@@ -126,26 +132,5 @@ void BeamSplitter::beamComing(shared_ptr<BeamPulse> inBeam)
 	else 
 	{
 		return;
-	}
-}
-
-shared_ptr<BeamPulse> BeamSplitter::Fire(time_point<steady_clock>& thisTime, Direction whereTo)
-{
-	switch (whereTo) 
-	{
-	case Direction::Up: 
-		return shared_ptr<BeamPulse>{new BeamPulse(getXpos(), getYpos()-1.001f*Grid::gridSize, whereTo, GetColor(), thisTime)};
-		break;
-	case Direction::Down: 
-		return shared_ptr<BeamPulse>{new BeamPulse(getXpos(), getYpos() + 1.001f*Grid::gridSize, whereTo, GetColor(), thisTime)};
-		break;
-	case Direction::Right: 
-		return shared_ptr<BeamPulse>{new BeamPulse(getXpos() + 1.001f*Grid::gridSize, getYpos() , whereTo, GetColor(), thisTime)};
-		break;
-	case Direction::Left: 
-		return shared_ptr<BeamPulse>{new BeamPulse(getXpos() - 1.001f*Grid::gridSize, getYpos() , whereTo, GetColor(), thisTime)};
-		break;
-	default:
-		return shared_ptr<BeamPulse>{new BeamPulse(getXpos(), getYpos(), whereTo, GetColor(), thisTime)};
 	}
 }

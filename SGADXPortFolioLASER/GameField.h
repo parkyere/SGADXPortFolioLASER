@@ -4,9 +4,12 @@ class GameField
 {
 	vector< vector<Grid> > myGrid;
 	vector< shared_ptr<BeamPulse> > PulseList;
+	vector< shared_ptr<BeamBeingAbsorbed> > DisappearingPulseList;
+	vector< shared_ptr<BeamBeingGenerated> > AppearingPulseList;
 	time_point<steady_clock> systemStart;
-	long long int tick;
+	
 public:
+	long long int tick;
 	int fieldXSize;
 	int fieldYSize;
 
@@ -21,4 +24,5 @@ public:
 	void Update();
 	void BroadcastMyTickMessage(time_point<steady_clock>& thisTime);
 	void AddPulse(shared_ptr<BeamPulse> pulseToAdd);
+	void CallGenerator(float x, float y, Direction myDir, BeamColor myColor, time_point<steady_clock>& inFiredTime);
 };

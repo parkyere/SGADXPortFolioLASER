@@ -59,7 +59,7 @@ Direction Grid::CheckBeam(shared_ptr<BeamPulse> inBeam)
 	case Direction::Up:
 		if (inBeam->getXpos() > gridPosX+0.5f*gridSize-BeamPulse::beamThickness && inBeam->getXpos() < gridPosX + 0.5f*gridSize+ BeamPulse::beamThickness)
 		{
-			if (inBeam->getYpos()<(gridPosY + 0.5f*gridSize) && inBeam->getYpos() > (gridPosY - 0.2f*gridSize) )
+			if (inBeam->getYpos()<(gridPosY + 0.5f*gridSize ) && inBeam->getYpos() > (gridPosY + 0.5f*gridSize -BeamPulse::beamThickness) )
 			{
 				return Direction::Up;
 			}
@@ -68,7 +68,7 @@ Direction Grid::CheckBeam(shared_ptr<BeamPulse> inBeam)
 	case Direction::Down:
 		if (inBeam->getXpos() > gridPosX + 0.5f*gridSize - BeamPulse::beamThickness && inBeam->getXpos() < gridPosX + 0.5f*gridSize + BeamPulse::beamThickness)
 		{
-			if (inBeam->getYpos()>(gridPosY + 0.5f*gridSize) && inBeam->getYpos() < (gridPosY+0.8f*gridSize))
+			if (inBeam->getYpos()>(gridPosY + 0.5f*gridSize) && inBeam->getYpos() < (gridPosY + 0.5f*gridSize + BeamPulse::beamThickness))
 			{
 				return Direction::Down;
 			}
@@ -77,7 +77,7 @@ Direction Grid::CheckBeam(shared_ptr<BeamPulse> inBeam)
 	case Direction::Left:
 		if (inBeam->getYpos() > gridPosY +0.5f*gridSize- BeamPulse::beamThickness && inBeam->getYpos() < gridPosY +0.5f*gridSize+ BeamPulse::beamThickness)
 		{
-			if (inBeam->getXpos()<(gridPosX + 0.5f*gridSize) && inBeam->getXpos() > (gridPosX-0.2f*gridSize))
+			if (inBeam->getXpos()>(gridPosX + 0.5f*gridSize-BeamPulse::beamThickness) && inBeam->getXpos()< (gridPosX+0.5f*gridSize))
 			{
 				return Direction::Left;
 			}
@@ -86,7 +86,7 @@ Direction Grid::CheckBeam(shared_ptr<BeamPulse> inBeam)
 	case Direction::Right:
 		if (inBeam->getYpos() > gridPosY + 0.5f*gridSize - BeamPulse::beamThickness && inBeam->getYpos() < gridPosY + 0.5f*gridSize + BeamPulse::beamThickness)
 		{
-			if (inBeam->getXpos()>(gridPosX + 0.5f*gridSize) && inBeam->getXpos() < (gridPosX+0.8f*gridSize))
+			if (inBeam->getXpos()<(gridPosX + 0.5f*gridSize + 0.9f*BeamPulse::beamThickness) && inBeam->getXpos() > (gridPosX + 0.5f*gridSize) )
 			{
 				return Direction::Right;
 			}
@@ -111,10 +111,10 @@ void Grid::ReceiveMyTick(time_point<steady_clock>& thisTime)
 		else 
 		{
 			mySource->isFiredBefore1Tick = true;
-			MAINGAME->callGameField().AddPulse(mySource->Fire(thisTime));
+			MAINGAME->callGameField().CallGenerator(gridPosX+0.5f*gridSize, gridPosY + 0.5f*gridSize, mySource->getDirection(), mySource->GetColor(), thisTime);
 		}
 	}
-	if (auto mySplitter = dynamic_pointer_cast<BeamSplitter>(myGridComponent))
+	/*if (auto mySplitter = dynamic_pointer_cast<BeamSplitter>(myGridComponent))
 	{
 		if (mySplitter->BeamDetectedBefore1Tick)
 		{
@@ -122,26 +122,26 @@ void Grid::ReceiveMyTick(time_point<steady_clock>& thisTime)
 			{
 			case Direction::Up:
 			{
-				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Up));
-				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Left));
+				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Up, mySplitter->GetColor(), thisTime);
+				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Left, mySplitter->GetColor(), thisTime);
 			}
 				break;
 			case Direction::Right:
 			{
-				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Up));
-				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Right));
+				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Up, mySplitter->GetColor(), thisTime);
+				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Right, mySplitter->GetColor(), thisTime);
 			}
 				break;
 			case Direction::Down:
 			{
-				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Down));
-				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Right));
+				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Down, mySplitter->GetColor(), thisTime);
+				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Right, mySplitter->GetColor(), thisTime);
 			}
 				break;
 			case Direction::Left:
 			{
-				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Down));
-				MAINGAME->callGameField().AddPulse(mySplitter->Fire(thisTime, Direction::Left));
+				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Down, mySplitter->GetColor(), thisTime);
+				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Left, mySplitter->GetColor(), thisTime);
 			}
 				break;
 			}
@@ -152,5 +152,5 @@ void Grid::ReceiveMyTick(time_point<steady_clock>& thisTime)
 		{
 
 		}
-	}
+	}*/
 }

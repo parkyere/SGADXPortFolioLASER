@@ -33,6 +33,14 @@ void GameField::Render()
 	{
 		singlePulse->Render();
 	}
+	for (shared_ptr<BeamBeingAbsorbed>& singleBeamToDelete : DisappearingPulseList)
+	{
+		singleBeamToDelete->Render();
+	}
+	for (shared_ptr<BeamBeingGenerated>& singleBeamToMake : AppearingPulseList)
+	{
+		singleBeamToMake->Render();
+	}
 }
 
 void GameField::CheckClick(LONG x, LONG y)
@@ -77,6 +85,8 @@ bool GameField::CheckBeamInGrid(vector<shared_ptr<BeamPulse> >::iterator inBeam)
 					if (elem.CheckBeam(*inBeam)!= Direction::NoDirection)
 					{
 						shared_ptr<BeamPulse> tempBeamInfo = *inBeam;
+						auto timeNow = steady_clock::now();
+						DisappearingPulseList.push_back(shared_ptr<BeamBeingAbsorbed>(new BeamBeingAbsorbed{ tempBeamInfo, timeNow }));
 						PulseList.erase(inBeam);
 						myGate->beamComing(tempBeamInfo);
 						return true;
@@ -90,7 +100,7 @@ bool GameField::CheckBeamInGrid(vector<shared_ptr<BeamPulse> >::iterator inBeam)
 
 void GameField::Update()
 {
-	auto timeNow = steady_clock::now();
+	time_point<steady_clock> timeNow = steady_clock::now();
 	long long int timeElapsed = duration_cast<milliseconds>(timeNow-systemStart).count();
 	currentNumState = timeElapsed / tick;
 	if (beforeNumState != currentNumState) 
@@ -154,7 +164,7 @@ void GameField::Update()
 	//}
 
 
-	for (int i=0; i< PulseList.size(); ) 
+	for (UINT i=0; i< PulseList.size(); ) 
 	{
 		shared_ptr<BeamPulse> it = PulseList.at(i);
 		it->Update(timeNow);
@@ -163,6 +173,7 @@ void GameField::Update()
 		if (((tempX > Grid::gridSize* (1.5f + fieldXSize)) || (tempX  < 0.5f*Grid::gridSize))
 					||   ( (tempY > Grid::gridSize* (1.5f+ fieldYSize) ) || ((tempY < 0.5f*Grid::gridSize) )))
 		{
+			DisappearingPulseList.push_back(shared_ptr<BeamBeingAbsorbed>(new BeamBeingAbsorbed{ it,timeNow }));
 			PulseList.erase(PulseList.begin()+i);
 		}
 		else if (CheckBeamInGrid(PulseList.begin()+i))
@@ -171,6 +182,31 @@ void GameField::Update()
 		else 
 		{
 			i++;
+		}
+	}
+	//Disappearing Pulse
+	for (vector<shared_ptr<BeamBeingAbsorbed> >::iterator it = DisappearingPulseList.begin(); it!= DisappearingPulseList.end();) 
+	{
+		if ((*it)->UpdateNCheckForDelete(timeNow))
+		{
+			it = DisappearingPulseList.erase(it);
+		}
+		else 
+		{
+			it++;
+		}
+	}
+	//Generating Pulse
+	for (vector<shared_ptr<BeamBeingGenerated> >::iterator it = AppearingPulseList.begin(); it != AppearingPulseList.end();)
+	{
+		if ((*it)->UpdateNCheckForDelete(timeNow))
+		{
+			AddPulse((*it)->ReleaseBeam(timeNow));
+			it = AppearingPulseList.erase(it);
+		}
+		else
+		{
+			it++;
 		}
 	}
 }
@@ -189,4 +225,9 @@ void GameField::BroadcastMyTickMessage(time_point<steady_clock>& thisTime )
 void GameField::AddPulse(shared_ptr<BeamPulse> pulseToAdd)
 {
 	PulseList.emplace_back(pulseToAdd);
+}
+
+void GameField::CallGenerator(float x, float y, Direction myDir, BeamColor myColor, time_point<steady_clock>& inFiredTime)
+{
+	AppearingPulseList.push_back(shared_ptr<BeamBeingGenerated>{new BeamBeingGenerated{ x, y, myDir, myColor, inFiredTime }});
 }

@@ -159,6 +159,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BeamBeingAbsorbed.h" />
+    <ClInclude Include="BeamBeingGenerated.h" />
     <ClInclude Include="BeamPulse.h" />
     <ClInclude Include="BeamSplitter.h" />
     <ClInclude Include="Camera.h" />
@@ -197,6 +199,8 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BeamBeingAbsorbed.cpp" />
+    <ClCompile Include="BeamBeingGenerated.cpp" />
     <ClCompile Include="BeamPulse.cpp" />
     <ClCompile Include="BeamSplitter.cpp" />
     <ClCompile Include="Camera.cpp" />
