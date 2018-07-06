@@ -114,43 +114,4 @@ void Grid::ReceiveMyTick(time_point<steady_clock>& thisTime)
 			MAINGAME->callGameField().CallGenerator(gridPosX+0.5f*gridSize, gridPosY + 0.5f*gridSize, mySource->getDirection(), mySource->GetColor(), thisTime);
 		}
 	}
-	/*if (auto mySplitter = dynamic_pointer_cast<BeamSplitter>(myGridComponent))
-	{
-		if (mySplitter->BeamDetectedBefore1Tick)
-		{
-			switch (mySplitter->getDirection()) 
-			{
-			case Direction::Up:
-			{
-				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Up, mySplitter->GetColor(), thisTime);
-				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Left, mySplitter->GetColor(), thisTime);
-			}
-				break;
-			case Direction::Right:
-			{
-				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Up, mySplitter->GetColor(), thisTime);
-				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Right, mySplitter->GetColor(), thisTime);
-			}
-				break;
-			case Direction::Down:
-			{
-				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Down, mySplitter->GetColor(), thisTime);
-				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Right, mySplitter->GetColor(), thisTime);
-			}
-				break;
-			case Direction::Left:
-			{
-				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Down, mySplitter->GetColor(), thisTime);
-				MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, Direction::Left, mySplitter->GetColor(), thisTime);
-			}
-				break;
-			}
-			mySplitter->BeamDetectedBefore1Tick = false;
-			return;
-		}
-		else
-		{
-
-		}
-	}*/
 }

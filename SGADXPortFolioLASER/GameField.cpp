@@ -109,61 +109,7 @@ void GameField::Update()
 		BroadcastMyTickMessage(timeNow);
 	}
 
-	//for (shared_ptr<BeamPulse>& element : PulseList) 
-	//{
-	//	element->Update(timeNow);
-	//}
-	//
-	//PulseList.erase(remove_if(PulseList.begin(), PulseList.end(), 
-	//	[&](shared_ptr<BeamPulse>& elem) { return ( ((elem->getXpos() > Grid::gridSize*(1.5f + fieldXSize)) || (elem->getXpos() < 0.5f*Grid::gridSize)) || 
-	//		((elem->getYpos() > Grid::gridSize*(1.5f + fieldXSize)) || (elem->getYpos() < 0.5f*Grid::gridSize) ) );} )
-	//	, PulseList.end());
-
-	//for (auto it = PulseList.begin() ; it != PulseList.end(); ) 
-	//{
-	//	float tempXPos = it->getXpos();
-	//	float tempYPos = it->getYpos();
-	//	if ( ((tempXPos > Grid::gridSize* (1.5f + fieldXSize)) || (tempXPos < 0.5f*Grid::gridSize))
-	//		||   ( (tempYPos > Grid::gridSize* (1.5f+ fieldYSize) ) || ( tempYPos < 0.5f*Grid::gridSize) )) 
-	//	{
-	//		it= PulseList.erase(it);
-	//	}
-	//	else 
-	//	{
-	//		it++;
-	//	}
-	////	if ( ( (tempXPos > Grid::gridSize* (1.5f+ fieldXSize) ) || ( tempXPos < 0.5f*Grid::gridSize) )
-	////	||   ( (tempYPos > Grid::gridSize* (1.5f+ fieldYSize) ) || ( tempYPos < 0.5f*Grid::gridSize) ) )
-	////	{
-	////		it = PulseList.erase(it);
-	////	}
-	////	else 
-	////	{
-	////		it++;
-	////	}
-	//}
-
 	//Wall check
-	//for (auto it = PulseList.begin(); it != PulseList.end();)
-	//{
-	//	(*it)->Update(timeNow);
-	//	float tempX = (*it)->getXpos();
-	//	float tempY = (*it)->getYpos();
-	//	if (((tempX > Grid::gridSize* (1.5f + fieldXSize)) || (tempX  < 0.5f*Grid::gridSize))
-	//		||   ( (tempY > Grid::gridSize* (1.5f+ fieldYSize) ) || ((tempY < 0.5f*Grid::gridSize) )))
-	//	{
-	//		it = PulseList.erase(it);
-	//	}
-	//	else if (CheckBeamInGrid(it))
-	//	{
-	//	}
-	//	else 
-	//	{
-	//		it++;
-	//	}
-	//}
-
-
 	for (UINT i=0; i< PulseList.size(); ) 
 	{
 		shared_ptr<BeamPulse> it = PulseList.at(i);

@@ -167,4 +167,12 @@ void ColorChanger::Render()
 
 void ColorChanger::beamComing(shared_ptr<BeamPulse> inBeam)
 {
+	auto thisTime = steady_clock::now();
+	if (ComponentDirection == inBeam->getDirection()) 
+	{
+		if (GetColorIn() == inBeam->GetColor())
+		{
+			MAINGAME->callGameField().CallGenerator(getXpos(), getYpos(), ComponentDirection, GetColorOut(), thisTime);
+		}
+	}
 }
