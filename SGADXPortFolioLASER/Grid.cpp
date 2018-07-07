@@ -86,7 +86,54 @@ Direction Grid::CheckBeam(shared_ptr<BeamPulse> inBeam)
 	case Direction::Right:
 		if (inBeam->getYpos() > gridPosY + 0.5f*gridSize - BeamPulse::beamThickness && inBeam->getYpos() < gridPosY + 0.5f*gridSize + BeamPulse::beamThickness)
 		{
-			if (inBeam->getXpos()<(gridPosX + 0.5f*gridSize + 0.9f*BeamPulse::beamThickness) && inBeam->getXpos() > (gridPosX + 0.5f*gridSize) )
+			if (inBeam->getXpos()<(gridPosX + 0.5f*gridSize + BeamPulse::beamThickness) && inBeam->getXpos() > (gridPosX + 0.5f*gridSize) )
+			{
+				return Direction::Right;
+			}
+		}
+		break;
+	case Direction::NoDirection:
+		throw new exception("Directionless beam detected: It is Bug!");
+		break;
+	}
+	return Direction::NoDirection;
+}
+
+Direction Grid::CheckBeamFaster(shared_ptr<BeamPulse> inBeam)
+{
+	switch (inBeam->getDirection())
+	{
+	case Direction::Up:
+		if (inBeam->getXpos() > gridPosX + 0.5f*gridSize - BeamPulse::beamThickness && inBeam->getXpos() < gridPosX + 0.5f*gridSize + BeamPulse::beamThickness)
+		{
+			if (inBeam->getYpos()<(gridPosY + gridSize) && inBeam->getYpos() > (gridPosY + gridSize - BeamPulse::beamThickness))
+			{
+				return Direction::Up;
+			}
+		}
+		break;
+	case Direction::Down:
+		if (inBeam->getXpos() > gridPosX + 0.5f*gridSize - BeamPulse::beamThickness && inBeam->getXpos() < gridPosX + 0.5f*gridSize + BeamPulse::beamThickness)
+		{
+			if (inBeam->getYpos()>(gridPosY) && inBeam->getYpos() < (gridPosY + BeamPulse::beamThickness))
+			{
+				return Direction::Down;
+			}
+		}
+		break;
+	case Direction::Left:
+		if (inBeam->getYpos() > gridPosY + 0.5f*gridSize - BeamPulse::beamThickness && inBeam->getYpos() < gridPosY + 0.5f*gridSize + BeamPulse::beamThickness)
+		{
+			if (inBeam->getXpos()>(gridPosX + gridSize - BeamPulse::beamThickness) && inBeam->getXpos()< (gridPosX + gridSize))
+			{
+				return Direction::Left;
+			}
+		}
+		break;
+	case Direction::Right:
+		if (inBeam->getYpos() > gridPosY + 0.5f*gridSize - BeamPulse::beamThickness && inBeam->getYpos() < gridPosY + 0.5f*gridSize + BeamPulse::beamThickness)
+		{
+			if (inBeam->getXpos()<(gridPosX + BeamPulse::beamThickness) && inBeam->getXpos() > (gridPosX))
 			{
 				return Direction::Right;
 			}
@@ -119,6 +166,7 @@ void Grid::ReceiveMyTick(time_point<steady_clock>& thisTime)
 		bool& isRed		= myColorAdder->gotRed;
 		bool& isGreen	= myColorAdder->gotGreen;
 		bool& isBlue		= myColorAdder->gotBlue;
+
 		if (isRed && !isGreen && !isBlue) 
 		{//Red
 			MAINGAME->callGameField().CallGenerator(gridPosX + 0.5f*gridSize, gridPosY + 0.5f*gridSize, myColorAdder->getDirection(), BeamColor::Red, thisTime);

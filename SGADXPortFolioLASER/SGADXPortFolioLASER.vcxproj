@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BackGround.h" />
     <ClInclude Include="BeamBeingAbsorbed.h" />
     <ClInclude Include="BeamBeingGenerated.h" />
     <ClInclude Include="BeamPulse.h" />
@@ -194,11 +195,11 @@
     <ClInclude Include="Size.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Ticker.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="BeamBeingAbsorbed.cpp" />
     <ClCompile Include="BeamBeingGenerated.cpp" />
     <ClCompile Include="BeamPulse.cpp" />

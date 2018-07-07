@@ -82,7 +82,23 @@ bool GameField::CheckBeamInGrid(vector<shared_ptr<BeamPulse> >::iterator inBeam)
 				shared_ptr<Gate> myGate = dynamic_pointer_cast<Gate>(tempComponent);
 				if (myGate != nullptr)
 				{
-					if (elem.CheckBeam(*inBeam)!= Direction::NoDirection)
+					//Check for BeamAdder
+					if (auto myAdder = dynamic_pointer_cast<ColorAdder>(myGate)) 
+					{
+						if (elem.CheckBeamFaster(*inBeam) != Direction::NoDirection)
+						{
+							shared_ptr<BeamPulse> tempBeamInfo = *inBeam;
+							auto timeNow = steady_clock::now();
+							DisappearingPulseList.push_back(shared_ptr<BeamBeingAbsorbed>(new BeamBeingAbsorbed{ tempBeamInfo, timeNow }));
+							//DisappearingPulseList.push_back(shared_ptr<BeamBeingAbsorbed>
+							//	(new BeamBeingAbsorbed{ elem.GetGridComponent()->getXpos(),elem.GetGridComponent()->getYpos(),tempBeamInfo->getDirection(),tempBeamInfo->GetColor(), timeNow }));
+							myAdder->tempAnimEffect.push_back(shared_ptr<BeamBeingGenerated>{new BeamBeingGenerated{ tempBeamInfo, timeNow }});
+							PulseList.erase(inBeam);
+							myAdder->beamComing(tempBeamInfo);
+							return true;
+						}
+					}
+					else if (elem.CheckBeam(*inBeam)!= Direction::NoDirection)
 					{
 						shared_ptr<BeamPulse> tempBeamInfo = *inBeam;
 						auto timeNow = steady_clock::now();

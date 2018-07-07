@@ -192,9 +192,6 @@
     <ClInclude Include="Hand.h">
       <Filter>GameObjects\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Ticker.h">
-      <Filter>GameObjects\GameField</Filter>
-    </ClInclude>
     <ClInclude Include="BeamPulse.h">
       <Filter>GameObjects\Component</Filter>
     </ClInclude>
@@ -203,6 +200,9 @@
     </ClInclude>
     <ClInclude Include="BeamBeingAbsorbed.h">
       <Filter>GameObjects\AnimEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>MainGame\GameManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +295,9 @@
     </ClCompile>
     <ClCompile Include="BeamBeingAbsorbed.cpp">
       <Filter>GameObjects\AnimEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>MainGame\GameManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

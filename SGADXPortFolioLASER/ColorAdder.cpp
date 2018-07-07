@@ -285,6 +285,19 @@ void ColorAdder::Render()
 {
 	vector<Vertex> tempVertex;
 	int shapeIndex = ComponentShape.size();
+	auto timeNow = steady_clock::now();
+	for (auto it = tempAnimEffect.begin(); it != tempAnimEffect.end(); )
+	{
+		if ((*it)->UpdateNCheckForDelete(timeNow))
+		{
+			it = tempAnimEffect.erase(it);
+		}
+		else 
+		{
+			(*it)->Render();
+			it++;
+		}
+	}
 
 	for (int i = 0; i<shapeIndex; i++)
 	{
