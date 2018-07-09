@@ -4,6 +4,7 @@
 class GameManager 
 {
 	static shared_ptr<GameManager> instance;
+	int gameLevel{0};
 	GameField myGameField;
 	GameState myState{ GameState::MapEditorEditMode };
 	Inventory myInventory;
@@ -13,6 +14,7 @@ class GameManager
 	GameManager();
 	
 public:
+	LPDIRECT3DTEXTURE9 texture;
 	static shared_ptr<GameManager> Get();
 	void Initialize(HINSTANCE instance, HWND handle);
 	HINSTANCE getInstance();
@@ -26,4 +28,5 @@ public:
 	inline GameField& callGameField() { return myGameField; }
 	void Destroy();
 	void CheckClick(LONG x, LONG y);
+	Inventory getInventoryForMapSave();
 };

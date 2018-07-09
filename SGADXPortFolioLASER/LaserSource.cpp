@@ -4,6 +4,7 @@ LaserSource::LaserSource()
 	:SingleColored{ BeamColor::Red , ComponentShape},
 	isPulsed{ true }
 {
+	componentName= "LaserSource";
 	ComponentDirection = Direction::Down;
 	ComponentShape.emplace_back(20.f, 0.f, 0.f, COLOR_R);
 	ComponentShape.emplace_back(0.f, 20.f, 0.f, COLOR_R);

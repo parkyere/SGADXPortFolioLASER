@@ -19,5 +19,6 @@ public:
 	void SetPosition(float x, float y);
 	void Render();
 	void CheckClickinMapEditorMode(LONG x, LONG y);
+	//void CheckClickInInvMode(LONG x, LONG y);
 	void ChangeColor(Grid & compElem, const LONG &y, const LONG &x);
 };

@@ -123,6 +123,7 @@ void ColorChanger::Magnify(float scale)
 
 ColorChanger::ColorChanger() : ColorIn{ BeamColor::Red }, ColorOut{ BeamColor::Blue }
 {
+	componentName = "ColorChanger";
 	ComponentDirection = Direction::Down;
 	OutComponentShape.emplace_back(0.f, 2.f, COLOR_B);
 	OutComponentShape.emplace_back(10.f, -3.f, COLOR_B);

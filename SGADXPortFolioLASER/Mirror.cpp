@@ -2,6 +2,7 @@
 
 Mirror::Mirror()
 {
+	componentName = "Mirror";
 	ComponentDirection = Direction::Down;
 	ComponentShape.emplace_back(-0.5f*Grid::gridSize, 0.5f*Grid::gridSize, 0x00000000);
 	ComponentShape.emplace_back(0.5f*Grid::gridSize, -0.5f*Grid::gridSize, 0x00000000);

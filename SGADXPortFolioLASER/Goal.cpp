@@ -2,6 +2,7 @@
 
 Goal::Goal() : SingleColored{ BeamColor::Red, ComponentShape }
 {
+	componentName = "Goal";
 	ComponentDirection = Direction::Down;
 	ComponentShape.emplace_back(0.f, 0.f, 0.f, COLOR_R);
 	ComponentShape.emplace_back(15.f, 10.f, 0.f, COLOR_R);

@@ -27,8 +27,10 @@ protected:
 	vector<Vertex> ComponentShape;
 	float xPos;
 	float yPos;
+	string componentName;
 public:
 	Component() : ComponentDirection{ Direction::NoDirection } {}
+	string getName() { return componentName; }
 	void SetDir(Direction myDir);
 	virtual void RightRotateDirection();
 	virtual void SetDirFromDown(Direction myDir);

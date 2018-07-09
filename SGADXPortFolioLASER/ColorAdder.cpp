@@ -1,6 +1,7 @@
 #include "stdafx.h"
 ColorAdder::ColorAdder()
 {
+	componentName = "ColorAdder";
 	ComponentDirection = Direction::Down;
 	//Plus
 	ComponentShape.emplace_back(-10.f, 0.f, 0.f, 0x00000000);

@@ -12,7 +12,7 @@ public:
 	long long int tick;
 	int fieldXSize;
 	int fieldYSize;
-
+	int levelNum{ 0 };
 	int numStatePerSec{4};
 	long long int beforeNumState{ 0 };
 	long long int currentNumState{ 0 };

@@ -2,11 +2,12 @@
 
 class BackGround 
 {
+	static shared_ptr<BackGround> instance;
+
 	struct TexturedVertex 
 	{
 		D3DXVECTOR3 position;
 		D3DXVECTOR2 uv;
-
 		static DWORD fvf;
 
 		TexturedVertex() {}
@@ -16,4 +17,9 @@ class BackGround
 			uv = { u, v };
 		}
 	};
+	BackGround();
+public:
+	TexturedVertex BackGroundPoint[6];
+	static shared_ptr<BackGround> Get();
+	void Render();
 };

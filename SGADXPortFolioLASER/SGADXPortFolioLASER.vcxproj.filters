@@ -91,9 +91,6 @@
     <Filter Include="Core\XML">
       <UniqueIdentifier>{a80a59f4-f299-4e68-b642-feb0a7cd8f11}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\NewFilter1">
-      <UniqueIdentifier>{2637a97a-5a4a-44d9-b77d-74123c11198a}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -310,6 +307,9 @@
     </ClCompile>
     <ClCompile Include="Xml.cpp">
       <Filter>Core\XML</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEditor.cpp">
+      <Filter>MainGame\MapEditor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

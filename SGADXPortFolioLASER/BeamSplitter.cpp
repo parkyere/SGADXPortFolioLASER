@@ -2,8 +2,8 @@
 
 BeamSplitter::BeamSplitter() : SingleColored{ BeamColor::Red , ComponentShape }
 {
+	componentName = "BeamSplitter";
 	ComponentDirection = Direction::Down;
-
 	//Body
 	ComponentShape.emplace_back(4.f, 4.f, 0.f, COLOR_R);
 	ComponentShape.emplace_back(4.f, 12.f, 0.f, COLOR_R);

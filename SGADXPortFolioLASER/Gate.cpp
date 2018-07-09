@@ -2,6 +2,7 @@
 
 Obstacle::Obstacle()
 {
+	componentName = "Obstacle";
 	ComponentDirection = Direction::NoDirection;
 	ComponentShape.emplace_back(-0.5f*Grid::gridSize, -0.5f*Grid::gridSize ,0x0);
 	ComponentShape.emplace_back(0.5f*Grid::gridSize, -0.5f*Grid::gridSize,0x0);

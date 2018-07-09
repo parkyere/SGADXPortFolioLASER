@@ -2,8 +2,9 @@
 
 shared_ptr<GameManager> GameManager::instance{nullptr};
 
-GameManager::GameManager()
+GameManager::GameManager() 
 {
+
 }
 
 shared_ptr<GameManager> GameManager::Get()
@@ -82,9 +83,12 @@ void GameManager::Render()
 		viewport.Width, viewport.Height, 0.0f, -1, 1);
 	DEVICE->SetTransform(D3DTS_PROJECTION, &projection);
 
+	BACKGROUND->Render();
+	DEVICE->SetTexture(0, NULL);
 	myGameField.Render();
 	myInventory.Render();
 	myMapMakingTool.Render();
+	
 	HAND->Render();
 }
 
@@ -98,6 +102,7 @@ void GameManager::CheckClick(LONG x, LONG y)
 	case GameState::MapEditorEditMode:
 		myGameField.CheckClick(x, y);
 		myMapMakingTool.CheckClickinMapEditorMode(x, y);
+		//myInventory.CheckClickinInvMode(x, y);
 		break;
 	case GameState::MapEditorTestMode:
 
