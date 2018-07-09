@@ -25,4 +25,5 @@ public:
 	void BroadcastMyTickMessage(time_point<steady_clock>& thisTime);
 	void AddPulse(shared_ptr<BeamPulse> pulseToAdd);
 	void CallGenerator(float x, float y, Direction myDir, BeamColor myColor, time_point<steady_clock>& inFiredTime);
+	void clearBeamPulses();
 };

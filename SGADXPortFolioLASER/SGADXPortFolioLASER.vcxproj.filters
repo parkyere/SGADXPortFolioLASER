@@ -88,6 +88,12 @@
     <Filter Include="GameObjects\AnimEffect">
       <UniqueIdentifier>{2ae4cbee-b937-458c-ac33-4132c14c9b88}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\XML">
+      <UniqueIdentifier>{a80a59f4-f299-4e68-b642-feb0a7cd8f11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\NewFilter1">
+      <UniqueIdentifier>{2637a97a-5a4a-44d9-b77d-74123c11198a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -204,6 +210,9 @@
     <ClInclude Include="BackGround.h">
       <Filter>MainGame\GameManager</Filter>
     </ClInclude>
+    <ClInclude Include="Xml.h">
+      <Filter>Core\XML</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -298,6 +307,9 @@
     </ClCompile>
     <ClCompile Include="BackGround.cpp">
       <Filter>MainGame\GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Xml.cpp">
+      <Filter>Core\XML</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

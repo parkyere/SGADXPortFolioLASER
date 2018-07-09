@@ -22,7 +22,9 @@ void GameManager::Initialize(HINSTANCE instance, HWND handle)
 	if (myState == GameState::MapEditorEditMode) 
 	{
 		myGameField.InitGrid(8, 8);
-		myInventory.InitCheatInventory();
+		myInventory.InitInventory();
+		myMapMakingTool.SetPosition(800.f,50.f);
+		myMapMakingTool.InitEditorInventory();
 	}
 }
 
@@ -50,6 +52,11 @@ void GameManager::Update()
 		break;
 	case GameState::MapEditorTestMode:
 		myGameField.Update();
+		if (KEYBOARD->KeyDown(VK_ESCAPE))
+		{
+			callGameField().clearBeamPulses();
+			myState = GameState::MapEditorEditMode;
+		}
 		break;
 
 	case GameState::GamePlayEditMode:
@@ -77,6 +84,7 @@ void GameManager::Render()
 
 	myGameField.Render();
 	myInventory.Render();
+	myMapMakingTool.Render();
 	HAND->Render();
 }
 
@@ -89,7 +97,7 @@ void GameManager::CheckClick(LONG x, LONG y)
 	{
 	case GameState::MapEditorEditMode:
 		myGameField.CheckClick(x, y);
-		myInventory.CheckClickinMapEditorMode(x, y);
+		myMapMakingTool.CheckClickinMapEditorMode(x, y);
 		break;
 	case GameState::MapEditorTestMode:
 

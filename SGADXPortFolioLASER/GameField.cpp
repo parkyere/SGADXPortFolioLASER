@@ -193,3 +193,10 @@ void GameField::CallGenerator(float x, float y, Direction myDir, BeamColor myCol
 {
 	AppearingPulseList.push_back(shared_ptr<BeamBeingGenerated>{new BeamBeingGenerated{ x, y, myDir, myColor, inFiredTime }});
 }
+
+void GameField::clearBeamPulses()
+{
+	PulseList.clear();
+	AppearingPulseList.clear();
+	DisappearingPulseList.clear();
+}

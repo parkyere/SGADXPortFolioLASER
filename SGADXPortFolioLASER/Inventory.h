@@ -15,7 +15,7 @@ public:
 	Inventory();
 	void InitInventory();
 	void LoadInventory();
-	void InitCheatInventory();
+	void InitEditorInventory();
 	void SetPosition(float x, float y);
 	void Render();
 	void CheckClickinMapEditorMode(LONG x, LONG y);

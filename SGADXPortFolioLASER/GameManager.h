@@ -7,6 +7,7 @@ class GameManager
 	GameField myGameField;
 	GameState myState{ GameState::MapEditorEditMode };
 	Inventory myInventory;
+	Inventory myMapMakingTool;
 	HINSTANCE gameInstance;
 	HWND gameHandle;
 	GameManager();

@@ -7,13 +7,17 @@ Inventory::Inventory()
 
 void Inventory::InitInventory()
 {
+	for (int i = 0; i< componentNumber; i++)
+	{
+		InvenGrid.emplace_back(posX + i * Grid::gridSize, posY);
+	}
 }
 
 void Inventory::LoadInventory()
 {
 }
 
-void Inventory::InitCheatInventory()
+void Inventory::InitEditorInventory()
 {
 	colorAvailable = true;
 	for(int i=0; i< componentNumber; i++)
