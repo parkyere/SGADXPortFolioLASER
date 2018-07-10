@@ -7,7 +7,7 @@ class GameField
 	vector< shared_ptr<BeamBeingAbsorbed> > DisappearingPulseList;
 	vector< shared_ptr<BeamBeingGenerated> > AppearingPulseList;
 	time_point<steady_clock> systemStart;
-	
+	friend class MapEditor;
 public:
 	long long int tick;
 	int fieldXSize;

@@ -31,7 +31,7 @@ public:
 
 	void Render();
 	void SetGridComponent(shared_ptr<Component> inGridComponent);
-	shared_ptr<Component> GetGridComponent();
+	shared_ptr<Component>& GetGridComponent();
 	bool CheckClick(LONG x, LONG y);
 	Direction CheckBeam(shared_ptr<BeamPulse> inBeam);
 	Direction CheckBeamFaster(shared_ptr<BeamPulse> inBeam);

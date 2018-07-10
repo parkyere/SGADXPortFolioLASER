@@ -1,0 +1,5 @@
+<LaserOptiXMapFile>
+    <MapSize Xsize="10" Ysize="10" InvenSize="12"/>
+    <MapComponent ComponentName="LaserSource" isSingleColored="True" isDoubleColored="False" PosX="0" PosY="0" Color="Red" Direction="Right"/>
+    <InventoryComponent ComponentName="ColorChanger" isSingleColored="False" isDoubleColored="True" PosX="0" PosY="0" ColorIn="Red" ColorOut="Green" Direction="Right"/>
+</LaserOptiXMapFile>

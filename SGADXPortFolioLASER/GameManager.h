@@ -12,7 +12,7 @@ class GameManager
 	HINSTANCE gameInstance;
 	HWND gameHandle;
 	GameManager();
-	
+	friend class MapEditor;
 public:
 	LPDIRECT3DTEXTURE9 texture;
 	static shared_ptr<GameManager> Get();

@@ -102,7 +102,7 @@ void GameManager::CheckClick(LONG x, LONG y)
 	case GameState::MapEditorEditMode:
 		myGameField.CheckClick(x, y);
 		myMapMakingTool.CheckClickinMapEditorMode(x, y);
-		//myInventory.CheckClickinInvMode(x, y);
+		myInventory.CheckClickInInvMode(x, y);
 		break;
 	case GameState::MapEditorTestMode:
 

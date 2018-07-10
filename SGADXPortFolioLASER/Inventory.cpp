@@ -31,7 +31,7 @@ void Inventory::InitEditorInventory()
 	InvenGrid[4].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<Goal>        {new Goal}));
 	InvenGrid[5].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<Mirror>      {new Mirror}));
 	InvenGrid[6].SetGridComponent(dynamic_pointer_cast<Component>(shared_ptr<Obstacle>    {new Obstacle}));
-	//InvenGrid[2].GetGridComponent()->SetDir(Direction::Left);
+
 	for (int i = 0; i< colorNumber; i++)
 	{
 		ColorGrid.emplace_back(posX + i * Grid::gridSize, posY+ Grid::gridSize);
@@ -179,7 +179,7 @@ void Inventory::CheckClickinMapEditorMode(LONG x, LONG y)
 		}
 	}
 }
-/*
+
 void Inventory::CheckClickInInvMode(LONG x, LONG y)
 {
 	for (Grid& compElem : InvenGrid)
@@ -192,21 +192,12 @@ void Inventory::CheckClickInInvMode(LONG x, LONG y)
 				HAND->xPos = (float)x;
 				HAND->yPos = (float)y;
 				HAND->handDirection = compElem.GetGridComponent()->getDirection();
-				if (compElem.GetGridComponent() != nullptr) 
-				{
-					switch (compElem.GetGridComponent())
-					{
-					}
-				}
-				
-
-
-
 
 				shared_ptr<LaserSource> invLaserSource = dynamic_pointer_cast<LaserSource>(compElem.GetGridComponent());
 				if (invLaserSource != nullptr)
 				{
 					HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<LaserSource>(*invLaserSource));
+					compElem.GetGridComponent().reset();
 				}
 				else
 				{
@@ -214,6 +205,7 @@ void Inventory::CheckClickInInvMode(LONG x, LONG y)
 					if (invBeamSplitter != nullptr)
 					{
 						HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<BeamSplitter>(*invBeamSplitter));
+						compElem.GetGridComponent().reset();
 					}
 					else
 					{
@@ -221,6 +213,7 @@ void Inventory::CheckClickInInvMode(LONG x, LONG y)
 						if (invColorChanger != nullptr)
 						{
 							HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<ColorChanger>(*invColorChanger));
+							compElem.GetGridComponent().reset();
 						}
 						else
 						{
@@ -228,6 +221,7 @@ void Inventory::CheckClickInInvMode(LONG x, LONG y)
 							if (invColorAdder != nullptr)
 							{
 								HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<ColorAdder>(*invColorAdder));
+								compElem.GetGridComponent().reset();
 							}
 							else
 							{
@@ -235,6 +229,7 @@ void Inventory::CheckClickInInvMode(LONG x, LONG y)
 								if (invGoal != nullptr)
 								{
 									HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<Goal>(*invGoal));
+									compElem.GetGridComponent().reset();
 								}
 								else
 								{
@@ -242,6 +237,7 @@ void Inventory::CheckClickInInvMode(LONG x, LONG y)
 									if (invMirror != nullptr)
 									{
 										HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<Mirror>(*invMirror));
+										compElem.GetGridComponent().reset();
 									}
 									else
 									{
@@ -249,6 +245,7 @@ void Inventory::CheckClickInInvMode(LONG x, LONG y)
 										if (invObstacle != nullptr)
 										{
 											HAND->ComponentInHand = dynamic_pointer_cast<Component>(make_shared<Obstacle>(*invObstacle));
+											compElem.GetGridComponent().reset();
 										}
 										else
 										{
@@ -270,12 +267,11 @@ void Inventory::CheckClickInInvMode(LONG x, LONG y)
 				HAND->ComponentInHand.reset();
 				compElem.GetGridComponent()->Magnify(1.0f / (HAND->handScale));
 				compElem.GetGridComponent()->SetDir(tempDirection);
-
 			}
 		}
 	}
 }
-*/
+
 void Inventory::ChangeColor(Grid & compElem, const LONG &y, const LONG &x)
 {
 	shared_ptr<Component> componentInGrid = compElem.GetGridComponent();

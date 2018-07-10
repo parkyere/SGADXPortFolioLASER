@@ -1,0 +1,15 @@
+<LaserOptiXMapFile>
+    <MapInfo Level="0" Xsize="8" Ysize="8" InvenSize="7"/>
+    <MapComponent ComponentName="LaserSource" isSingleColored="True" isDoubleColored="False" PosX="0" PosY="0" Color="Red" Direction="Right"/>
+    <MapComponent ComponentName="BeamSplitter" isSingleColored="True" isDoubleColored="False" PosX="1" PosY="0" Color="Red" Direction="Down"/>
+    <MapComponent ComponentName="ColorChanger" isSingleColored="False" isDoubleColored="True" PosX="1" PosY="2" ColorIn="Red" ColorOut="Blue" Direction="Down"/>
+    <MapComponent ComponentName="Mirror" isSingleColored="False" isDoubleColored="False" PosX="1" PosY="6" Direction="Right"/>
+    <MapComponent ComponentName="Mirror" isSingleColored="False" isDoubleColored="False" PosX="3" PosY="0" Direction="Right"/>
+    <MapComponent ComponentName="BeamSplitter" isSingleColored="True" isDoubleColored="False" PosX="3" PosY="2" Color="Red" Direction="Down"/>
+    <MapComponent ComponentName="ColorAdder" isSingleColored="False" isDoubleColored="False" PosX="3" PosY="4" Direction="Down"/>
+    <MapComponent ComponentName="ColorAdder" isSingleColored="False" isDoubleColored="False" PosX="3" PosY="6" Direction="Right"/>
+    <MapComponent ComponentName="Mirror" isSingleColored="False" isDoubleColored="False" PosX="5" PosY="2" Direction="Right"/>
+    <MapComponent ComponentName="ColorChanger" isSingleColored="False" isDoubleColored="True" PosX="5" PosY="3" ColorIn="Red" ColorOut="Green" Direction="Down"/>
+    <MapComponent ComponentName="Mirror" isSingleColored="False" isDoubleColored="False" PosX="5" PosY="4" Direction="Up"/>
+    <MapComponent ComponentName="Goal" isSingleColored="True" isDoubleColored="False" PosX="7" PosY="6" Color="White" Direction="Right"/>
+</LaserOptiXMapFile>
