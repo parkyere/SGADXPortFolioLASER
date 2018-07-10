@@ -46,6 +46,7 @@ void Inventory::InitEditorInventory()
 	dynamic_pointer_cast<ColorObject>(ColorGrid[6].GetGridComponent())->SetColor(BeamColor::White);
 }
 
+
 void Inventory::SetPosition(float x, float y)
 {
 	posX = x;
