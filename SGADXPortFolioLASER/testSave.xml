@@ -12,4 +12,11 @@
     <MapComponent ComponentName="ColorChanger" isSingleColored="False" isDoubleColored="True" PosX="5" PosY="3" ColorIn="Red" ColorOut="Green" Direction="Down"/>
     <MapComponent ComponentName="Mirror" isSingleColored="False" isDoubleColored="False" PosX="5" PosY="4" Direction="Up"/>
     <MapComponent ComponentName="Goal" isSingleColored="True" isDoubleColored="False" PosX="7" PosY="6" Color="White" Direction="Right"/>
+    <InventoryComponent ComponentName="LaserSource" isSingleColored="True" isDoubleColored="False" PosX="0" PosY="0" Color="Green" Direction="Up"/>
+    <InventoryComponent ComponentName="BeamSplitter" isSingleColored="True" isDoubleColored="False" PosX="1" PosY="0" Color="Red" Direction="Up"/>
+    <InventoryComponent ComponentName="ColorChanger" isSingleColored="False" isDoubleColored="True" PosX="2" PosY="0" ColorIn="Red" ColorOut="Blue" Direction="Up"/>
+    <InventoryComponent ComponentName="ColorAdder" isSingleColored="False" isDoubleColored="False" PosX="3" PosY="0" Direction="Up"/>
+    <InventoryComponent ComponentName="Goal" isSingleColored="True" isDoubleColored="False" PosX="4" PosY="0" Color="Red" Direction="Up"/>
+    <InventoryComponent ComponentName="Mirror" isSingleColored="False" isDoubleColored="False" PosX="5" PosY="0" Direction="Up"/>
+    <InventoryComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="6" PosY="0"/>
 </LaserOptiXMapFile>

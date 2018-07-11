@@ -12,6 +12,7 @@ public:
 	static shared_ptr<MapEditor> GetInstance();
 	void SetLevelNum(int levelNum);
 	string QuerySaveFileNameAndPath();
+	string QueryLoadFileNameAndPath();
 	void SetState();
 	void SaveMap();
 	void ParseFieldToXmlFile(int i, int j, Xml::XMLElement * element, Xml::XMLDocument * document, Xml::XMLNode * node);
@@ -27,4 +28,6 @@ public:
 	void SaveLaserSourceToXmlFile(std::shared_ptr<Component> &gridElem, Xml::XMLElement* element, Xml::XMLDocument* document, std::string &ElemName, int i, int j, Xml::XMLNode * node, string whatComponent);
 	void CreateHeader(Xml::XMLElement * &element, Xml::XMLDocument * document, Xml::XMLNode * node);
 	void LoadMap();
+	BeamColor ReadColorFromText(string colorText);
+	Direction ReadDirectionFromText(string directionText);
 };

@@ -7,6 +7,8 @@ Inventory::Inventory()
 
 void Inventory::InitInventory()
 {
+	InvenGrid.clear();
+	InvenGrid.shrink_to_fit();
 	for (int i = 0; i< componentNumber; i++)
 	{
 		InvenGrid.emplace_back(posX + i * Grid::gridSize, posY);

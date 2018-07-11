@@ -4,7 +4,6 @@
 class GameManager 
 {
 	static shared_ptr<GameManager> instance;
-	int gameLevel{0};
 	GameField myGameField;
 	GameState myState{ GameState::MapEditorEditMode };
 	Inventory myInventory;
@@ -28,5 +27,5 @@ public:
 	inline GameField& callGameField() { return myGameField; }
 	void Destroy();
 	void CheckClick(LONG x, LONG y);
-	Inventory getInventoryForMapSave();
+	//Inventory getInventoryForMapSave();
 };

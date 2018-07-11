@@ -10,7 +10,7 @@ Obstacle::Obstacle()
 	ComponentShape.emplace_back(-0.5f*Grid::gridSize, 0.5f*Grid::gridSize,0x0);
 }
 
-Obstacle::Obstacle(float x, float y)
+Obstacle::Obstacle(float x, float y) : Obstacle{}
 {
 	SetPos(x, y);
 }

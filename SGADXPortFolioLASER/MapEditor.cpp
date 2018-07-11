@@ -18,6 +18,7 @@ shared_ptr<MapEditor> MapEditor::GetInstance()
 
 void MapEditor::SetLevelNum(int levelNum)
 {
+	MAINGAME->callGameField().levelNum = levelNum;
 }
 
 string MapEditor::QuerySaveFileNameAndPath()
@@ -360,16 +361,14 @@ void MapEditor::ParseDirectionToXml(std::shared_ptr<Component> myComponent, Xml:
 void MapEditor::CreateHeader(Xml::XMLElement * &element, Xml::XMLDocument * document, Xml::XMLNode * node)
 {
 	element = document->NewElement("MapInfo");
-	element->SetAttribute("Level", MAINGAME->gameLevel);
+	element->SetAttribute("Level", MAINGAME->callGameField().levelNum);
 	element->SetAttribute("Xsize", MAINGAME->callGameField().fieldXSize);
 	element->SetAttribute("Ysize", MAINGAME->callGameField().fieldYSize);
 	element->SetAttribute("InvenSize", MAINGAME->myInventory.componentNumber);
 	node->InsertEndChild(element);
 }
 
-
-
-void MapEditor::LoadMap()
+string MapEditor::QueryLoadFileNameAndPath() 
 {
 	wchar_t filename[MAX_PATH];
 	OPENFILENAME ofn;
@@ -381,6 +380,223 @@ void MapEditor::LoadMap()
 	ofn.lpstrFile = filename;
 	ofn.nMaxFile = MAX_PATH;
 	ofn.lpstrTitle = L"Load file name";
-	ofn.Flags = OFN_DONTADDTORECENT|OFN_FILEMUSTEXIST;
-	GetSaveFileName(&ofn);
+	ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
+	GetOpenFileName(&ofn);
+
+	string FileNameClassicString;
+	FileNameClassicString.assign(filename, filename + 260);
+	return FileNameClassicString;
+}
+
+void MapEditor::LoadMap()
+{
+	string fileName = QueryLoadFileNameAndPath();
+	Xml::XMLDocument* document = new Xml::XMLDocument;
+	Xml::XMLError error;
+	error = document->LoadFile(fileName.c_str());
+	assert(error == Xml::XML_SUCCESS);
+
+	Xml::XMLElement* root = document->FirstChildElement("LaserOptiXMapFile");
+	Xml::XMLElement* mapInfo = root->FirstChildElement("MapInfo");
+	int levNum = mapInfo->IntAttribute("Level");
+	int xSize = mapInfo->IntAttribute("Xsize");
+	int ySize = mapInfo->IntAttribute("Ysize");
+	int invSize = mapInfo->IntAttribute("InvenSize");
+
+	MAINGAME->callGameField().levelNum = levNum;
+	MAINGAME->callGameField().InitGrid(xSize, ySize);
+	MAINGAME->myInventory.componentNumber = invSize;
+	MAINGAME->myInventory.InitInventory();
+	Xml::XMLElement* mapComponent = nullptr;
+	for (mapComponent = root->FirstChildElement("MapComponent"); mapComponent !=nullptr ; mapComponent = mapComponent->NextSiblingElement("MapComponent"))
+	{
+		string compName = mapComponent->Attribute("ComponentName");
+		int xPos = mapComponent->IntAttribute("PosX");
+		int yPos = mapComponent->IntAttribute("PosY");
+
+		if (compName == "LaserSource") 
+		{
+			BeamColor srcColor = ReadColorFromText(mapComponent->Attribute("Color"));
+			Direction srcDir = ReadDirectionFromText(mapComponent->Attribute("Direction"));
+			shared_ptr<LaserSource> tempSrc = shared_ptr<LaserSource>{ new LaserSource(0.f,0.f,srcDir,srcColor) };
+			MAINGAME->callGameField().myGrid[xPos][yPos].SetGridComponent(dynamic_pointer_cast<Component>(tempSrc));
+			MAINGAME->callGameField().myGrid[xPos][yPos].GetGridComponent()->SetDir(srcDir);
+
+		}
+		else if (compName == "BeamSplitter") 
+		{
+			BeamColor splitterColor = ReadColorFromText(mapComponent->Attribute("Color"));
+			Direction splitterDir = ReadDirectionFromText(mapComponent->Attribute("Direction"));
+			shared_ptr<BeamSplitter> tempSplitter = shared_ptr<BeamSplitter>{ new BeamSplitter(0.f,0.f,splitterDir,splitterColor) };
+			MAINGAME->callGameField().myGrid[xPos][yPos].SetGridComponent(dynamic_pointer_cast<Component>(tempSplitter));
+			MAINGAME->callGameField().myGrid[xPos][yPos].GetGridComponent()->SetDir(splitterDir);
+		}
+		else if (compName == "ColorChanger")
+		{
+			BeamColor converterColorIn = ReadColorFromText(mapComponent->Attribute("ColorIn"));
+			BeamColor converterColorOut = ReadColorFromText(mapComponent->Attribute("ColorOut"));
+			Direction converterDir = ReadDirectionFromText(mapComponent->Attribute("Direction"));
+			shared_ptr<ColorChanger> tempChanger = shared_ptr<ColorChanger>{ new ColorChanger(0.f,0.f,converterDir,converterColorIn,converterColorOut) };
+			MAINGAME->callGameField().myGrid[xPos][yPos].SetGridComponent(dynamic_pointer_cast<Component>(tempChanger));
+			MAINGAME->callGameField().myGrid[xPos][yPos].GetGridComponent()->SetDir(converterDir);
+		}
+		else if (compName == "Mirror")
+		{
+			Direction mirrorDir = ReadDirectionFromText(mapComponent->Attribute("Direction"));
+			shared_ptr<Mirror> tempMirror = shared_ptr<Mirror>{ new Mirror(0.f,0.f,mirrorDir) };
+			MAINGAME->callGameField().myGrid[xPos][yPos].SetGridComponent(dynamic_pointer_cast<Component>(tempMirror));
+			MAINGAME->callGameField().myGrid[xPos][yPos].GetGridComponent()->SetDir(mirrorDir);
+		}
+		else if (compName == "ColorAdder")
+		{
+			Direction adderDir = ReadDirectionFromText(mapComponent->Attribute("Direction"));
+			shared_ptr<ColorAdder> tempAdder = make_shared<ColorAdder>(0.f,0.f,adderDir);
+			MAINGAME->callGameField().myGrid[xPos][yPos].SetGridComponent(dynamic_pointer_cast<Component>(tempAdder));
+			MAINGAME->callGameField().myGrid[xPos][yPos].GetGridComponent()->SetDir(adderDir);
+		}
+		else if (compName == "Obstacle")
+		{
+			shared_ptr<Obstacle> tempObs = make_shared<Obstacle>(0.f, 0.f);
+			MAINGAME->callGameField().myGrid[xPos][yPos].SetGridComponent(dynamic_pointer_cast<Component>(tempObs));
+		}
+		else if (compName == "Goal")
+		{
+			BeamColor goalColor = ReadColorFromText(mapComponent->Attribute("Color"));
+			Direction goalDir = ReadDirectionFromText(mapComponent->Attribute("Direction"));
+			shared_ptr<Goal> tempGoal = make_shared<Goal>(0.f, 0.f, goalDir,goalColor);
+			MAINGAME->callGameField().myGrid[xPos][yPos].SetGridComponent(dynamic_pointer_cast<Component>(tempGoal));
+			MAINGAME->callGameField().myGrid[xPos][yPos].GetGridComponent()->SetDir(goalDir);
+		}
+		else
+		{
+			throw new exception("Unknown MapComponent detected. Check parsing algorithm!");
+		}
+	}
+	Xml::XMLElement* invComponent = nullptr;
+	for (invComponent = root->FirstChildElement("InventoryComponent"); invComponent != nullptr ; invComponent=invComponent->NextSiblingElement("InventoryComponent") )
+	{
+		string compName = invComponent->Attribute("ComponentName");
+		int xPos = invComponent->IntAttribute("PosX");
+		//int yPos = invComponent->IntAttribute("PosY");
+
+		if (compName == "LaserSource")
+		{
+			BeamColor srcColor = ReadColorFromText(invComponent->Attribute("Color"));
+			Direction srcDir = ReadDirectionFromText(invComponent->Attribute("Direction"));
+			shared_ptr<LaserSource> tempSrc = shared_ptr<LaserSource>{ new LaserSource(0.f,0.f,srcDir,srcColor) };
+			MAINGAME->myInventory.InvenGrid[xPos].SetGridComponent(dynamic_pointer_cast<Component>(tempSrc));
+			MAINGAME->myInventory.InvenGrid[xPos].GetGridComponent()->SetDir(srcDir);
+
+		}
+		else if (compName == "BeamSplitter")
+		{
+			BeamColor splitterColor = ReadColorFromText(invComponent->Attribute("Color"));
+			Direction splitterDir = ReadDirectionFromText(invComponent->Attribute("Direction"));
+			shared_ptr<BeamSplitter> tempSplitter = shared_ptr<BeamSplitter>{ new BeamSplitter(0.f,0.f,splitterDir,splitterColor) };
+			MAINGAME->myInventory.InvenGrid[xPos].SetGridComponent(dynamic_pointer_cast<Component>(tempSplitter));
+			MAINGAME->myInventory.InvenGrid[xPos].GetGridComponent()->SetDir(splitterDir);
+		}
+		else if (compName == "ColorChanger")
+		{
+			BeamColor converterColorIn = ReadColorFromText(invComponent->Attribute("ColorIn"));
+			BeamColor converterColorOut = ReadColorFromText(invComponent->Attribute("ColorOut"));
+			Direction converterDir = ReadDirectionFromText(invComponent->Attribute("Direction"));
+			shared_ptr<ColorChanger> tempChanger = shared_ptr<ColorChanger>{ new ColorChanger(0.f,0.f,converterDir,converterColorIn,converterColorOut) };
+			MAINGAME->myInventory.InvenGrid[xPos].SetGridComponent(dynamic_pointer_cast<Component>(tempChanger));
+			MAINGAME->myInventory.InvenGrid[xPos].GetGridComponent()->SetDir(converterDir);
+		}
+		else if (compName == "Mirror")
+		{
+			Direction mirrorDir = ReadDirectionFromText(invComponent->Attribute("Direction"));
+			shared_ptr<Mirror> tempMirror = shared_ptr<Mirror>{ new Mirror(0.f,0.f,mirrorDir) };
+			MAINGAME->myInventory.InvenGrid[xPos].SetGridComponent(dynamic_pointer_cast<Component>(tempMirror));
+			MAINGAME->myInventory.InvenGrid[xPos].GetGridComponent()->SetDir(mirrorDir);
+		}
+		else if (compName == "ColorAdder")
+		{
+			Direction adderDir = ReadDirectionFromText(invComponent->Attribute("Direction"));
+			shared_ptr<ColorAdder> tempAdder = make_shared<ColorAdder>(0.f, 0.f, adderDir);
+			MAINGAME->myInventory.InvenGrid[xPos].SetGridComponent(dynamic_pointer_cast<Component>(tempAdder));
+			MAINGAME->myInventory.InvenGrid[xPos].GetGridComponent()->SetDir(adderDir);
+		}
+		else if (compName == "Obstacle")
+		{
+			shared_ptr<Obstacle> tempObs = make_shared<Obstacle>(0.f, 0.f);
+			MAINGAME->myInventory.InvenGrid[xPos].SetGridComponent(dynamic_pointer_cast<Component>(tempObs));
+		}
+		else if (compName == "Goal")
+		{
+			BeamColor goalColor = ReadColorFromText(invComponent->Attribute("Color"));
+			Direction goalDir = ReadDirectionFromText(invComponent->Attribute("Direction"));
+			shared_ptr<Goal> tempGoal = make_shared<Goal>(0.f, 0.f, goalDir, goalColor);
+			MAINGAME->myInventory.InvenGrid[xPos].SetGridComponent(dynamic_pointer_cast<Component>(tempGoal));
+			MAINGAME->myInventory.InvenGrid[xPos].GetGridComponent()->SetDir(goalDir);
+		}
+		else
+		{
+			throw new exception("Unknown MapComponent detected. Check parsing algorithm!");
+		}
+	}
+	//Stopped here
+	delete document;
+}
+BeamColor MapEditor::ReadColorFromText(string colorText) 
+{
+	if (colorText == "Red")
+	{
+		return BeamColor::Red;
+	}
+	else if (colorText == "Green")
+	{
+		return BeamColor::Green;
+	}
+	else if (colorText == "Blue")
+	{
+		return BeamColor::Blue;
+	}
+	else if (colorText == "Cyan")
+	{
+		return BeamColor::Cyan;
+	}
+	else if (colorText == "Magenta")
+	{
+		return BeamColor::Magenta;
+	}
+	else if (colorText == "Yellow")
+	{
+		return BeamColor::Yellow;
+	}
+	else if (colorText == "White")
+	{
+		return BeamColor::White;
+	}
+	else 
+	{
+		throw new exception("Unknown color detected in XML savefile!");
+		return BeamColor::White;
+	}
+}
+Direction MapEditor::ReadDirectionFromText(string directionText) 
+{
+	if (directionText == "Up") 
+	{
+		return Direction::Up;
+	}
+	else if (directionText == "Down")
+	{
+		return Direction::Down;
+	}
+	else if (directionText == "Right")
+	{
+		return Direction::Right;
+	}
+	else if (directionText == "Left")
+	{
+		return Direction::Left;
+	}
+	else
+	{
+		throw new exception("Unknown direction detected in XML savefile!");
+		return Direction::NoDirection;
+	}
 }
