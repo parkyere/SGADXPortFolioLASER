@@ -391,6 +391,10 @@ string MapEditor::QueryLoadFileNameAndPath()
 void MapEditor::LoadMap()
 {
 	string fileName = QueryLoadFileNameAndPath();
+	LoadMap(fileName);
+}
+void MapEditor::LoadMap(string fileName)
+{
 	Xml::XMLDocument* document = new Xml::XMLDocument;
 	Xml::XMLError error;
 	error = document->LoadFile(fileName.c_str());
@@ -408,13 +412,13 @@ void MapEditor::LoadMap()
 	MAINGAME->myInventory.componentNumber = invSize;
 	MAINGAME->myInventory.InitInventory();
 	Xml::XMLElement* mapComponent = nullptr;
-	for (mapComponent = root->FirstChildElement("MapComponent"); mapComponent !=nullptr ; mapComponent = mapComponent->NextSiblingElement("MapComponent"))
+	for (mapComponent = root->FirstChildElement("MapComponent"); mapComponent != nullptr; mapComponent = mapComponent->NextSiblingElement("MapComponent"))
 	{
 		string compName = mapComponent->Attribute("ComponentName");
 		int xPos = mapComponent->IntAttribute("PosX");
 		int yPos = mapComponent->IntAttribute("PosY");
 
-		if (compName == "LaserSource") 
+		if (compName == "LaserSource")
 		{
 			BeamColor srcColor = ReadColorFromText(mapComponent->Attribute("Color"));
 			Direction srcDir = ReadDirectionFromText(mapComponent->Attribute("Direction"));
@@ -423,7 +427,7 @@ void MapEditor::LoadMap()
 			MAINGAME->callGameField().myGrid[xPos][yPos].GetGridComponent()->SetDir(srcDir);
 
 		}
-		else if (compName == "BeamSplitter") 
+		else if (compName == "BeamSplitter")
 		{
 			BeamColor splitterColor = ReadColorFromText(mapComponent->Attribute("Color"));
 			Direction splitterDir = ReadDirectionFromText(mapComponent->Attribute("Direction"));
@@ -450,7 +454,7 @@ void MapEditor::LoadMap()
 		else if (compName == "ColorAdder")
 		{
 			Direction adderDir = ReadDirectionFromText(mapComponent->Attribute("Direction"));
-			shared_ptr<ColorAdder> tempAdder = make_shared<ColorAdder>(0.f,0.f,adderDir);
+			shared_ptr<ColorAdder> tempAdder = make_shared<ColorAdder>(0.f, 0.f, adderDir);
 			MAINGAME->callGameField().myGrid[xPos][yPos].SetGridComponent(dynamic_pointer_cast<Component>(tempAdder));
 			MAINGAME->callGameField().myGrid[xPos][yPos].GetGridComponent()->SetDir(adderDir);
 		}
@@ -463,7 +467,7 @@ void MapEditor::LoadMap()
 		{
 			BeamColor goalColor = ReadColorFromText(mapComponent->Attribute("Color"));
 			Direction goalDir = ReadDirectionFromText(mapComponent->Attribute("Direction"));
-			shared_ptr<Goal> tempGoal = make_shared<Goal>(0.f, 0.f, goalDir,goalColor);
+			shared_ptr<Goal> tempGoal = make_shared<Goal>(0.f, 0.f, goalDir, goalColor);
 			MAINGAME->callGameField().myGrid[xPos][yPos].SetGridComponent(dynamic_pointer_cast<Component>(tempGoal));
 			MAINGAME->callGameField().myGrid[xPos][yPos].GetGridComponent()->SetDir(goalDir);
 		}
@@ -473,7 +477,7 @@ void MapEditor::LoadMap()
 		}
 	}
 	Xml::XMLElement* invComponent = nullptr;
-	for (invComponent = root->FirstChildElement("InventoryComponent"); invComponent != nullptr ; invComponent=invComponent->NextSiblingElement("InventoryComponent") )
+	for (invComponent = root->FirstChildElement("InventoryComponent"); invComponent != nullptr; invComponent = invComponent->NextSiblingElement("InventoryComponent"))
 	{
 		string compName = invComponent->Attribute("ComponentName");
 		int xPos = invComponent->IntAttribute("PosX");

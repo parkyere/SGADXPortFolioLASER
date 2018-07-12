@@ -4,7 +4,7 @@ shared_ptr<GameManager> GameManager::instance{nullptr};
 
 GameManager::GameManager() 
 {
-
+	myState = GameState::IntroMode;
 }
 
 shared_ptr<GameManager> GameManager::Get()
@@ -20,16 +20,70 @@ void GameManager::Initialize(HINSTANCE instance, HWND handle)
 {
 	gameInstance = instance;
 	gameHandle = handle;
-	//::PlaySound(L"OrdosBriefing.wav", NULL, SND_FILENAME | SND_LOOP);
-	//if (S_OK != )	throw new exception("Music Load failed!");
-	if (myState == GameState::MapEditorEditMode) 
-	{
-		myGameField.InitGrid(8, 8);
-		myInventory.InitInventory();
-		myMapMakingTool.SetPosition(800.f,50.f);
-		myMapMakingTool.InitEditorInventory();
-	}
+	INTROSCENE;
+	//if (myState == GameState::MapEditorEditMode) 
+	//{
+	//	myGameField.InitGrid(8, 8);
+	//	myInventory.InitInventory();
+	//	myMapMakingTool.SetPosition(800.f,50.f);
+	//	myMapMakingTool.InitEditorInventory();
+	//}
 
+}
+
+void GameManager::PrepareGame()
+{
+	MAPEDITOR->LoadMap("tutorial01.xml");
+}
+
+void GameManager::PrepareEditor()
+{
+}
+
+void GameManager::LoadLevel(int levNum)
+{
+	switch (levNum) 
+	{
+	case 0:
+		MAPEDITOR->LoadMap("tutorial01.xml");
+		break;
+	case 1:
+		MAPEDITOR->LoadMap("tutorial02.xml");
+		break;
+	case 2:
+		MAPEDITOR->LoadMap("tutorial03.xml");
+		break;
+	case 3:
+		MAPEDITOR->LoadMap("tutorial04.xml");
+		break;
+	case 4:
+		MAPEDITOR->LoadMap("tutorial05.xml");
+		break;
+	case 5:
+		MAPEDITOR->LoadMap("tutorial06.xml");
+		break;
+	case 6:
+		MAPEDITOR->LoadMap("level1.xml");
+		break;
+	case 7:
+		MAPEDITOR->LoadMap("level2.xml");
+		break;
+	case 8:
+		MAPEDITOR->LoadMap("level3.xml");
+		break;
+	default:
+		break;
+	}
+}
+
+void GameManager::ReloadLevel()
+{
+	LoadLevel(myGameField.levelNum);
+}
+
+void GameManager::LoadNextLevel()
+{
+	LoadLevel(myGameField.levelNum+1);
 }
 
 HINSTANCE GameManager::getInstance()
@@ -65,6 +119,15 @@ void GameManager::Update()
 
 	case GameState::GamePlayEditMode:
 		HAND->UpdateInPlayEditMode();
+		if (KEYBOARD->KeyDown(VK_SPACE))
+		{
+			HAND->ClearHand();
+			myState = GameState::GamePlayRunMode;
+		}
+		else if (KEYBOARD->KeyDown(VK_ESCAPE))
+		{
+			MAINGAME->ReloadLevel();
+		}
 		break;
 	case GameState::GamePlayRunMode:
 		myGameField.Update();
@@ -72,11 +135,9 @@ void GameManager::Update()
 		{
 			callGameField().clearBeamPulses();
 			myState = GameState::GamePlayEditMode;
+			MAINGAME->ReloadLevel();
 		}
-		break;
-
-	case GameState::IntroMode:
-		break;
+	break;
 	default:
 		throw new exception("Unknown Game State!");
 	}
@@ -117,7 +178,8 @@ void GameManager::CheckClick(LONG x, LONG y)
 
 		break;
 	case GameState::GamePlayEditMode:
-
+		myGameField.CheckClick(x, y);
+		myInventory.CheckClickInInvMode(x, y);
 		break;
 	case GameState::GamePlayRunMode:
 

@@ -52,9 +52,6 @@
     <Filter Include="Core\MyPoint">
       <UniqueIdentifier>{999b3c76-9eaf-46cc-be81-493d9d5c95de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utility">
-      <UniqueIdentifier>{dcbe742e-438e-4dc7-82f5-7e1cde77883f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObjects\Grid">
       <UniqueIdentifier>{fca1c47b-68f1-44a2-829e-15e57899cb46}</UniqueIdentifier>
     </Filter>
@@ -69,9 +66,6 @@
     </Filter>
     <Filter Include="Render\Vertex">
       <UniqueIdentifier>{b97154fa-6bd1-46b7-a0b5-07f9a2d0de7f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Render\Camera">
-      <UniqueIdentifier>{459b692d-ff7d-4576-ac6c-66553007aa4f}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameObjects\GameState">
       <UniqueIdentifier>{5e444ee8-68cf-4a35-8f03-dcdd5dcdc43e}</UniqueIdentifier>
@@ -125,9 +119,6 @@
     </ClInclude>
     <ClInclude Include="Size.h">
       <Filter>Core\Size</Filter>
-    </ClInclude>
-    <ClInclude Include="World.h">
-      <Filter>Utility</Filter>
     </ClInclude>
     <ClInclude Include="Grid.h">
       <Filter>GameObjects\Grid</Filter>
@@ -185,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="Xml.h">
       <Filter>Core\XML</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroScene.h">
+      <Filter>MainGame\GameManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -268,6 +262,9 @@
     </ClCompile>
     <ClCompile Include="MapEditor.cpp">
       <Filter>MainGame\MapEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroScene.cpp">
+      <Filter>MainGame\GameManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

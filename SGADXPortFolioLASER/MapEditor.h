@@ -28,6 +28,7 @@ public:
 	void SaveLaserSourceToXmlFile(std::shared_ptr<Component> &gridElem, Xml::XMLElement* element, Xml::XMLDocument* document, std::string &ElemName, int i, int j, Xml::XMLNode * node, string whatComponent);
 	void CreateHeader(Xml::XMLElement * &element, Xml::XMLDocument * document, Xml::XMLNode * node);
 	void LoadMap();
+	void LoadMap(string fileName);
 	BeamColor ReadColorFromText(string colorText);
 	Direction ReadDirectionFromText(string directionText);
 };

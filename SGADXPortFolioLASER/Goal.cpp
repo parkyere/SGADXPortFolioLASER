@@ -37,4 +37,13 @@ void Goal::Render()
 
 void Goal::beamComing(shared_ptr<BeamPulse> inBeam)
 {
+	if (ComponentDirection == inBeam->getDirection())
+	{
+		if (GetColor() == inBeam->GetColor())
+		{
+			MAINGAME->setState(GameState::GamePlayEditMode);
+			MAINGAME->callGameField().clearBeamPulses();
+			MAINGAME->LoadNextLevel();
+		}
+	}
 }

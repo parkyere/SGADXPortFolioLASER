@@ -87,6 +87,7 @@ void Inventory::CheckClickinMapEditorMode(LONG x, LONG y)
 					//Pick Item
 					HAND->xPos = (float)x;
 					HAND->yPos = (float)y;
+					if (compElem.GetGridComponent() == nullptr) return;
 					HAND->handDirection = compElem.GetGridComponent()->getDirection();
 
 					shared_ptr<LaserSource> invLaserSource = dynamic_pointer_cast<LaserSource>(compElem.GetGridComponent());
@@ -194,6 +195,7 @@ void Inventory::CheckClickInInvMode(LONG x, LONG y)
 				//Pick Item
 				HAND->xPos = (float)x;
 				HAND->yPos = (float)y;
+				if (compElem.GetGridComponent() == nullptr) return;
 				HAND->handDirection = compElem.GetGridComponent()->getDirection();
 
 				shared_ptr<LaserSource> invLaserSource = dynamic_pointer_cast<LaserSource>(compElem.GetGridComponent());
