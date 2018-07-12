@@ -12,6 +12,7 @@ class GameManager
 	HWND gameHandle;
 	GameManager();
 	friend class MapEditor;
+
 public:
 	LPDIRECT3DTEXTURE9 texture;
 	static shared_ptr<GameManager> Get();
@@ -27,5 +28,4 @@ public:
 	inline GameField& callGameField() { return myGameField; }
 	void Destroy();
 	void CheckClick(LONG x, LONG y);
-	//Inventory getInventoryForMapSave();
 };

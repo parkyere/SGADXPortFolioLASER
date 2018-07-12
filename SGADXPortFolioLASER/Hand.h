@@ -16,6 +16,7 @@ public:
 		return ComponentInHand == nullptr;
 	}
 	void Render();
-	void UpdateInEditMode();
+	void UpdateInMapEditMode();
+	void UpdateInPlayEditMode();
 	void ClearHand();
 };

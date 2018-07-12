@@ -31,9 +31,6 @@
     <Filter Include="System\Device">
       <UniqueIdentifier>{e6a4b17f-db5f-4bd1-a904-10cee7327c53}</UniqueIdentifier>
     </Filter>
-    <Filter Include="System\Frames">
-      <UniqueIdentifier>{11a24645-edc9-4aa1-b7f3-5cf423c8fb4a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="System\Keyboard">
       <UniqueIdentifier>{ba961723-fc11-48ff-982d-0d2fb43e08b1}</UniqueIdentifier>
     </Filter>
@@ -117,9 +114,6 @@
     <ClInclude Include="Device.h">
       <Filter>System\Device</Filter>
     </ClInclude>
-    <ClInclude Include="Frames.h">
-      <Filter>System\Frames</Filter>
-    </ClInclude>
     <ClInclude Include="Keyboard.h">
       <Filter>System\Keyboard</Filter>
     </ClInclude>
@@ -138,9 +132,6 @@
     <ClInclude Include="Grid.h">
       <Filter>GameObjects\Grid</Filter>
     </ClInclude>
-    <ClInclude Include="Rect.h">
-      <Filter>Core\Rect</Filter>
-    </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>GameObjects\Component</Filter>
     </ClInclude>
@@ -149,21 +140,6 @@
     </ClInclude>
     <ClInclude Include="Vertex.h">
       <Filter>Render\Vertex</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Render\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="MainCamera.h">
-      <Filter>Render\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="FreeView.h">
-      <Filter>Render\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="FollowView.h">
-      <Filter>Render\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Factory.h">
-      <Filter>Render\Camera</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">
       <Filter>GameObjects\GameState</Filter>
@@ -221,9 +197,6 @@
     <ClCompile Include="Device.cpp">
       <Filter>System\Device</Filter>
     </ClCompile>
-    <ClCompile Include="Frames.cpp">
-      <Filter>System\Frames</Filter>
-    </ClCompile>
     <ClCompile Include="Keyboard.cpp">
       <Filter>System\Keyboard</Filter>
     </ClCompile>
@@ -236,23 +209,8 @@
     <ClCompile Include="Size.cpp">
       <Filter>Core\Size</Filter>
     </ClCompile>
-    <ClCompile Include="Rect.cpp">
-      <Filter>Core\Rect</Filter>
-    </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>MainGame\GameManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Render\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="FollowView.cpp">
-      <Filter>Render\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="FreeView.cpp">
-      <Filter>Render\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="MainCamera.cpp">
-      <Filter>Render\Camera</Filter>
     </ClCompile>
     <ClCompile Include="GameField.cpp">
       <Filter>GameObjects\GameField</Filter>

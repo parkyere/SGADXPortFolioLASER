@@ -1,0 +1,63 @@
+<LaserOptiXMapFile>
+    <MapInfo Level="5" Xsize="8" Ysize="8" InvenSize="3"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="0" PosY="0"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="0" PosY="1"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="0" PosY="2"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="0" PosY="3"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="0" PosY="4"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="0" PosY="5"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="0" PosY="6"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="0" PosY="7"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="1" PosY="0"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="1" PosY="1"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="1" PosY="2"/>
+    <MapComponent ComponentName="LaserSource" isSingleColored="True" isDoubleColored="False" PosX="1" PosY="3" Color="Red" Direction="Right"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="1" PosY="4"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="1" PosY="5"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="1" PosY="6"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="1" PosY="7"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="2" PosY="0"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="2" PosY="1"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="2" PosY="2"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="2" PosY="4"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="2" PosY="5"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="2" PosY="6"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="2" PosY="7"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="3" PosY="0"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="3" PosY="1"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="3" PosY="2"/>
+    <MapComponent ComponentName="ColorAdder" isSingleColored="False" isDoubleColored="False" PosX="3" PosY="3" Direction="Right"/>
+    <MapComponent ComponentName="LaserSource" isSingleColored="True" isDoubleColored="False" PosX="3" PosY="6" Color="Blue" Direction="Up"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="3" PosY="7"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="4" PosY="0"/>
+    <MapComponent ComponentName="LaserSource" isSingleColored="True" isDoubleColored="False" PosX="4" PosY="1" Color="Green" Direction="Down"/>
+    <MapComponent ComponentName="ColorAdder" isSingleColored="False" isDoubleColored="False" PosX="4" PosY="3" Direction="Right"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="4" PosY="4"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="4" PosY="5"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="4" PosY="6"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="4" PosY="7"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="5" PosY="0"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="5" PosY="1"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="5" PosY="2"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="5" PosY="4"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="5" PosY="5"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="5" PosY="6"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="5" PosY="7"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="6" PosY="0"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="6" PosY="1"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="6" PosY="2"/>
+    <MapComponent ComponentName="Goal" isSingleColored="True" isDoubleColored="False" PosX="6" PosY="3" Color="Cyan" Direction="Right"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="6" PosY="4"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="6" PosY="5"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="6" PosY="6"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="6" PosY="7"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="7" PosY="0"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="7" PosY="1"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="7" PosY="2"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="7" PosY="3"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="7" PosY="4"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="7" PosY="5"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="7" PosY="6"/>
+    <MapComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="7" PosY="7"/>
+    <InventoryComponent ComponentName="Obstacle" isSingleColored="False" isDoubleColored="False" PosX="1" PosY="0"/>
+</LaserOptiXMapFile>

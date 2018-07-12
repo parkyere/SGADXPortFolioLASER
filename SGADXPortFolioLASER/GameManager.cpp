@@ -20,6 +20,8 @@ void GameManager::Initialize(HINSTANCE instance, HWND handle)
 {
 	gameInstance = instance;
 	gameHandle = handle;
+	//::PlaySound(L"OrdosBriefing.wav", NULL, SND_FILENAME | SND_LOOP);
+	//if (S_OK != )	throw new exception("Music Load failed!");
 	if (myState == GameState::MapEditorEditMode) 
 	{
 		myGameField.InitGrid(8, 8);
@@ -27,6 +29,7 @@ void GameManager::Initialize(HINSTANCE instance, HWND handle)
 		myMapMakingTool.SetPosition(800.f,50.f);
 		myMapMakingTool.InitEditorInventory();
 	}
+
 }
 
 HINSTANCE GameManager::getInstance()
@@ -44,7 +47,7 @@ void GameManager::Update()
 	switch (myState) 
 	{
 	case GameState::MapEditorEditMode:
-		HAND->UpdateInEditMode();
+		HAND->UpdateInMapEditMode();
 		if (KEYBOARD->KeyDown(VK_SPACE)) 
 		{
 			HAND->ClearHand();
@@ -61,9 +64,15 @@ void GameManager::Update()
 		break;
 
 	case GameState::GamePlayEditMode:
-		HAND->UpdateInEditMode();
+		HAND->UpdateInPlayEditMode();
 		break;
 	case GameState::GamePlayRunMode:
+		myGameField.Update();
+		if (KEYBOARD->KeyDown(VK_ESCAPE))
+		{
+			callGameField().clearBeamPulses();
+			myState = GameState::GamePlayEditMode;
+		}
 		break;
 
 	case GameState::IntroMode:

@@ -27,7 +27,7 @@ void Hand::Render()
 	}
 }
 
-void Hand::UpdateInEditMode()
+void Hand::UpdateInMapEditMode()
 {
 	if (isEmpty()) 
 	{
@@ -43,6 +43,21 @@ void Hand::UpdateInEditMode()
 		{
 			ComponentInHand->RightRotateDirection();
 			handDirection = ComponentInHand->getDirection();
+		}
+	}
+}
+
+void Hand::UpdateInPlayEditMode()
+{
+	if (isEmpty())
+	{
+		return;
+	}
+	else
+	{
+		if (KEYBOARD->KeyPress(VK_ESCAPE))
+		{
+			ClearHand();
 		}
 	}
 }

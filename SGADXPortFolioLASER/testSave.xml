@@ -1,5 +1,5 @@
 <LaserOptiXMapFile>
-    <MapInfo Level="0" Xsize="8" Ysize="8" InvenSize="7"/>
+    <MapInfo Level="0" Xsize="8" Ysize="8" InvenSize="14"/>
     <MapComponent ComponentName="LaserSource" isSingleColored="True" isDoubleColored="False" PosX="0" PosY="0" Color="Red" Direction="Right"/>
     <MapComponent ComponentName="BeamSplitter" isSingleColored="True" isDoubleColored="False" PosX="1" PosY="0" Color="Red" Direction="Down"/>
     <MapComponent ComponentName="ColorChanger" isSingleColored="False" isDoubleColored="True" PosX="1" PosY="2" ColorIn="Red" ColorOut="Blue" Direction="Down"/>
