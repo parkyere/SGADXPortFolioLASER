@@ -38,6 +38,10 @@ void GameManager::PrepareGame()
 
 void GameManager::PrepareEditor()
 {
+	myGameField.InitGrid(10, 10);
+	myInventory.InitInventory();
+	myMapMakingTool.SetPosition(800.f,50.f);
+	myMapMakingTool.InitEditorInventory();
 }
 
 void GameManager::LoadLevel(int levNum)
@@ -182,10 +186,6 @@ void GameManager::CheckClick(LONG x, LONG y)
 		myInventory.CheckClickInInvMode(x, y);
 		break;
 	case GameState::GamePlayRunMode:
-
-		break;
-
-	case GameState::IntroMode:
 
 		break;
 	default:

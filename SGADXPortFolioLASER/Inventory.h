@@ -10,7 +10,7 @@ class Inventory
 	float posY;
 	friend class MapEditor;
 public:
-	int componentNumber{ 7 };
+	int componentNumber{ 16 };
 	int colorNumber{ 7 };
 	Inventory();
 	void InitInventory();
