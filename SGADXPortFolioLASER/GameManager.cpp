@@ -33,6 +33,7 @@ void GameManager::Initialize(HINSTANCE instance, HWND handle)
 
 void GameManager::PrepareGame()
 {
+	::SetMenu(gameHandle, NULL);
 	MAPEDITOR->LoadMap("tutorial01.xml");
 }
 

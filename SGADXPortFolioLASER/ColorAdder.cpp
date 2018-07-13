@@ -311,7 +311,7 @@ void ColorAdder::Render()
 	//draw Arrow
 	DEVICE->DrawPrimitiveUP(D3DPT_LINESTRIP, 7, &tempVertex[4], sizeof(Vertex));
 	//draw Circle
-	DEVICE->DrawPrimitiveUP(D3DPT_LINESTRIP, 256, &tempVertex[12], sizeof(Vertex));
+	DEVICE->DrawPrimitiveUP(D3DPT_LINESTRIP, 255, &tempVertex[12], sizeof(Vertex));
 }
 
 void ColorAdder::beamComing(shared_ptr<BeamPulse> inBeam)
